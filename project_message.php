@@ -6,6 +6,6 @@
   </head>
   <body>
     留言板頁面<br>
-    <a href="project_home.php">專案首頁</a>
+    <a href="project_home.php?id=<?php echo $_GET['id']; ?>">專案首頁</a>
   </body>
 </html>

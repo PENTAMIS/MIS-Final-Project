@@ -97,7 +97,7 @@
          $res_stage = mysql_query($query);
 
 
-         if ($res_projects&&$res_stage ) {
+         if ($res_projects&&$res_stage) {
              $errTyp = "success";
              $errMSG = "更新成功";
              unset($project_creatorId);

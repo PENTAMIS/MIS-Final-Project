@@ -87,7 +87,7 @@
              unset($interests);
          } else {
              $errTyp = "danger";
-             $errMSG = "註冊失敗，請檢查驗證碼是否與圖像相符";
+             $errMSG = "註冊失敗";
          }
      }
  }
