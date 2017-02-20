@@ -1,4 +1,15 @@
-<?php echo $_GET['id']; ?>
+<?php
+  include_once 'dbconnect.php';
+  session_start();
+  echo $_GET['id'];
+
+  $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
+  $userRow = mysql_fetch_array($res);
+
+  $res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
+  $projectRow = mysql_fetch_array($res);
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +22,11 @@
     <a href="project_message.php?id=<?php echo $_GET['id']; ?>">留言板</a><br>
     <a href="project_mission.php?id=<?php echo $_GET['id']; ?>">任務區</a><br>
     <a href="project_file.php?id=<?php echo $_GET['id']; ?>">檔案區</a><br>
-    <a href="project_setting.php?id=<?php echo $_GET['id']; ?>">專案設定</a><br>
+    <?php
+      if ($userRow[0] == $projectRow[1]){
+        echo "<a href=project_setting.php?id={$_GET['id']}>專案設定</a><br>";
+      }
+    ?>
     <a href="home.php">回首頁</a>
   </body>
 </html>
