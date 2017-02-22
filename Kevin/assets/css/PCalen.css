@@ -1,0 +1,105 @@
+/* Basic*/
+	
+	*{		
+		font-family:"Microsoft JhengHei";
+	}
+
+
+/*Nav*/
+
+	.navbar-brand{
+		font-size: 30px;
+		font-weight: 100;
+
+	}
+
+/* Calendar */
+
+	#overview{
+		width: 200px;
+		height: 600px;
+		top: 40px;
+		margin: 30px;
+		float: left;
+
+	}
+
+	#bookdate{
+		text-align: center;
+	}
+
+	.tableX{
+		border-style:solid;
+		position: relative;
+		top:20px;
+		width:100%;
+		padding-right: 220px;
+	}
+
+
+	#main{
+		height: 600px;
+
+	}
+	
+	#calen{
+		margin: 50px 25px;
+		width: 1050px; 
+	}
+	
+	.row0 td{
+		text-align: center;
+
+		height: 30px;
+		width: 100px;
+		font-weight: bold;
+	}
+
+	.row1 td{
+		text-align: left;
+		position: relative;
+		left: 5px;
+		border-bottom: 0px;
+
+		min-width: 150px;
+	}
+
+	.row2 td{
+		text-align: center;
+		border-top: 0px;
+		height: 80px;		overflow-x: hidden;
+		overflow-y: hidden;
+
+
+	}
+
+	.row2 div#test{
+		text-align: center;
+		border-top: 0px;
+		height: 80px;
+
+
+	}
+	
+
+	div.pers{
+		padding-top:1px;
+		margin: 4px;
+		border-radius:5px;
+		border-color: #E84948; 
+		background-color: #E84948;
+		color: white;
+	}	
+
+	div.proj{
+		height: 20px;
+		margin: 4px;
+		border-radius:5px;
+		border-color: #FF8800; 
+		background-color: #FF8800;
+		color: white;
+	}		
+
+
+
+

@@ -1,0 +1,173 @@
+/* Basic*/
+	
+	*{		
+		font-family:"Microsoft JhengHei";
+	}
+
+
+/*Nav*/
+
+	.navbar-brand{
+		font-size: 30px;
+		font-weight: 100;
+
+	}
+
+
+
+/*form*/
+
+	#bookdate{
+		text-align: right;
+	}
+
+	.plus{
+		border: 2px dashed #4E7D91;
+		background-color: transparent;
+		width: 700px;
+		height: 50px;
+		line-height: 40px;
+		margin: 0 20px;
+		font-size: 24px;
+		font-weight: 900;
+		color: #4E7D91;
+	}
+
+	#PSetting{
+		border-top: 2px 		#A9A9A9 solid;
+		border-bottom: 2px 		#A9A9A9 solid;
+		border-left: 0px;
+		border-right: 0px;
+
+	}
+
+	.PS-1 td{
+		width: 700px;
+		height: 50px;
+		padding: 10px;
+	}
+
+	.PS1-1{
+		font-size: 18px;
+		border-bottom: 1px 	#DCDCDC solid;
+
+	}
+
+	.PS1-2{
+		border-bottom: 1px 	#DCDCDC solid;
+	}
+
+	.PS1-3{
+		text-align: right;
+		border-bottom: 1px 	#DCDCDC solid;
+	}
+
+
+	.PS1-3 input{
+		border:2px solid #AAAAAA;
+		height:30px;
+		width:30px;
+		font-size:15px;
+		background-color : transparent ;
+		color:#666666;
+		border-radius: 15px;
+		color: #AAAAAA;
+		font-weight: 500;
+	}
+
+	#PPart{
+		border-top: 2px 		#A9A9A9 solid;
+		border-bottom: 2px 		#A9A9A9 solid;
+		border-left: 0px;
+		border-right: 0px;
+		text-align: center;
+
+	}
+
+	.PS-2 td{
+		width: 700px;
+		height: 50px;
+		padding: 10px;
+	}
+
+	#PAssign{
+		border-top: 2px 		#A9A9A9 solid;
+		border-bottom: 2px 		#A9A9A9 solid;
+		border-left: 0px;
+		border-right: 0px;
+		text-align: center;
+
+	}
+
+	.PS-3 td{
+		width:700px;
+		height: 50px;
+		padding: 10px;
+	}
+
+	.PS-3-T h4{
+		text-align: left;
+		margin: 5px;
+	}
+
+
+/*分頁*/
+
+	ul, li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.abgne_tab {
+		width: 800px;
+		height: 600px;
+		margin-top: 100px;
+		margin-left: 50px;
+	}
+	ul.tabs {
+		width: 100%;
+		height: 32px;
+		border-bottom: 1px solid #999;
+		border-left: 1px solid #999;
+	}
+	ul.tabs li {
+		float: left;
+		height: 31px;
+		line-height: 31px;
+		overflow: hidden;
+		position: relative;
+		margin-bottom: -1px;	/* 讓 li 往下移來遮住 ul 的部份 border-bottom */
+		border: 1px solid #999;
+		border-left: none;
+		background: #e1e1e1;
+	}
+	ul.tabs li a {
+		display: block;
+		padding: 0 20px;
+		color: #000;
+		border: 1px solid #fff;
+		text-decoration: none;
+	}
+	ul.tabs li a:hover {
+		background: #ccc;
+	}
+	ul.tabs li.active  {
+		background: #fff;
+		border-bottom: 1px solid #fff;
+	}
+	ul.tabs li.active a:hover {
+		background: #fff;
+	}
+	div.tab_container {
+		clear: left;
+		width: 100%;
+		border: 1px solid #999;
+		border-top: none;
+		background: #fff;
+	}
+	div.tab_container .tab_content {
+		padding: 20px;
+	}
+	div.tab_container .tab_content h2 {
+		margin: 0 0 20px;
+	}
