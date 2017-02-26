@@ -13,15 +13,17 @@ if(isset($_GET['del']) )
 		if($res){
             echo "<script>
             alert('Deleted');
+						window.location.href='project_file_view?id=$file_projectId';
             </script>";
-						header("Location: project_file_view.php?id=$file_projectId");
+						//header("Location: project_file_view.php?id=$file_projectId");
 
 		} else
 		{
             echo "<script>
             alert('error while deleting file');
+						window.location.href='project_file_view?id=$file_projectId';
             </script>";
-						header("Location: project_file_view.php?id=$file_projectId");
+						//header("Location: project_file_view.php?id=$file_projectId");
 		}
 		}
 	}

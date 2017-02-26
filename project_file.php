@@ -3,6 +3,11 @@ include_once 'dbconnect.php';
 session_start();
 ob_start();
 
+$res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
+$projectRow = mysql_fetch_array($res);
+
+echo $projectRow[3];
+
 if (!isset($_SESSION['user'])) {
 		header("Location: index.php");
 		exit;

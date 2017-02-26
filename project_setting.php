@@ -3,6 +3,11 @@
  session_start();
  require_once 'dbconnect.php';
 
+ $res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
+ $projectRow = mysql_fetch_array($res);
+
+ echo $projectRow[3];
+
  //如果非登入狀態將導回首頁
  if (!isset($_SESSION['user'])) {
      header("Location: index.php");

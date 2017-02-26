@@ -54,16 +54,18 @@ if(isset($_FILES['files'])){
 
       echo "<script>
       alert('error while uploading file');
+      window.location.href='project_file.php?id=$file_projectId';
       </script>";
-      header("Location: project_file.php?id=$file_projectId");
+      //header("Location: project_file.php?id=$file_projectId");
     }
   }
   if(empty($error))
   {
     echo "<script>
     alert('successfully uploaded');
+    window.location.href='project_file_view.php?id=$file_projectId';
     </script>";
-    header("Location: project_file_view.php?id=$file_projectId");
+    //header("Location: project_file_view.php?id=$file_projectId");
   }
 }
 ?>

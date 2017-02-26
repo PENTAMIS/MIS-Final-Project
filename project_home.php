@@ -1,7 +1,6 @@
 <?php
   include_once 'dbconnect.php';
   session_start();
-  echo $_GET['id'];
 
   $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
   $userRow = mysql_fetch_array($res);
@@ -9,6 +8,7 @@
   $res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
   $projectRow = mysql_fetch_array($res);
 
+  echo $projectRow[3];
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +27,7 @@
         echo "<a href=project_setting.php?id={$_GET['id']}>專案設定</a><br>";
       }
     ?>
+    <a href="project_delete.php?id=<?php echo $_GET['id']; ?>">刪除專案</a><br>
     <a href="home.php">回首頁</a>
   </body>
 </html>

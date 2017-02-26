@@ -1,5 +1,9 @@
 <?php
 include_once 'Dbconnect.php';
+$res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
+$projectRow = mysql_fetch_array($res);
+
+echo $projectRow[3];
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,6 +11,7 @@ include_once 'Dbconnect.php';
   <script src="http://www.w3schools.com/lib/w3data.js"></script>
 </head>
 <body>
+    <br>
     <input class="w3-input w3-border w3-padding" type="text" placeholder="搜尋" id="myInput" onkeyup="myFunction()">
     <table id="id01">
       <tr>
