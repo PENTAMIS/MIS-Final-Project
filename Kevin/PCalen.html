@@ -10,10 +10,35 @@
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
 	<script src="assets/js/jquery-3.1.1.min.js"></script>
 
+	<!--彈跳視窗-->
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $( "#dialog-1" ).dialog({
+               autoOpen: false,  
+            });
+            $( "#opener" ).click(function() {
+            	$( "#dialog-1" ).dialog( "open" );
+            });
+            $("#dialog-1").dialog({
+   				width: 700
+			});
+        });
+    </script>
+
 	<link rel="stylesheet" href="assets/css/PCalen.css">
+
 </head>
 
-<body >
+<body>
+
+	<!--
+	<a id="jqtextcall" href="#">點擊顯示</a>                            
+	<div id="hiddenbox"></div> 
+	-->
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
  		<div class="container-fluid">
     		<div class="navbar-header">
@@ -28,138 +53,200 @@
     		</ul>
   		</div>
 	</nav>
-	
-	<div style="height: 600px; width: auto;		float: left;">
-		<div style="margin-top:80px;margin-left: 70px">
+
+	<div style="height: 100px; width: auto;	float: left;">
+		<div style="margin-top:60px;margin-left: 70px">
 			<div style="height: 0px">
 			<label for="bookdate">日期：</label>
 			<input style="width:300px" type="month" id="bookdate" placeholder="2014-03">
+			<!--彈跳視窗-->
+	        <div id="dialog-1" title="新增事件">
+	        <div class="tab_container">
+				<div id="tab1" class="tab_content" style="display: block;">
+					<table id="PSetting">
+						<tbody>	
+							<tr class="PS-1">
+								<td class="PS1-1">事件名稱</td>
+								<td class="PS1-2"><input type="text" name="事件名稱"></td>
+								<td class="PS1-3"><input type=submit value=">" name="submit"></td>	
+							</tr>
+							<tr class="PS-1">
+								<td class="PS1-1">日期</td>
+								<td class="PS1-2"><input type="date" id="bookdate" placeholder="2014-09-18"></td>	
+								<td class="PS1-3"><input type=submit value=">" name="submit"></td>	
+							</tr>	
+							<tr class="PS-1">
+								<td class="PS1-1">地點</td>
+								<td class="PS1-2"><input type="text" name="備地點"></td>	
+								<td class="PS1-3"><input type=submit value=">" name="submit"></td>	
+							</tr>
+							<tr class="PS-1">
+								<td class="PS1-1">備註</td>
+								<td class="PS1-2"><input type="text" name="備註"></td>	
+								<td class="PS1-3"><input type=submit value=">" name="submit"></td>	
+							</tr>
+							<tr class="PS-1">
+								<td class="PS1-1">設置提醒</td>
+							<td class="PS3-5"><input type="checkbox" name="設置提醒" value=""></td>		
+								<td class="PS1-3"><input type=submit value=">" name="submit"></td>	
+							</tr>
+																	
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>	
-
-		<div id="main">
-			<table border="1" id="calen" class="tableX">
-				<tbody>
-					<tr class="row0">
-						<td><span>Mon</span></td>
-						<td><span>Tue</span></td>
-						<td><span>Wed</span></td>
-						<td><span>Thr</span></td>
-						<td><span>Fri</span></td>
-						<td><span>Sat</span></td>
-						<td><span>Sun</span></td>	
-					</tr>
-				</tbody>
-				<tbody>
-					<tr class="row1">
-						<td><span></span></td>
-						<td><span></span></td>
-						<td><span>1</span></td>
-						<td><span>2</span></td>
-						<td><span>3</span></td>
-						<td><span>4</span></td>
-						<td><span>5</span></td>	
-					</tr>
-					<tr class="row2">
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr class="row1">
-						<td><span>6</span></td>
-						<td><span>7</span></td>
-						<td><span>8</span></td>
-						<td><span>9</span></td>
-						<td><span>10</span></td>
-						<td><span>11</span></td>
-						<td><span>12</span></td>
-					</tr>
-					<tr class="row2">
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td><div class="proj">文件上傳</div><div class="proj">DEMO</div><div class="pers">產銷期末考</div><div class="pers">刑分期末考</div></td>
-						<td>&nbsp;</td>
-						<td><div class="proj">18:00 開會</div></td>
-						<td>&nbsp;</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr class="row1">
-						<td><span>13</span></td>
-						<td><span>14</span></td>
-						<td><span>15</span></td>
-						<td><span>16</span></td>
-						<td><span>17</span></td>
-						<td><span>18</span></td>
-						<td><span>19</span></td>
-					</tr>
-					<tr class="row2">
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr class="row1">
-						<td><span>20</span></td>
-						<td><span>21</span></td>
-						<td><span>22</span></td>
-						<td><span>23</span></td>
-						<td><span>24</span></td>
-						<td><span>25</span></td>
-						<td><span>26</span></td>
-					</tr>
-					<tr class="row2">
-						<td></td>
-						<td><div id="test"><div class="pers">產銷期末考</div><div class="pers">刑分期末考</div><div class="pers">行政法期末考</div><div class="proj">上傳檔案</div><div class="pers">期末報告</div></div></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr class="row1">
-						<td><span>27</span></td>
-						<td><span>28</span></td>
-						<td><span>29</span></td>
-						<td><span>30</span></td>
-						<td><span>31</span></td>
-						<td><span></span></td>
-						<td><span></span></td>
-					</tr>
-					<tr class="row2">
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
-				</tbody>
-
-			</table>
+      		</div>
+     		<input id="opener" type=submit value="+ 新增任務" class="plus">
+			</div>
 		</div>
 	</div>
+			
+
+	<div id="main">
+		<table border="1" id="calen" class="tableX">
+			<tbody>
+				<tr class="row0">
+					<td><span>Mon</span></td>
+					<td><span>Tue</span></td>
+					<td><span>Wed</span></td>
+					<td><span>Thr</span></td>
+					<td><span>Fri</span></td>
+					<td><span>Sat</span></td>
+					<td><span>Sun</span></td>	
+				</tr>
+			</tbody>
+			<tbody>
+				<tr class="row1">
+					<td><span></span></td>
+					<td><span></span></td>
+					<td><span>1</span></td>
+					<td><span>2</span></td>
+					<td><span>3</span></td>
+					<td><span>4</span></td>
+					<td><span>5</span></td>	
+				</tr>
+				<tr class="row2">
+					<td><div class="row-block"><div class="row-content">
+
+					</div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr class="row1">
+					<td><span>6</span></td>
+					<td><span>7</span></td>
+					<td><span>8</span></td>
+					<td><span>9</span></td>
+					<td><span>10</span></td>
+					<td><span>11</span></td>
+					<td><span>12</span></td>
+				</tr>
+				<tr class="row2">
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"><div class="proj">文件上傳</div><div class="proj">DEMO</div></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"><div class="proj">18:00 開會</div></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr class="row1">
+					<td><span>13</span></td>
+					<td><span>14</span></td>
+					<td><span>15</span></td>
+					<td><span>16</span></td>
+					<td><span>17</span></td>
+					<td><span>18</span></td>
+					<td><span>19</span></td>
+				</tr>
+				<tr class="row2">
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr class="row1">
+					<td><span>20</span></td>
+					<td><span>21</span></td>
+					<td><span>22</span></td>
+					<td><span>23</span></td>
+					<td><span>24</span></td>
+					<td><span>25</span></td>
+					<td><span>26</span></td>
+				</tr>
+				<tr class="row2">
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"><div class="pers">產銷期末考</div><div class="pers">刑分期末考</div><div class="pers">行政法期末考</div><div class="proj">上傳檔案</div><div class="pers">期末報告</div></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr class="row1">
+					<td><span>27</span></td>
+					<td><span>28</span></td>
+					<td><span>29</span></td>
+					<td><span>30</span></td>
+					<td><span>31</span></td>
+					<td><span></span></td>
+					<td><span></span></td>
+				</tr>
+				<tr class="row2">
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr class="row1">
+					<td><span>27</span></td>
+					<td><span>28</span></td>
+					<td><span>29</span></td>
+					<td><span>30</span></td>
+					<td><span>31</span></td>
+					<td><span></span></td>
+					<td><span></span></td>
+				</tr>
+				<tr class="row2">
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+					<td><div class="row-block"><div class="row-content"></div></div></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
 
 <!--隱藏卷軸-->
 <script type="text/javascript">	
-$('.row2 td').on("mouseenter mouseleave", function (event) { //挷定滑鼠進入及離開事件
+
+$('.row-block').on("mouseenter mouseleave", function (event) { //挷定滑鼠進入及離開事件
   if (event.type == "mouseenter") {
-    $(this).css({"overflow-y": "scroll"}); //滑鼠進入
+    $(this).css({"overflow-y": "auto"}); //滑鼠進入
   } else {
     $(this).css({"overflow-y": "hidden"}); //滑鼠離開
   }
