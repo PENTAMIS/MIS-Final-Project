@@ -63,25 +63,29 @@
     <?php
       for($i = 0; $i < count($projectNameRow); $i++){
          echo "<a href=\"project_home.php?id=$projectIdRow[$i]\">$projectNameRow[$i]</a><br>";
+         if (stristr($userRow[9],$projectIdRow[$i])===false) {
          ?>
-         <form action="projects_members_comfirm.php" method="post">
+         <form action="projects_members_comfirm.php?id=<?php echo $projectIdRow[$i]?>" method="post">
            <input type="submit" name="projects_members_confirm" value="確認">
          </form>
-         <form action="projects_members_deny.php" method="post">
+         <form action="projects_members_deny.php?id=<?php echo $projectIdRow[$i]?>" method="post">
            <input type="submit" name="projects_members_deny" value="拒絕">
          </form>
          <?php
+        }
       }
       for($i = 0; $i < count($projectNameRow_members); $i++){
          echo "<a href=\"project_home.php?id=$projectIdRow_members[$i]\">$projectNameRow_members[$i]</a><br>";
+         if (stristr($userRow[9],$projectIdRow[$i])===false) {
          ?>
-         <form action="projects_members_comfirm.php" method="post">
+         <form action="projects_members_comfirm.php?id=<?php echo $projectIdRow[$i]?>" method="post">
            <input type="submit" name="projects_members_confirm" value="確認">
          </form>
-         <form action="projects_members_deny.php" method="post">
+         <form action="projects_members_deny.php?id=<?php echo $projectIdRow[$i]?>" method="post">
            <input type="submit" name="projects_members_deny" value="拒絕">
          </form>
          <?php
+        }
       }
     ?>
     <br>
