@@ -1,29 +1,36 @@
 <?php
-ob_start();
-session_start();
-require_once 'dbconnect.php';
-$res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
-$userRow = mysql_fetch_array($res);
-$projectId = $_GET['id'];
+  session_start();
+  require_once 'dbconnect.php';
 
-if (empty($userRow[9])) {
-  $userRow[9] = $projectId;
-}else{
-  $userRow[9] = $userRow[9].",".$projectId;//<--這邊有問題
-}
+  $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
+  $userRow = mysql_fetch_array($res);
 
-$res = mysql_query("UPDATE users SET user_projectId ='$userRow[9]' WHERE userId =".$SESSION['user']);
+  $res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
+  $projectRow = mysql_fetch_array($res);
 
-if($res){
-  echo "<script>
-  alert('加入成功！');
-  window.location.href='home.php';
-  </script>";
+  $projectId = $_GET['id'];
 
-}else{
-  echo "<script>
-  alert('加入失敗！');
-  window.location.href='home.php';
-  </script>";
-}
+
+  if (empty($userRow[9])) {
+    $userRow[9] = $projectId;
+  }else{
+    $userRow[9] = $userRow[9].",".$projectId;
+  }
+
+  $query = "UPDATE users SET
+           user_projectId_invited = '$userRow[9]' WHERE userId =".$_SESSION['user'];
+  $res = mysql_query($query);
+
+  if($res){
+    echo "<script>
+    alert('加入成功！');
+    window.location.href='home.php';
+    </script>";
+
+  }else{
+    echo "<script>
+    alert('加入失敗！');
+    window.location.href='home.php';
+    </script>";
+  }
  ?>

@@ -26,6 +26,12 @@
    $projectIdRow[] = mysql_result($res,$i,0);
  }
 
+ $res = mysql_query("SELECT projectCreatorId FROM projects WHERE projectCreatorId=".$userRow[0]);
+ $projectCreatorIdRow = array();
+ for ($i = 0; $i < mysql_num_rows($res); $i++) {
+   $projectCreatorIdRow[] = mysql_result($res,$i,0);
+ }
+
 
  $res = mysql_query("SELECT projectName FROM projects WHERE (projectMembersId LIKE '%$userRow[0]%')");
  $projectNameRow_members = array();
@@ -35,7 +41,6 @@
 
  $res = mysql_query("SELECT projectId FROM projects WHERE (projectMembersId LIKE '%$userRow[0]%')");
  $projectIdRow_members = array();
- echo $projectIdRow_members[0];
  for($i = 0; $i < mysql_num_rows($res); $i++){
    $projectIdRow_members[] = mysql_result($res,$i,0);
  }
@@ -63,25 +68,15 @@
     <?php
       for($i = 0; $i < count($projectNameRow); $i++){
          echo "<a href=\"project_home.php?id=$projectIdRow[$i]\">$projectNameRow[$i]</a><br>";
-         if (stristr($userRow[9],$projectIdRow[$i])===false) {
-         ?>
-         <form action="projects_members_comfirm.php?id=<?php echo $projectIdRow[$i]?>" method="post">
-           <input type="submit" name="projects_members_confirm" value="確認">
-         </form>
-         <form action="projects_members_deny.php?id=<?php echo $projectIdRow[$i]?>" method="post">
-           <input type="submit" name="projects_members_deny" value="拒絕">
-         </form>
-         <?php
-        }
       }
       for($i = 0; $i < count($projectNameRow_members); $i++){
          echo "<a href=\"project_home.php?id=$projectIdRow_members[$i]\">$projectNameRow_members[$i]</a><br>";
-         if (stristr($userRow[9],$projectIdRow[$i])===false) {
+         if (stristr($userRow[9],$projectIdRow_members[$i])==false) {
          ?>
-         <form action="projects_members_comfirm.php?id=<?php echo $projectIdRow[$i]?>" method="post">
+         <form action="projects_members_comfirm.php?id=<?php echo $projectIdRow_members[$i]?>" method="post">
            <input type="submit" name="projects_members_confirm" value="確認">
          </form>
-         <form action="projects_members_deny.php?id=<?php echo $projectIdRow[$i]?>" method="post">
+         <form action="projects_members_deny.php?id=<?php echo $projectIdRow_members[$i]?>" method="post">
            <input type="submit" name="projects_members_deny" value="拒絕">
          </form>
          <?php

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2017 �?02 ??26 ??14:18
+-- 產生時間： 2017 �?02 ??28 ??14:36
 -- 伺服器版本: 5.6.24
 -- PHP 版本： 5.6.8
 
@@ -35,15 +35,15 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `projectTeacher` varchar(30) NOT NULL,
   `projectCreatetime` date NOT NULL,
   `projectDeadline` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 
 --
 -- 資料表的匯出資料 `projects`
 --
 
 INSERT INTO `projects` (`projectId`, `projectCreatorId`, `projectMembersId`, `projectName`, `projectClassName`, `projectTeacher`, `projectCreatetime`, `projectDeadline`) VALUES
-(61, 18, '0', 'æ¸¬è©¦äºŒ', 'æ¸¬è©¦äºŒ', 'æ¸¬è©¦äºŒ', '2017-02-05', '2017-02-01'),
-(62, 18, '0', 'æ¸¬è©¦ä¸‰', 'æ¸¬è©¦ä¸‰', 'æ¸¬è©¦ä¸‰', '2017-02-05', '2017-02-01');
+(67, 18, '19', 'æ¸¬è©¦å°', 'æ¸¬è©¦å°', 'æ¸¬è©¦å°', '2017-02-27', '0000-00-00'),
+(68, 18, '19,20', 'æ¸¬è©¦å¤§ä¾¿', 'æ¸¬è©¦å¤§ä¾¿', 'æ¸¬è©¦å¤§ä¾¿', '2017-02-28', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -57,19 +57,16 @@ CREATE TABLE IF NOT EXISTS `projects_stage` (
   `project_stageStart` date NOT NULL,
   `project_stageEnd` date NOT NULL,
   `project_stageName` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- 資料表的匯出資料 `projects_stage`
 --
 
 INSERT INTO `projects_stage` (`projects_stageId`, `projectId`, `project_stageStart`, `project_stageEnd`, `project_stageName`) VALUES
-(47, 61, '0000-00-00', '0000-00-00', 'æ¸¬è©¦äºŒ'),
-(48, 61, '0000-00-00', '0000-00-00', 'æ¸¬è©¦äºŒ'),
-(49, 61, '0000-00-00', '0000-00-00', 'æ¸¬è©¦äºŒ'),
-(50, 62, '2017-02-02', '2017-02-05', 'æ¸¬è©¦ä¸‰'),
-(51, 62, '2017-02-06', '2017-02-10', 'æ¸¬è©¦ä¸‰'),
-(52, 62, '2017-02-11', '2017-02-15', 'æ¸¬è©¦ä¸‰');
+(1, 68, '0000-00-00', '0000-00-00', 'æ¸¬è©¦å¤§ä¾¿'),
+(2, 68, '0000-00-00', '0000-00-00', 'æ¸¬è©¦å¤§ä¾¿'),
+(3, 68, '0000-00-00', '0000-00-00', 'æ¸¬è©¦å¤§ä¾¿');
 
 -- --------------------------------------------------------
 
@@ -110,17 +107,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userCellphone` int(11) DEFAULT NULL,
   `userIntroduction` varchar(300) DEFAULT NULL,
   `userInterests` varchar(200) DEFAULT NULL,
-  `user_projectId` varchar(200) DEFAULT NULL
+  `user_projectId_invited` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `users`
 --
 
-INSERT INTO `users` (`userId`, `userName`, `userEmail`, `userPass`, `userDepartment`, `userStudentid`, `userCellphone`, `userIntroduction`, `userInterests`, `user_projectId`) VALUES
-(18, 'é„­ä¿Šå½¥', 'root@yahoo.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'æ³•å¾‹ä¸‰', 103306040, 921685487, 'çœ‹æ³•å¾‹ä¸æƒ³çœ‹äº†', 'ç¡è¦º', '61'),
-(19, 'æ——é­š', 'root2@yahoo.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'è³‡ç®¡ä¸‰', 103306000, 921234567, 'è‡ªæˆ‘ä»‹ç´¹', 'èˆˆè¶£', '61'),
-(20, 'Sean', 'root3@yahoo.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'è³‡ç®¡ä¸‰', 103306000, 912345678, 'è‡ªæˆ‘ä»‹ç´¹', 'èˆˆè¶£', '61');
+INSERT INTO `users` (`userId`, `userName`, `userEmail`, `userPass`, `userDepartment`, `userStudentid`, `userCellphone`, `userIntroduction`, `userInterests`, `user_projectId_invited`) VALUES
+(18, 'é„­ä¿Šå½¥', 'root@yahoo.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'æ³•å¾‹ä¸‰', 103306040, 921685487, 'çœ‹æ³•å¾‹ä¸æƒ³çœ‹äº†', 'ç¡è¦º', ''),
+(19, 'æ——é­š', 'root2@yahoo.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'è³‡ç®¡ä¸‰', 103306000, 921234567, 'è‡ªæˆ‘ä»‹ç´¹', 'èˆˆè¶£', '67,68'),
+(20, 'Sean', 'root3@yahoo.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'è³‡ç®¡ä¸‰', 103306000, 912345678, 'è‡ªæˆ‘ä»‹ç´¹', 'èˆˆè¶£', '67,68');
 
 --
 -- 已匯出資料表的索引
@@ -158,12 +155,12 @@ ALTER TABLE `users`
 -- 使用資料表 AUTO_INCREMENT `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `projectId` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+  MODIFY `projectId` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
 --
 -- 使用資料表 AUTO_INCREMENT `projects_stage`
 --
 ALTER TABLE `projects_stage`
-  MODIFY `projects_stageId` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=53;
+  MODIFY `projects_stageId` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- 使用資料表 AUTO_INCREMENT `tbl_uploads`
 --
