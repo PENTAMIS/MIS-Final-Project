@@ -1,8 +1,7 @@
 /* Basic*/
 body{		
 		font-family:微軟正黑體;
-		
-		background-color: gray;
+		background-color: #f3f7f7;
 	}
 ul{
   margin:0px;
@@ -38,7 +37,7 @@ ul{
 
 		border-radius:5px;
 
-		background-color: white;
+		background-color: black;
 
 		display: none;
 	}
@@ -52,15 +51,13 @@ ul{
 		padding: 10px;
 		float: left;
 		display: none;
+    font-size:50px;
 	}
   #T1{
     height:600px;
     width:2000px;
     padding:50px;
   }
-
-
-
 	.assign h1{
 		font-weight:300;
 	}
@@ -69,31 +66,11 @@ ul{
 		padding:0 10px;
 	}
 
-	.buttom2{
-  display:inline-block;
-  padding-top:13px;
-  padding-left:10px;
-  padding-right:10px;
-  padding-bottom:5px;
-  border-bottom: solid 3px #f2f2f2;
-  color:white;
-  font-family:微軟正黑體;
-  letter-spacing:1px;
-  font-weight:bold;
-}
 
-.nav_area2{
-  position:fixed;
-  width:100%;
-  height:50px;
-  background-color:#b1b1cd;
-  margin:0px;
-  right: 1px;  
-}
-
+/*mainbar*/
 .bar{
   width:300px;height:100%;
-  background-color:#63639c;
+  background-color:#222949;
   position:fixed;
   top:0px;
   right:1px;
@@ -101,6 +78,38 @@ ul{
   margin:0px;
   z-index:3;
 }
+.nav_area{
+      position:fixed;
+      top:150px;
+      right:1px;
+      width:280px;
+      height:100%;
+      box-sizing: border-box;
+      padding:0px;
+      margin:5px;        
+}
+.buttom{
+      display:block;
+      padding:1px;
+      /*padding-left:5px;
+      padding-right:5px;
+      padding-top:0.5px;*/
+      /*background-color:#63639c;*/
+      border-left: solid 3px #ffb336;
+      color:#f3f7f7;
+      font-family:微軟正黑體;
+      letter-spacing:1px;
+      font-weight:bold;
+      margin:5px;
+}
+.panel-body{
+  margin:0px;
+  right:1px;
+  width:200px;
+  height:50px;     
+}
+
+/*profilephoto*/
 .circle{
   width:100px;
   height:100px;
@@ -108,7 +117,8 @@ ul{
   
 }
 .circle1{
-  background-color:#bfbfbf;
+  /*background-color:#bfbfbf;*/
+  border: solid 3px black;
   right:200px;
   top:20px;
   width:80px;
@@ -124,39 +134,34 @@ ul{
   
 }
 
-.panel-body{
+/*childbar*/
+.buttom2{
+  display:inline-block;
+  padding-top:13px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:5px;
+  border-bottom: solid 3px #ffb336;
+  color:#f3f7f7;
+  font-family:微軟正黑體;
+  letter-spacing:1px;
+  font-weight:bold;
+}
+a{ 
+  color:#f3f7f7;
+  font-family:微軟正黑體;
+  letter-spacing:1px;
+  font-weight:bold;
+
+}
+.nav_area2{
+  position:fixed;
+  width:100%;
+  height:50px;
+  background-color:#404E89;
   margin:0px;
-  right:1px;
-  width:200px;
-  height:50px;     
+  right: 1px;  
 }
-.buttom{
-      display:block;
-      padding:1px;
-      padding-left:5px;
-      padding-right:5px;
-      Padding-top:0.5px;
-      background-color:#63639c;
-      border-left: solid 3px #9292b9;
-      color:white;
-      font-family:微軟正黑體;
-      letter-spacing:1px;
-      font-weight:bold;
-}
-.nav_area{
-      position:fixed;
-      top:150px;
-      right:1px;
-      width:280px;
-      height:100%;
-      box-sizing: border-box;
-      padding:0px;
-      margin:5px;        
-}
-
-
-
-
 
 
 	

@@ -39,11 +39,21 @@
 	<div id="hiddenbox"></div> 
 	-->
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<!-- <nav class="navbar navbar-inverse navar-fixed-top">
  		<div class="container-fluid">
-    		<div class="navbar-header">
-    			<a class="navbar-brand" href="#">行銷管理專案</a>
-    		</div>
+    		<div class="navbar-header"> -->
+    			<!-- <a class="navbar-brand" href="#">行銷管理專案</a> -->
+    			<!-- 專案導覽列 -->
+		    	<div class="container-fluid">
+					<ul class="nav_area2">
+					  <li class="buttom2"><a href="PIndex.html">首頁</a></li>
+					  <li class="buttom2">任務區</li>
+					  <li class="buttom2">專案行事曆</li>
+					  <li class="buttom2">專案設定</li>
+					  <li class="buttom2">留言板</li>
+					</ul>
+		  		</div>
+    		<!-- </div>
     		<ul class="nav navbar-nav">
 			    <li><a href="PIndex.html">首頁</a></li>
 			    <li><a href="#">任務區</a></li>
@@ -51,11 +61,57 @@
 			    <li><a href="#">留言版</a></li>
 			    <li><a href="PSet.html">專案設定</a></li>
     		</ul>
+  		</div> -->
+		<!-- 	</div>
   		</div>
-	</nav>
+	</nav> -->
+	<!-- 主導覽列 -->
+  		<div class="bar">
+    <div class="circle circle1"></div>
+    <div class="nav_area">
+    <div class=class="panel-group" id="accordion">
+  <div class="buttom">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        我的專案</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">
+        <ul>
+          <li>進行中</li>
+          <li>已完成</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="buttom">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        行事曆</a>
+      </h4>
+    </div>
+  </div>
+  <div class="buttom">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+        個人設定</a>
+      </h4>
+    </div>
+  </div>
+        </div>
+</div> 
+      <hr class="line3"></hr>
+      </div>
+		</div>
+	</div>
+
 
 	<div style="height: 100px; width: auto;	float: left;">
-		<div style="margin-top:60px;margin-left: 70px">
+		<div style="margin-top:60px;margin-left: 30px">
 			<div style="height: 0px">
 			<label for="bookdate">日期：</label>
 			<input style="width:300px" type="month" id="bookdate" placeholder="2014-03">
@@ -101,8 +157,8 @@
 		</div>
 	</div>
 			
-
-	<div id="main">
+	<!-- cal-main -->
+	<div id="main" class="main" >
 		<table border="1" id="calen" class="tableX">
 			<tbody>
 				<tr class="row0">
