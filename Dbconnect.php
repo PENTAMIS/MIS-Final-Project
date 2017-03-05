@@ -1,20 +1,19 @@
 <?php
+//db details
+$dbHost = 'localhost';
+$dbUsername = 'root';
+$dbPassword = 'root';
+$dbName = 'mis';
 
- error_reporting(~E_DEPRECATED & ~E_NOTICE);
+//Connect and select the database
+$db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
- define('DBHOST', 'localhost');
- define('DBUSER', 'root');
- define('DBPASS', '103306052');
- define('DBNAME', 'mis');
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+}
 
- $conn = mysql_connect(DBHOST, DBUSER, DBPASS);
- $dbcon = mysql_select_db(DBNAME);
-
- if (!$conn) {
-     die("Connection failed : " . mysql_error());
- }
-
- if (!$dbcon) {
-     die("Database Connection failed : " . mysql_error());
- }
- 
+	   mysqli_query("SET NAMES 'utf8'");
+       mysqli_query("SET CHARACTER_SET_CLIENT=utf8");
+       mysqli_query("SET CHARACTER_SET_RESULTS=utf8");
+       $this->MySQLiObjectVariable->set_charset("utf8mb4"); 
+?>
