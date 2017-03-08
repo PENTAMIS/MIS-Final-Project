@@ -1,3 +1,4 @@
+
     <?php include_once('functions.php'); ?>
 <!DOCTYPE html>
 <html>
@@ -10,10 +11,11 @@
   <body>
     行事曆頁面<br>
 
+    <a href="home.php">回首頁</a>
+
     <div id="calendar_div">
     	<?php echo getCalender(); ?>
     </div>
 
-    <a href="home.php">回首頁</a>
   </body>
 </html>

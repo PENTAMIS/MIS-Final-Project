@@ -33,20 +33,25 @@ function getCalender($year = '',$month = '')
 	$boxDisplay = ($totalDaysOfMonthDisplay <= 35)?35:42;
 ?>
 	<div id="calender_section">
+
+		<div style="position: absolute; left: 750px;width: 290px">
+			<div id="event_list" class="none"></div>
+	        <!--For Add Event-->
+	        <div id="event_add" class="none">
+	        	<h2>Add Event on <span id="eventDateView"></span></h2>
+	            <p><b>Event Title: </b><input type="text" id="eventTitle" value=""/></p>
+	            <input type="hidden" id="eventDate" value=""/>
+	            <input type="button" id="addEventBtn" value="Add"/>
+	        </div>
+		</div>
+
 		<h2>
         	<a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' - 1 Month')); ?>','<?php echo date("m",strtotime($date.' - 1 Month')); ?>');">&lt;&lt;</a>
             <select name="month_dropdown" class="month_dropdown dropdown"><?php echo getAllMonths($dateMonth); ?></select>
 			<select name="year_dropdown" class="year_dropdown dropdown"><?php echo getYearList($dateYear); ?></select>
             <a href="javascript:void(0);" onclick="getCalendar('calendar_div','<?php echo date("Y",strtotime($date.' + 1 Month')); ?>','<?php echo date("m",strtotime($date.' + 1 Month')); ?>');">&gt;&gt;</a>
         </h2>
-		<div id="event_list" class="none"></div>
-        <!--For Add Event-->
-        <div id="event_add" class="none">
-        	<p>Add Event on <span id="eventDateView"></span></p>
-            <p><b>Event Title: </b><input type="text" id="eventTitle" value=""/></p>
-            <input type="hidden" id="eventDate" value=""/>
-            <input type="button" id="addEventBtn" value="Add"/>
-        </div>
+
 		<div id="calender_section_top">
 			<ul>
 				<li>Sun</li>
@@ -68,17 +73,17 @@ function getCalender($year = '',$month = '')
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
 						//Include db configuration file
-						include 'Dbconnect.php';
+						include 'xDbconnect.php';
 						//Get number of events based on the current date
 						$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1");
 						$eventNum = $result->num_rows;
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
-							echo '<li date="'.$currentDate.'" class="grey date_cell">';
+							echo '<li date="'.$currentDate.'" class="grey date_cell" onclick="addEvent(\''.$currentDate.'\');">';
 						}elseif($eventNum > 0){
-							echo '<li date="'.$currentDate.'" class="light_sky date_cell">';
+							echo '<li date="'.$currentDate.'" class="light_sky date_cell" onmouseover="getEvents(\''.$currentDate.'\');" onclick="addEvent(\''.$currentDate.'\');">';
 						}else{
-							echo '<li date="'.$currentDate.'" class="date_cell">';
+							echo '<li date="'.$currentDate.'" class="date_cell" onclick="addEvent(\''.$currentDate.'\');">';
 						}
 						//Date cell
 						echo '<span>';
@@ -89,9 +94,7 @@ function getCalender($year = '',$month = '')
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
 						echo '<div class="popup_event">Events ('.$eventNum.')</div>';
-						echo ($eventNum > 0)?'<a href="javascript:;" onclick="getEvents(\''.$currentDate.'\');">view events</a><br/>':'';
 						//For Add Event
-						echo '<a href="javascript:;" onclick="addEvent(\''.$currentDate.'\');">add event</a>';
 						echo '</div></div>';
 
 						echo '</li>';
@@ -102,7 +105,9 @@ function getCalender($year = '',$month = '')
 			<?php } } ?>
 			</ul>
 		</div>
+
 	</div>
+
 
 	<script type="text/javascript">
 		function getCalendar(target_div,year,month){
@@ -212,21 +217,24 @@ function getYearList($selected = ''){
  * Get events by date
  */
 function getEvents($date = ''){
+
 	//Include db configuration file
-	include 'Dbconnect.php';
+	include 'xDbconnect.php';
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	//Get events based on the current date
 	$result = $db->query("SELECT title FROM events WHERE date = '".$date."' AND status = 1");
+
 	if($result->num_rows > 0){
 		$eventListHTML = '<h2>Events on '.date("l, d M Y",strtotime($date)).'</h2>';
 		$eventListHTML .= '<ul>';
 		while($row = $result->fetch_assoc()){
-            $eventListHTML .= '<li>'.$row['title'].'</li>';
+            $eventListHTML .= '<div class="case">'.$row['title'].'</div>';
         }
 		$eventListHTML .= '</ul>';
 	}
 	echo $eventListHTML;
+
 }
 
 /*
@@ -234,7 +242,7 @@ function getEvents($date = ''){
  */
 function addEvent($date,$title){
 	//Include db configuration file
-	include 'Dbconnect.php';
+	include 'xDbconnect.php';
 	$currentDate = date("Y-m-d H:i:s");
 	//Insert the event data into database
 	$insert = $db->query("INSERT INTO events (title,date,created,modified) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."')");
