@@ -86,7 +86,6 @@
     <br>
     <a href="project_creating.php">創建專案</a><br>
     <a href="todolist.php">待辦清單</a><br>
-    <a href="calandar.php">行事曆</a><br>
     <a href="personaldata.php">個人設定</a><br>
     <a href="systemsetting.php">系統設定</a><br>
     <a href="logout.php?logout">登出</a>

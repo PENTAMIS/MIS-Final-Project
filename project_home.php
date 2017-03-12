@@ -21,6 +21,7 @@
     專案首頁<br>
     <a href="project_message.php?id=<?php echo $_GET['id']; ?>">留言板</a><br>
     <a href="project_mission.php?id=<?php echo $_GET['id']; ?>">任務區</a><br>
+    <a href="project_calender.php?id=<?php echo $_GET['id']; ?>">行事曆</a><br>
     <a href="project_file.php?id=<?php echo $_GET['id']; ?>">檔案區</a><br>
     <?php
       if ($userRow[0] == $projectRow[1]){
