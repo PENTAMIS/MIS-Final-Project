@@ -1,9 +1,9 @@
 <?php
 session_start();
-
-$projectId = $_GET['id'];
-$userId = $_SESSION['user'];
-
+// projectId 傳不過去
+/*
+ * Function requested by Ajax
+ */
 if(isset($_POST['func']) && !empty($_POST['func'])){
 	switch($_POST['func']){
 		case 'getCalender':
@@ -37,7 +37,7 @@ function getCalender($year = '',$month = '')
 	<div id="calender_section">
 
 		<div style="position: absolute; left: 750px;width: 290px">
-			<!-- <div id="event_list" class="none"></div> -->
+			<div id="event_list" class="none"></div>
 	        <!--For Add Event-->
 	        <div id="event_add" class="none">
 	        	<h2>Add Event on <span id="eventDateView"></span></h2>
@@ -85,7 +85,7 @@ function getCalender($year = '',$month = '')
 						}elseif($eventNum > 0){
 							echo '<li date="'.$currentDate.'" class="light_sky date_cell" onmouseover="getEvents(\''.$currentDate.'\');" onclick="addEvent(\''.$currentDate.'\');">';
 						}else{
-							echo '<li date="'.$currentDate.'" class="date_cell" onmouseover="getEvents(\''.$currentDate.'\');" onclick="addEvent(\''.$currentDate.'\');">';
+							echo '<li date="'.$currentDate.'" class="date_cell" onclick="addEvent(\''.$currentDate.'\');">';
 						}
 						//Date cell
 						echo '<span>';
@@ -95,7 +95,7 @@ function getCalender($year = '',$month = '')
 						//Hover event popup
 						echo '<div id="date_popup_'.$currentDate.'" class="date_popup_wrap none">';
 						echo '<div class="date_window">';
-						echo '<div class="popup_event"><div class="event_list" class="none"></div></div>';
+						echo '<div class="popup_event">Events ('.$eventNum.')</div>';
 						//For Add Event
 						echo '</div></div>';
 
@@ -129,8 +129,9 @@ function getCalender($year = '',$month = '')
 				url:'calender_functions.php',
 				data:'func=getEvents&date='+date,
 				success:function(html){
-					$('.event_list').html(html);
-					$('.event_list').slideDown('slow');
+					$('#event_list').html(html);
+					$('#event_add').slideUp('slow');
+					$('#event_list').slideDown('slow');
 				}
 			});
 		}
@@ -138,6 +139,7 @@ function getCalender($year = '',$month = '')
 		function addEvent(date){
 			$('#eventDate').val(date);
 			$('#eventDateView').html(date);
+			$('#event_list').slideUp('slow');
 			$('#event_add').slideDown('slow');
 		}
 		//For Add Event
@@ -179,7 +181,7 @@ function getCalender($year = '',$month = '')
 				getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
 			});
 			$(document).click(function(){
-				$('.event_list').slideUp('slow');
+				$('#event_list').slideUp('slow');
 			});
 		});
 	</script>
@@ -226,7 +228,7 @@ function getEvents($date = ''){
 	$result = mysql_query("SELECT title FROM events WHERE date = '".$date."' AND status = 1");
 
 	if(mysql_num_rows($result) > 0){
-		$eventListHTML = '<p class="caseT">'.date("Y M d",strtotime($date)).'</p>';
+		$eventListHTML = '<h2>Events on '.date("l, d M Y",strtotime($date)).'</h2>';
 		$eventListHTML .= '<ul>';
 		while($row = mysql_fetch_assoc($result)){
             $eventListHTML .= '<div class="case">'.$row['title'].'</div>';
@@ -245,7 +247,7 @@ function addEvent($date,$title){
 	include 'Dbconnect.php';
 	$currentDate = date("Y-m-d H:i:s");
 	//Insert the event data into database
-	$insert = mysql_query("INSERT INTO events (title,date,created,modified,projectId,userId) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."','".$projectId."','".$userId."')");
+	$insert = mysql_query("INSERT INTO events (title,date,created,modified,projectId,userId) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."','".$projectId."','".$_SESSION['user']."')");
 	if($insert){
 		echo 'ok';
 	}else{

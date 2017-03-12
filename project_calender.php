@@ -1,9 +1,13 @@
-<?php include_once('calender_functions.php'); ?>
+<?php
+	$projectId = $_GET['id'];
+
+	require("calender_functions.php") ;
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>PHP Event Calendar by CodexWorld</title>
+<title>專案行事曆</title>
 <link type="text/css" rel="stylesheet" href="style.css"/>
 <script src="jquery.min.js"></script>
 </head>
@@ -14,7 +18,7 @@
 			<ul class="nav_area2">
 			  <li class="buttom2"><a href="home.php">首頁</a></li>
 			  <li class="buttom2">任務區</li>
-			  <li class="buttom2"><a href="PCalen.html">專案行事曆</a></li>
+			  <li class="buttom2"><a href="project_calender.php?id=<?php echo $_GET['id']; ?>">專案行事曆</a></li>
 			  <li class="buttom2">專案設定</li>
 			  <li class="buttom2">留言板</li>
 			</ul>
