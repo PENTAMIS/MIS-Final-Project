@@ -1,7 +1,6 @@
 <?php
-	$projectId = $_GET['id'];
-
 	require("calender_functions.php") ;
+	$_SESSION['projectId'] = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -69,7 +68,9 @@
 
 
 <div id="calendar_div">
-	<?php echo getCalender(); ?>
+	<?php
+		echo getCalender();
+	?>
 </div>
 
 </body>

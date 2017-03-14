@@ -1,5 +1,16 @@
 <?php
 session_start();
+require_once 'dbconnect.php';
+
+if(isset($_SESSION['user'])){
+	$userId = $_SESSION['user'];
+}
+
+if (isset($_SESSION['projectId'])) {
+	$projectId = $_SESSION['projectId'];
+}
+
+
 // projectId 傳不過去
 /*
  * Function requested by Ajax
@@ -24,6 +35,9 @@ if(isset($_POST['func']) && !empty($_POST['func'])){
 /*
  * Get calendar full HTML
  */
+
+
+
 function getCalender($year = '',$month = '')
 {
 	$dateYear = ($year != '')?$year:date("Y");
@@ -75,7 +89,6 @@ function getCalender($year = '',$month = '')
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
 						//Include db configuration file
-						include 'Dbconnect.php';
 						//Get number of events based on the current date
 						$result = mysql_query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1");
 						$eventNum = mysql_num_rows($result);
@@ -221,7 +234,6 @@ function getYearList($selected = ''){
 function getEvents($date = ''){
 
 	//Include db configuration file
-	include 'Dbconnect.php';
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	//Get events based on the current date
@@ -244,11 +256,13 @@ function getEvents($date = ''){
  */
 function addEvent($date,$title){
 	//Include db configuration file
-	include 'Dbconnect.php';
 	$currentDate = date("Y-m-d H:i:s");
+	global $projectId;
+	global $userId;
 	//Insert the event data into database
-	$insert = mysql_query("INSERT INTO events (title,date,created,modified,projectId,userId) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."','".$projectId."','".$_SESSION['user']."')");
-	if($insert){
+	$query = "INSERT INTO events(title,date,created,modified,userId,projectId) VALUES('$title','$date','$currentDate','$currentDate','$userId','$projectId')";
+	$res = mysql_query($query);
+	if($res){
 		echo 'ok';
 	}else{
 		echo 'err';
