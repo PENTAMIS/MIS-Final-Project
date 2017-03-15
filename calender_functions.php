@@ -10,7 +10,6 @@ if (isset($_SESSION['projectId'])) {
 	$projectId = $_SESSION['projectId'];
 }
 
-
 // projectId 傳不過去
 /*
  * Function requested by Ajax
@@ -88,9 +87,10 @@ function getCalender($year = '',$month = '')
 						//Current date
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
+						global $projectId;
 						//Include db configuration file
 						//Get number of events based on the current date
-						$result = mysql_query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1");
+						$result = mysql_query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 AND projectId = '".$projectId."'");
 						$eventNum = mysql_num_rows($result);
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
@@ -234,10 +234,11 @@ function getYearList($selected = ''){
 function getEvents($date = ''){
 
 	//Include db configuration file
+	global $projectId;
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	//Get events based on the current date
-	$result = mysql_query("SELECT title FROM events WHERE date = '".$date."' AND status = 1");
+	$result = mysql_query("SELECT title FROM events WHERE date = '".$date."' AND status = 1 AND projectId = '".$projectId."'");
 
 	if(mysql_num_rows($result) > 0){
 		$eventListHTML = '<h2>Events on '.date("l, d M Y",strtotime($date)).'</h2>';
