@@ -1,100 +1,491 @@
 <?php
-ob_start();
-session_start();
-require_once 'dbconnect.php';
+ ob_start();
+ session_start();
+ require_once 'dbconnect.php';
 
-//如果非登入狀態將導回首頁
-if (!isset($_SESSION['user'])) {
-  header("Location: index.php");
-  exit;
-}
+ //如果非登入狀態將導回首頁
+ if (!isset($_SESSION['user'])) {
+     header("Location: index.php");
+     exit;
+ }
 
-//抓取登入之帳戶資料
-$res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
-$userRow = mysql_fetch_array($res);
+ //抓取登入之帳戶資料
+ $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
+ $userRow = mysql_fetch_array($res);
 
-$error = false;
+ $error = false;
 
-if (isset($_POST['btn-revise'])) {
+ if (isset($_POST['btn-revise'])) {
 
-  $name = trim($_POST['name']);
-  $name = strip_tags($name);
-  $name = htmlspecialchars($name);
+   $name = trim($_POST['name']);
+   $name = strip_tags($name);
+   $name = htmlspecialchars($name);
 
-  $department = trim($_POST['department']);
-  $department = strip_tags($department);
-  $department = htmlspecialchars($department);
+   $department = trim($_POST['department']);
+   $department = strip_tags($department);
+   $department = htmlspecialchars($department);
 
-  $studentid = trim($_POST['studentid']);
-  $studentid = strip_tags($studentid);
-  $studentid = htmlspecialchars($studentid);
+   $studentid = trim($_POST['studentid']);
+   $studentid = strip_tags($studentid);
+   $studentid = htmlspecialchars($studentid);
 
-  $cellphone = trim($_POST['cellphone']);
-  $cellphone = strip_tags($cellphone);
-  $cellphone = htmlspecialchars($cellphone);
+   $cellphone = trim($_POST['cellphone']);
+   $cellphone = strip_tags($cellphone);
+   $cellphone = htmlspecialchars($cellphone);
 
-  $introduction = strip_tags($_POST['introduction']);
-  $introduction = htmlspecialchars($introduction);
+   $introduction = strip_tags($_POST['introduction']);
+   $introduction = htmlspecialchars($introduction);
 
-  $interests = strip_tags($_POST['interests']);
-  $interests = htmlspecialchars($interests);
+   $interests = strip_tags($_POST['interests']);
+   $interests = htmlspecialchars($interests);
 
-  if (empty($name)) {
-    $error = true;
-    $nameError = "請輸入名稱";
-  }
+   if (empty($name)) {
+       $error = true;
+       $nameError = "請輸入名稱";
+   }
 
-  if (!$error) {
-    $query = "UPDATE users SET
-    userName = '$name',
-    userDepartment = '$department',
-    userStudentid = '$studentid',
-    userCellphone = '$cellphone',
-    userIntroduction = '$introduction',
-    userInterests = '$interests' WHERE userId=".$_SESSION['user'];
-    $res = mysql_query($query);
+   if (empty($cellphone)) {
+       $error = true;
+       $nameError = "請輸入手機";
+   }
 
-    if ($res) {
-      $errTyp = "success";
-      $errMSG = "修改成功";
-      unset($name);
-      unset($department);
-      unset($studentid);
-      unset($cellphone);
-      unset($introduction);
-      unset($interests);
-    }
-  } else {
-    $errTyp = "danger";
-    $errMSG = "更改失敗";
-  }
-  echo "<script>
-  alert('$errMSG');
-  window.location.href='personaldata.php';
-  </script>";
-}
+   if (!$error) {
+       $query = "UPDATE users SET
+                 userName = '$name',
+                 userDepartment = '$department',
+                 userStudentid = '$studentid',
+                 userCellphone = '$cellphone',
+                 userIntroduction = '$introduction',
+                 userInterests = '$interests' WHERE userId=".$_SESSION['user'];
+       $res = mysql_query($query);
 
+       if ($res) {
+           $errTyp = "success";
+           $errMSG = "修改成功";
+           unset($name);
+           unset($department);
+           unset($studentid);
+           unset($cellphone);
+           unset($introduction);
+           unset($interests);
+       }
+     } else {
+           $errTyp = "danger";
+           $errMSG = "更改失敗";
+       }
+    echo "<script>
+    window.location.href='personaldata.php';
+    </script>";
+   }
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>個人資料設定</title>
-</head>
-<body>
-  <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" id="revise">
-    個人資料設定頁面<br><br>
-    使用者名稱：<input type="text" name="name" value="<?php echo $userRow[1]; ?>"><br>
-    系級：<input type="text" name="department" value="<?php echo $userRow[4]; ?>"><br>
-    學號：<input type="number" name="studentid" value="<?php echo $userRow[5]; ?>"><br>
-    連絡電話：<input type="nember" name="cellphone" value="<?php echo $userRow[6]; ?>"><br>
-    自我介紹：<br>
-    <textarea row="5" col="60" name="introduction"><?php echo $userRow[7]; ?></textarea><br>
-    興趣：<br>
-    <textarea row="5" col="60" name="interests"><?php echo $userRow[8]; ?></textarea><br>
-    <button type="submit" name="btn-revise">更改</button>
-</form>
-<a href="home.php">回首頁</a>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>設定</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link href="titatoggle-dist.css" rel="stylesheet">
+    <script type="text/javascript" src="SystemSetup.js"></script>
+    <link rel="stylesheet" href="SystemSetup.css">
+  </head>
+  <body>
+    <!-- 主導覽列 -->
+    <div class="bar">
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+        <div class="circle circle1"></div>
+        <div class="nav_area">
+            <div class=class="panel-group" id="accordion">
+                <div class="buttom">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        我的專案</a>
+      </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul>
+                                <li>進行中</li>
+                                <li>已完成</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttom">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        行事曆</a>
+      </h4>
+                    </div>
+                </div>
+                <div class="buttom">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+        個人設定</a>
+      </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="line3"></hr>
+    </div>
+    <!-- 副導覽 -->
+    <div class="nav_area2">
+        <a class="brand" href="home.php">logo</a>
+        <h3>系統設定</h3>
+        <form class="navbar-form form">
+            <div class="form-group">
+                <input type="text" class="form-control" size="25" placeholder="輸入專案名稱或任務名稱......">
+            </div>
+            <button type="submit" class="btn btn-default">搜尋</button>
+        </form>
+    </div>
+    <!-- 小分頁 -->
+    <div class="list">
+        <li class="buttom2"><a href="javascript:ShowContent(1, 3, 'setup')">會員資料</a></li>
+        <li class="buttom2"><a href="javascript:ShowContent(2, 3, 'setup')">安全性</a></li>
+        <li class="buttom2"><a href="javascript:ShowContent(3, 3, 'setup')">偏好設定</a></li>
+        <li class="buttom2"><a href="#set04">隱私權相關</a></li>
+        <li class="buttom2"><a href="#set05">說明</a></li>
+        <li class="buttom2"><a href="#set05">意見回饋</a></li>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- 專案設定 -->
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-10">
+                <div class="mainpage">
+                    <div class="mainpart" id="setup1">
+                        <br>
+                        <div class="container-fluid">
+                            <h4>會員資料</h4>
+                            <button id="memberbutton1" type="button" class="btn btn-default btn-xs">修改</button>
+                            <br>
+                            <br>
+                            <table class="table">
+                                <tbody>
+                                  <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" id="revise">
+                                    <tr>
+                                        <td>姓名</td>
+                                        <td>
+                                            <h5 id="name1"><?php echo $userRow[1]; ?></h5>
+                                            <div id="name2" style="display:none" class="form-find">
+                                                <input name="name" type="text" class="form-findtext" placeholder="<?php echo $userRow[1]; ?>">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>密碼</td>
+                                        <td>
+                                            <h5 id="password1">********</h5>
+                                            <div id="password2" style="display:none" class="form-find">
+                                                <h5>密碼:</h5>
+                                                <input type="password" class="form-findtext" placeholder="********">
+                                                <h5>新的密碼:</h5>
+                                                <input type="password" class="form-findtext" placeholder="請輸入新的密碼......">
+                                                <h5>確認密碼:</h5>
+                                                <input type="password" class="form-findtext" placeholder="請輸入新的密碼......">
+                                                <hr>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>電子信箱</td>
+                                        <td>
+                                            <h5 id="mail1"><?php echo $userRow[2]; ?></h5>
+                                            <div id="mail2" style="display:none" class="form-find">
+                                                <h5>修改電子信箱:</h5>
+                                                <input type="text" class="form-findtext" placeholder=<?php echo $userRow[2]; ?>>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>系級</td>
+                                        <td>
+                                            <h5 id="department1"><?php echo $userRow[4]; ?></h5>
+                                            <div id="department2" style="display: none" class="form-find">
+                                                <h5>修改系級:</h5>
+                                                <input name="department" type="text" class="form-findtext" placeholder=<?php echo $userRow[4]; ?>>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>學號</td>
+                                        <td>
+                                            <h5 id="number1"><?php echo $userRow[5]; ?></h5>
+                                            <div id="number2" class="form-find" style="display: none">
+                                                <h5>修改學號:</h5>
+                                                <input name="studentid" type="text" class="form-findtext" placeholder="<?php echo $userRow[5]; ?>">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>聯絡手機</td>
+                                        <td>
+                                            <h5 id="phone1"><?php echo $userRow[6]; ?></h5>
+                                            <div id="phone2" class="form-find" style="display: none">
+                                                <h5>修改手機號碼:</h5>
+                                                <input name="cellphone" type="text" class="form-findtext" placeholdere="<?php echo $userRow[6]; ?>" >
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>自我介紹</td>
+                                        <td>
+                                            <h5 id="introduction1"><?php echo $userRow[7]; ?></h5>
+                                            <div id="introduction2" class="form-find" style="display: none">
+                                                <h5>修改自我介紹:</h5>
+                                                <textarea row="5" col="60" name="introduction"><?php echo $userRow[7]; ?></textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>興趣</td>
+                                        <td>
+                                            <h5 id="hobby1"><?php echo $userRow[8]; ?></h5>
+                                            <div id="hobby2" class="form-find" style="display: none">
+                                                <h5>修改興趣:</h5>
+                                                <textarea row="5" col="60" name="hobby"><?php echo $userRow[8]; ?></textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button id="memberbutton3" style="display:none" class="btn btn-primary btn-xs" name="btn-revise" type="submit" >更改</button>
+                            <button id="memberbutton2" style="display:none" type="button" class="btn btn-danger btn-xs" onClick="window.location.reload();" >取消</button>
+                          </form>
+                        </div>
+                    </div>
+                    <div class="mainpart" id="setup2" style="display: none">
+                        <br>
+                        <div class="container-fluid">
+                            <h4>安全性設定</h4>
+                            <button id="safebutton1" type="button" class="btn btn-default btn-xs">修改</button>
+                            <br>
+                            <br>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>登入警告</td>
+                                        <td>
+                                            <h5 id="alert1">警告郵件:啟用 警告簡訊:啟用</h5>
+                                            <form id="alert2" class="form-find" style="display: none">
+                                                <div class="checkbox checkbox-slider--b">
+                                                    <label>
+                                                        <input type="checkbox"><span>從陌生裝置或瀏覽器登入時收到警告郵件</span>
+                                                    </label>
+                                                </div>
+                                                <br>
+                                                <div class="checkbox checkbox-slider--b">
+                                                    <label>
+                                                        <input type="checkbox"><span>從陌生裝置或瀏覽器登入時收到警告簡訊</span>
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>登入驗證</td>
+                                        <td>
+                                            <h5 id="verify1">簡訊驗證:啟用 代碼產生器:啟用</h5>
+                                            <form id="verify2" class="form-find" style="display: none">
+                                                <div class="checkbox checkbox-slider--b">
+                                                    <label>
+                                                        <input type="checkbox"><span>簡訊驗證:</span>
+                                                    </label>
+                                                </div>
+                                                <br>
+                                                <div class="checkbox checkbox-slider--b">
+                                                    <label>
+                                                        <input type="checkbox"><span>代碼產生器</span>
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>登入位置</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>帳號救援</td>
+                                        <td>
+                                            <h5 id="forget1">寄郵件到電子信箱:啟用 寄簡訊到手機:啟用</h5>
+                                            <form id="forget2" class="form-find" style="display: none">
+                                                <div class="checkbox checkbox-slider--b">
+                                                    <label>
+                                                        <input type="checkbox"><span>忘記密碼時寄郵件至預設信箱</span>
+                                                    </label>
+                                                </div>
+                                                <hr>
+                                                <div class="checkbox checkbox-slider--b">
+                                                    <label>
+                                                        <input type="checkbox"><span>忘記密碼時寄簡訊至預設手機</span>
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button id="safebutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
+                            <button id="safebutton3" style="display:none" type="button" class="btn btn-primary btn-xs">確認</button>
+                        </div>
+                    </div>
+                    <div class="mainpart" id="setup3" style="display: none">
+                        <br>
+                        <div class="container-fluid">
+                            <h4>帳戶偏好設定</h4>
+                            <button id="preferbutton1" type="button" class="btn btn-default btn-xs">修改</button>
+                            <br>
+                            <br>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>語言</td>
+                                        <td>
+                                            <h5 id="language1">繁體中文</h5>
+                                            <form id="language2" class="form-find" style="display: none">
+                                                <h5>選擇語言:</h5>
+                                                <div class="form-group">
+                                                    <select class="form-control">
+                                                        <option>繁體中文</option>
+                                                        <option>英文</option>
+                                                        <option>簡體中文</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>音效</td>
+                                        <td>
+                                            <h5 id="sound1">通知音效:啟用 提醒音效:啟用</h5>
+                                            <form id="sound2" class="form-find" style="display: none">
+                                                <div class="checkbox checkbox-slider--b">
+                                                    <label>
+                                                        <input type="checkbox"><span>收到新通知時撥放音效</span>
+                                                    </label>
+                                                </div>
+                                                <br>
+                                                <div class="checkbox checkbox-slider--b">
+                                                    <label>
+                                                        <input type="checkbox"><span>收到提醒時撥放音效</span>
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>通知</td>
+                                        <td>
+                                            <h5 id="notice1">郵件發送:啟用 簡訊發送:啟用</h5>
+                                            <form id="notice2" class="form-find" style="display: none">
+                                                <form>
+                                                    <div class="checkbox checkbox-slider--b">
+                                                        <label>
+                                                            <input type="checkbox"><span>重要通知發送郵件到電子信箱</span>
+                                                        </label>
+                                                    </div>
+                                                    <br>
+                                                    <div class="checkbox checkbox-slider--b">
+                                                        <label>
+                                                            <input type="checkbox"><span>重要通知發送簡訊到手機</span>
+                                                        </label>
+                                                    </div>
+                                                    <hr>
+                                                    <h5>那些屬於重要通知:</h5>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">專案邀請</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">專案成員變更</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">代辦事項提醒</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">任務變更</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">大區段變更</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">檔案上傳</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">新的貼文</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" value="">貼文回應</label>
+                                                    </div>
+                                                </form>
+                                                <hr>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>貼文</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button id="preferbutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
+                            <button id="preferbutton3" style="display:none" type="button" class="btn btn-primary btn-xs">確認</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-2 text-center">
+                    <div class="well">
+                        <br>
+                        <img src="https://unwire.hk/wp-content/uploads/2014/10/facebook-user.jpg" class="img-circle" height="60" width="80" alt="Avatar">
+                        <h5>許斾旟</h5>
+                        <hr>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="#section01">代辦清單</a></li>
+                            <li><a data-toggle="collapse" href="#club">我的專案</a></li>
+                            <div id="club" class="panel-collapse collapse">
+                                <ul class="list-group">
+                                    <li class="list-group-item">會計學報告</li>
+                                    <li class="list-group-item">經濟學報告</li>
+                                    <li class="list-group-item">微積分報告</li>
+                            </div>
+                            <li><a href="#section02">行事曆</a></li>
+                            <li><a href="#section03">系統設定</a></li>
+                            </ul>
+                            <br>
+                    </div>
+                </div> -->
+        </div>
+    </div>
+  </body>
 </html>
