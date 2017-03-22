@@ -141,8 +141,11 @@ if (isset($_POST['btn-revise'])) {
     </div>
     <div class="list">
         <li class="buttom2"><a href="javascript:ShowContent(1, 3, 'setup')">會員資料</a></li>
-        <li class="buttom2"><a href="javascript:ShowContent(2, 3, 'setup')">帳號安全性</a></li>
-        <li class="buttom2"><a href="javascript:ShowContent(3, 3, 'setup')">聯絡我們</a></li>
+        <li class="buttom2"><a href="javascript:ShowContent(2, 3, 'setup')">安全性</a></li>
+        <li class="buttom2"><a href="javascript:ShowContent(3, 3, 'setup')">偏好設定</a></li>
+        <li class="buttom2"><a href="#set04">隱私權相關</a></li>
+        <li class="buttom2"><a href="#set05">說明</a></li>
+        <li class="buttom2"><a href="#set05">意見回饋</a></li>
     </div>
     <br>
     <br>
