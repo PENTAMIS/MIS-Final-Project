@@ -1,103 +1,88 @@
 <?php
- ob_start();
- session_start();
- require_once 'dbconnect.php';
-
- //如果非登入狀態將導回首頁
- if (!isset($_SESSION['user'])) {
-     header("Location: index.php");
-     exit;
- }
-
- //抓取登入之帳戶資料
- $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
- $userRow = mysql_fetch_array($res);
-
- $error = false;
-
- if (isset($_POST['btn-revise'])) {
-
-   $name = trim($_POST['name']);
-   $name = strip_tags($name);
-   $name = htmlspecialchars($name);
-
-   $department = trim($_POST['department']);
-   $department = strip_tags($department);
-   $department = htmlspecialchars($department);
-
-   $studentid = trim($_POST['studentid']);
-   $studentid = strip_tags($studentid);
-   $studentid = htmlspecialchars($studentid);
-
-   $cellphone = trim($_POST['cellphone']);
-   $cellphone = strip_tags($cellphone);
-   $cellphone = htmlspecialchars($cellphone);
-
-   $introduction = strip_tags($_POST['introduction']);
-   $introduction = htmlspecialchars($introduction);
-
-   $interests = strip_tags($_POST['interests']);
-   $interests = htmlspecialchars($interests);
-
-   if (empty($name)) {
-       $error = true;
-       $nameError = "請輸入名稱";
-   }
-
-   if (empty($cellphone)) {
-       $error = true;
-       $nameError = "請輸入手機";
-   }
-
-   if (!$error) {
-       $query = "UPDATE users SET
-                 userName = '$name',
-                 userDepartment = '$department',
-                 userStudentid = '$studentid',
-                 userCellphone = '$cellphone',
-                 userIntroduction = '$introduction',
-                 userInterests = '$interests' WHERE userId=".$_SESSION['user'];
-       $res = mysql_query($query);
-
-       if ($res) {
-           $errTyp = "success";
-           $errMSG = "修改成功";
-           unset($name);
-           unset($department);
-           unset($studentid);
-           unset($cellphone);
-           unset($introduction);
-           unset($interests);
-       }
-     } else {
-           $errTyp = "danger";
-           $errMSG = "更改失敗";
-       }
-    echo "<script>
-    window.location.href='personaldata.php';
-    </script>";
-   }
+ob_start();
+session_start();
+require_once 'dbconnect.php';
+//如果非登入狀態將導回首頁
+if (!isset($_SESSION['user'])) {
+  header("Location: index.php");
+  exit;
+}
+//抓取登入之帳戶資料
+$res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
+$userRow = mysql_fetch_array($res);
+$error = false;
+if (isset($_POST['btn-revise'])) {
+  $name = trim($_POST['name']);
+  $name = strip_tags($name);
+  $name = htmlspecialchars($name);
+  $department = trim($_POST['department']);
+  $department = strip_tags($department);
+  $department = htmlspecialchars($department);
+  $studentid = trim($_POST['studentid']);
+  $studentid = strip_tags($studentid);
+  $studentid = htmlspecialchars($studentid);
+  $cellphone = trim($_POST['cellphone']);
+  $cellphone = strip_tags($cellphone);
+  $cellphone = htmlspecialchars($cellphone);
+  $introduction = strip_tags($_POST['introduction']);
+  $introduction = htmlspecialchars($introduction);
+  $interests = strip_tags($_POST['interests']);
+  $interests = htmlspecialchars($interests);
+  if (empty($name)) {
+    $error = true;
+    $nameError = "請輸入名稱";
+  }
+  if (!$error) {
+    $query = "UPDATE users SET
+    userName = '$name',
+    userDepartment = '$department',
+    userStudentid = '$studentid',
+    userCellphone = '$cellphone',
+    userIntroduction = '$introduction',
+    userInterests = '$interests' WHERE userId=".$_SESSION['user'];
+    $res = mysql_query($query);
+    if ($res) {
+      $errTyp = "success";
+      $errMSG = "修改成功";
+      unset($name);
+      unset($department);
+      unset($studentid);
+      unset($cellphone);
+      unset($introduction);
+      unset($interests);
+    }
+  } else {
+    $errTyp = "danger";
+    $errMSG = "更改失敗";
+  }
+  echo "<script>
+  alert('$errMSG');
+  window.location.href='personaldata.php';
+  </script>";
+}
 ?>
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <meta charset="utf-8">
-    <title>設定</title>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <link href="titatoggle-dist.css" rel="stylesheet">
-    <script type="text/javascript" src="SystemSetup.js"></script>
-    <link rel="stylesheet" href="SystemSetup.css">
-  </head>
-  <body>
+<head>
+  <title>Bootstrap Example</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <meta charset="utf-8">
+     <title>設定y</title>
+     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+     <link rel="stylesheet" href="/resources/demos/style.css">
+     <link href="titatoggle-dist.css" rel="stylesheet">
+     <script type="text/javascript" src="SystemSetup.js"></script>
+     <link rel="stylesheet" href="SystemSetup.css">
+</head>
+<body>
+
     <!-- 主導覽列 -->
     <div class="bar">
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -144,9 +129,8 @@
         </div>
         <hr class="line3"></hr>
     </div>
-    <!-- 副導覽 -->
     <div class="nav_area2">
-        <a class="brand" href="home.php">logo</a>
+        <a class="brand" href="#">Logo</a>
         <h3>系統設定</h3>
         <form class="navbar-form form">
             <div class="form-group">
@@ -155,27 +139,23 @@
             <button type="submit" class="btn btn-default">搜尋</button>
         </form>
     </div>
-    <!-- 小分頁 -->
     <div class="list">
         <li class="buttom2"><a href="javascript:ShowContent(1, 3, 'setup')">會員資料</a></li>
-        <li class="buttom2"><a href="javascript:ShowContent(2, 3, 'setup')">安全性</a></li>
-        <li class="buttom2"><a href="javascript:ShowContent(3, 3, 'setup')">偏好設定</a></li>
-        <li class="buttom2"><a href="#set04">隱私權相關</a></li>
-        <li class="buttom2"><a href="#set05">說明</a></li>
-        <li class="buttom2"><a href="#set05">意見回饋</a></li>
+        <li class="buttom2"><a href="javascript:ShowContent(2, 3, 'setup')">帳號安全性</a></li>
+        <li class="buttom2"><a href="javascript:ShowContent(3, 3, 'setup')">聯絡我們</a></li>
     </div>
     <br>
     <br>
     <br>
     <br>
     <br>
-    <!-- 專案設定 -->
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-10">
                 <div class="mainpage">
                     <div class="mainpart" id="setup1">
                         <br>
+                        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" id="revise">
                         <div class="container-fluid">
                             <h4>會員資料</h4>
                             <button id="memberbutton1" type="button" class="btn btn-default btn-xs">修改</button>
@@ -183,59 +163,30 @@
                             <br>
                             <table class="table">
                                 <tbody>
-                                  <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" id="revise">
                                     <tr>
                                         <td>姓名</td>
                                         <td>
                                             <h5 id="name1"><?php echo $userRow[1]; ?></h5>
                                             <div id="name2" style="display:none" class="form-find">
-                                                <input name="name" type="text" class="form-findtext" placeholder="<?php echo $userRow[1]; ?>">
+                                                <input type="text" name="name" class="form-findtext" value="<?php echo $userRow[1]; ?>">
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>密碼</td>
-                                        <td>
-                                            <h5 id="password1">********</h5>
-                                            <div id="password2" style="display:none" class="form-find">
-                                                <h5>密碼:</h5>
-                                                <input type="password" class="form-findtext" placeholder="********">
-                                                <h5>新的密碼:</h5>
-                                                <input type="password" class="form-findtext" placeholder="請輸入新的密碼......">
-                                                <h5>確認密碼:</h5>
-                                                <input type="password" class="form-findtext" placeholder="請輸入新的密碼......">
-                                                <hr>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>電子信箱</td>
-                                        <td>
-                                            <h5 id="mail1"><?php echo $userRow[2]; ?></h5>
-                                            <div id="mail2" style="display:none" class="form-find">
-                                                <h5>修改電子信箱:</h5>
-                                                <input type="text" class="form-findtext" placeholder=<?php echo $userRow[2]; ?>>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>系級</td>
+                                        <td>系級*</td>
                                         <td>
                                             <h5 id="department1"><?php echo $userRow[4]; ?></h5>
-                                            <div id="department2" style="display: none" class="form-find">
-                                                <h5>修改系級:</h5>
-                                                <input name="department" type="text" class="form-findtext" placeholder=<?php echo $userRow[4]; ?>>
+                                            <div id="department2" style="display:none" class="form-find">
+                                                <input type="text" name="department" class="form-findtext" value="<?php echo $userRow[4]; ?>">
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>學號</td>
+                                        <td>學號*</td>
                                         <td>
                                             <h5 id="number1"><?php echo $userRow[5]; ?></h5>
-                                            <div id="number2" class="form-find" style="display: none">
-                                                <h5>修改學號:</h5>
-                                                <input name="studentid" type="text" class="form-findtext" placeholder="<?php echo $userRow[5]; ?>">
+                                            <div id="number2" style="display:none" class="form-find">
+                                                <input type="number" name="studentid" class="form-findtext" value="<?php echo $userRow[5]; ?>">
                                             </div>
                                         </td>
                                     </tr>
@@ -245,36 +196,34 @@
                                             <h5 id="phone1"><?php echo $userRow[6]; ?></h5>
                                             <div id="phone2" class="form-find" style="display: none">
                                                 <h5>修改手機號碼:</h5>
-                                                <input name="cellphone" type="text" class="form-findtext" placeholdere="<?php echo $userRow[6]; ?>" >
+                                                <input type="nember" name="cellphone" class="form-findtext" value="<?php echo $userRow[6]; ?>">
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>自我介紹</td>
+                                        <td>自我介紹*</td>
                                         <td>
                                             <h5 id="introduction1"><?php echo $userRow[7]; ?></h5>
-                                            <div id="introduction2" class="form-find" style="display: none">
-                                                <h5>修改自我介紹:</h5>
-                                                <textarea row="5" col="60" name="introduction"><?php echo $userRow[7]; ?></textarea>
+                                            <div id="introduction2" style="display:none" class="form-find">
+                                                <textarea row="5" col="60" name="introduction" class="form-findtext"><?php echo $userRow[7]; ?></textarea>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>興趣</td>
+                                        <td>興趣*</td>
                                         <td>
-                                            <h5 id="hobby1"><?php echo $userRow[8]; ?></h5>
-                                            <div id="hobby2" class="form-find" style="display: none">
-                                                <h5>修改興趣:</h5>
-                                                <textarea row="5" col="60" name="hobby"><?php echo $userRow[8]; ?></textarea>
+                                            <h5 id="interests1"><?php echo $userRow[8]; ?></h5>
+                                            <div id="interests2" style="display:none" class="form-find">
+                                                <textarea row="5" col="60" name="interests" class="form-findtext" ><?php echo $userRow[8]; ?></textarea>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="memberbutton3" style="display:none" class="btn btn-primary btn-xs" name="btn-revise" type="submit" >更改</button>
-                            <button id="memberbutton2" style="display:none" type="button" class="btn btn-danger btn-xs" onClick="window.location.reload();" >取消</button>
-                          </form>
+                            <button id="memberbutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
+                            <button id="memberbutton3" type="submit" name="btn-revise" style="display:none" class="btn btn-primary btn-xs">確認</button>
                         </div>
+                      </form>
                     </div>
                     <div class="mainpart" id="setup2" style="display: none">
                         <br>
@@ -487,5 +436,6 @@
                 </div> -->
         </div>
     </div>
-  </body>
+<a href="home.php">回首頁</a>
+</body>
 </html>
