@@ -140,7 +140,7 @@
     <?php if (isset($project_nameError)){echo $project_nameError.'<br>';} ?>
     <input type="text" name="project_class" placeholder="請輸入課程(活動)名稱" maxlength="40" value="" /><br>
     <?php if (isset($project_classError)){echo $project_classError.'<br>';} ?>
-    <input type="text" name="project_member" placeholder="請輸入組員名稱,例如 : 李明融,Sean" value="" /><br>
+    <input type="text" name="project_member" placeholder="請輸入組員信箱" value="" /><br>
     <input type="text" name="project_teacher" placeholder="請輸入指導老師" maxlength="40" value="" /><br>
     <?php if (isset($project_teacherError)){echo $project_teacherError.'<br>';} ?>
     <input type="hidden" name="project_creattime" value="<?php echo date('Y/m/d', time())?>">

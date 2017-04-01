@@ -63,7 +63,7 @@ if(isset($_FILES['files'])){
   {
     echo "<script>
     alert('successfully uploaded');
-    window.location.href='project_file_view.php?id=$file_projectId';
+    window.location.href='project_file.php?id=$file_projectId';
     </script>";
     //header("Location: project_file_view.php?id=$file_projectId");
   }

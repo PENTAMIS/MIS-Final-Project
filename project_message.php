@@ -356,12 +356,13 @@
     </div>
     <?php
     for($i = count($commentRow)-1; $i >= 0; $i--){
-
-      $res = mysql_query("SELECT SubComText FROM subcomment WHERE ComId=".$commentIdRow[$i]);
       $subcommentRow = array();
-      //for ($i = 0; $i < mysql_num_rows($res); $i++) {
-        //$subcommentRow[] = mysql_result($res,$i,0);
-      //}
+      $res = mysql_query("SELECT SubComText FROM subcomment WHERE ComId=".$commentIdRow[$i]);
+      if($res){
+          for ($z = 0; $z < mysql_num_rows($res); $z++) {
+            $subcommentRow[] = mysql_result($res,$z,0);
+          }
+       }
 
        ?><div id="post" class="col-sm-6">
            <div class="main2">
@@ -372,7 +373,7 @@
                        <ul class="dropdown-menu">
                            <li><a href="#">編輯貼文</a></li>
                            <li><a href="#">隱藏貼文</a></li>
-                           <li><a href="project_message_delete.php?Com_id=<?php echo $commentIdRow[$i] ?>&Pro_id=<?php echo $projectId; ?>">刪除貼文</a</li>
+                           <li><a href="project_message_delete.php?Com_id=<?php echo $commentIdRow[$i]; ?>&Pro_id=<?php echo $projectId; ?>">刪除貼文</a</li>
                        </ul>
                    </div>
                    <img id="guest" src="https://unwire.hk/wp-content/uploads/2014/10/facebook-user.jpg" class="img-circle" alt="Avatar">
@@ -388,7 +389,7 @@
                  <?php
                   for ($x = count($subcommentRow)-1; $x >= 0; $x--) {
                     ?>
-                    <h5><img id="guest" src="https://unwire.hk/wp-content/uploads/2014/10/facebook-user.jpg" class="img-circle" alt="Avatar"><?php echo $subcommentRow[0]; ?></h5>
+                    <h5><img id="guest" src="https://unwire.hk/wp-content/uploads/2014/10/facebook-user.jpg" class="img-circle" alt="Avatar"><?php echo $subcommentRow[$x]; ?></h5>
                     <?php
                   }
                   ?>
@@ -408,6 +409,7 @@
                </div>
            </div>
        <?php
+       unset($subcommentRow);
     }
      ?>
   </body>

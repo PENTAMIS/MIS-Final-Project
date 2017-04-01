@@ -31,28 +31,71 @@ $userRow = mysql_fetch_array($res);
 			<label for="file"></label><br>
 			<input type="submit" value="Upload" disabled />
 		</form>
-		<?php
-		if(isset($_GET['success']))
-		{
-			?>
-			<label>上傳成功<a href="project_file_view.php">瀏覽檔案</a></label>
-			<?php
-		}
-		else if(isset($_GET['fail']))
-		{
-			?>
-			<label>上傳失敗</label>
-			<?php
-		}
-		else
-		{
-			?>
-			<a href="project_file_view.php?id=<?php echo $_GET['id']; ?>">瀏覽已上傳檔案</a><br>
-			<a href="project_home.php?id=<?php echo $_GET['id']; ?>">專案首頁</a>
-			<?php
-		}
-		?>
+    <input class="w3-input w3-border w3-padding" type="text" placeholder="搜尋" id="myInput" onkeyup="myFunction()">
+    <table id="id01">
+      <tr>
+        <th>檔案名稱</th>
+        <th>檔案類型</th>
+        <th>檔案大小(KB)</th>
+        <th>上傳者</th>
+        <th>瀏覽</th>
+        <th>刪除</th>
+      </tr>
+      <?php
+      $query="SELECT * FROM tbl_uploads WHERE projectId=".$_GET['id'];
+      $res=mysql_query($query);
+      while($row=mysql_fetch_array($res))
+      {
+        ?>
+        <tr>
+          <td><?php echo $row['file'] ?></td>
+          <td><?php echo $row['type'] ?></td>
+          <td><?php echo $row['size'] ?></td>
+          <td>
+            <?php
+              $query = "SELECT userName FROM users WHERE userId=".$row['userId'];
+              $userName = mysql_fetch_array(mysql_query($query));
+              echo $userName[0];
+            ?>
+          </td>
+          <td><a href="uploads/<?php echo $row['file'] ?>" target="_blank">瀏覽檔案</a></td>
+          <td><a href="project_file_delete.php?del=<?php echo $row['file'] ?>&id=<?php echo $row['id'] ?>&projectId=<?php echo $_GET['id']; ?>">刪除檔案</a></td>
+        </tr>
+        <?php
+      }
+      // if ($_POST['sort'] == 'name')
+      // {
+      //   $query .= " ORDER BY file";
+      // }
+      // elseif ($_POST['sort'] == 'type')
+      // {
+      //   $query .= " ORDER BY type";
+      // }
+      // elseif ($_POST['sort'] == 'size')
+      // {
+      //   $query .= " ORDER BY size";
+      // }
+      ?>
+    </table>
 		<script type="text/javascript">
+		function myFunction() {
+		  var input, filter, table, tr, td, i;
+		  input = document.getElementById("myInput");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("id01");
+		  tr = table.getElementsByTagName("tr");
+		  for (i = 0; i < tr.length; i++) {
+		    td = tr[i].getElementsByTagName("td")[0];
+		    if (td) {
+		      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		        tr[i].style.display = "";
+		      } else {
+		        tr[i].style.display = "none";
+		      }
+		    }
+		  }
+		}
+
 		$(document).ready(
 			function(){
 				$('input:submit').attr('disabled',true);
@@ -68,6 +111,7 @@ $userRow = mysql_fetch_array($res);
 				});
 		</script>
 		<script src="js/custom-file-input.js"></script>
+		<a href="project_home.php?id=<?php echo $_GET['id']; ?>">專案首頁</a>
 </body>
 </html>
 <?php ob_end_flush(); ?>
