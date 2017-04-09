@@ -33,18 +33,23 @@
  }
 
 
- $res = mysqli_query($db, "SELECT projectName FROM projects WHERE (projectMembersId LIKE '%$userRow[0]%')");
+ $res = mysqli_query($db, "SELECT projectName FROM projects WHERE (projectMembersId LIKE '%$userRow[2]%')");
  $projectNameRow_members = array();
  for ($i = 0; $i < mysqli_num_rows($res); $i++) {
    $projectNameRow_members[] = mysqli_result($res,$i,0);
  }
 
- $res = mysqli_query($db, "SELECT projectId FROM projects WHERE (projectMembersId LIKE '%$userRow[0]%')");
+ $res = mysqli_query($db, "SELECT projectId FROM projects WHERE (projectMembersId LIKE '%$userRow[2]%')");
  $projectIdRow_members = array();
  for($i = 0; $i < mysqli_num_rows($res); $i++){
    $projectIdRow_members[] = mysqli_result($res,$i,0);
  }
 
+ $res = mysqli_query($db, "SELECT postText FROM post WHERE (postInvolvedMembers LIKE '%$userRow[2]%') AND postUserId!=".$userRow[0]);
+ $postText = array();
+ for($i = 0; $i < mysqli_num_rows($res); $i++){
+   $postText[] = mysqli_result($res,$i,0);
+ }
 //切割member，存為陣列
  /*$size = count($projectIdRow_members);
  for($i = 0; $i < $size; $i++){
@@ -82,24 +87,27 @@
          <?php
         }
       }
+      for($i = 0; $i < count($postText); $i++){
+        echo $postText[$i];?><br><?php
+      }
 
-    function mysqli_result($res,$row=0,$col=0){
-    $numrows = mysqli_num_rows($res);
-    if ($numrows && $row <= ($numrows-1) && $row >=0){
-        mysqli_data_seek($res,$row);
-        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
-        if (isset($resrow[$col])){
-            return $resrow[$col];
-        }
-    }
-    return false;
-}
+      function mysqli_result($res,$row=0,$col=0){
+      $numrows = mysqli_num_rows($res);
+      if ($numrows && $row <= ($numrows-1) && $row >=0){
+          mysqli_data_seek($res,$row);
+          $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+          if (isset($resrow[$col])){
+              return $resrow[$col];
+          }
+      }
+      return false;
+  }
     ?>
     <br>
     <a href="project_creating.php">創建專案</a><br>
     <a href="todolist.php">待辦清單</a><br>
     <a href="personaldata.php">個人設定</a><br>
-    <a href="systemsetting.php">系統設定</a><br>
+    <a href="cart/public/index.php">共享市集</a><br>
     <a href="logout.php?logout">登出</a>
 </body>
 </html>
