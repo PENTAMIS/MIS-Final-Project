@@ -5,44 +5,46 @@
 
   $projectId = $_GET['id'];
 
-  $res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
-  $projectRow = mysqli_fetch_array($res);
+  $res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
+  $projectRow = mysql_fetch_array($res);
 
   //echo $projectRow[3];<--專案名稱
 
-  $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+  $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
   $userRow = array();
-  for ($i = 0; $i < mysqli_num_rows($res); $i++) {
-    $userRow[] = mysqli_result($res,$i,0);
+  for ($i = 0; $i < mysql_num_rows($res); $i++) {
+    $userRow[] = mysql_result($res,$i,0);
   }
 
-  $res = mysqli_query($db, "SELECT userName FROM users WHERE userId=".$_SESSION['user']);
-  $userName = mysqli_fetch_array($res);
+  $res = mysql_query("SELECT userName FROM users WHERE userId=".$_SESSION['user']);
+  $userName = mysql_fetch_array($res);
 
-  $res = mysqli_query($db, "SELECT Comtext FROM comment WHERE ProjectId=".$_GET['id']);
+  $res = mysql_query("SELECT Comtext FROM comment WHERE ProjectId=".$_GET['id']);
   $commentRow = array();
-  for ($i = 0; $i < mysqli_num_rows($res); $i++) {
-    $commentRow[] = mysqli_result($res,$i,0);
+  for ($i = 0; $i < mysql_num_rows($res); $i++) {
+    $commentRow[] = mysql_result($res,$i,0);
   }
 
-  $res = mysqli_query($db, "SELECT ComId FROM comment WHERE ProjectId=".$_GET['id']);
+  $res = mysql_query("SELECT ComId FROM comment WHERE ProjectId=".$_GET['id']);
   $commentRow_Id = array();
-  for ($i = 0; $i < mysqli_num_rows($res); $i++) {
-    $commentRow_Id[] = mysqli_result($res,$i,0);
+  for ($i = 0; $i < mysql_num_rows($res); $i++) {
+    $commentRow_Id[] = mysql_result($res,$i,0);
   }
 
-  $res = mysqli_query($db, "SELECT ComId FROM comment WHERE ProjectId=".$_GET['id']);
+  $res = mysql_query("SELECT ComId FROM comment WHERE ProjectId=".$_GET['id']);
   $commentIdRow = array();
-  for ($i = 0; $i < mysqli_num_rows($res); $i++) {
-    $commentIdRow[] = mysqli_result($res,$i,0);
+  for ($i = 0; $i < mysql_num_rows($res); $i++) {
+    $commentIdRow[] = mysql_result($res,$i,0);
   }
 
-  $res = mysqli_query($db, "SELECT ComTime FROM comment WHERE ProjectId=".$_GET['id']);
+  $res = mysql_query("SELECT ComTime FROM comment WHERE ProjectId=".$_GET['id']);
   $commentTimeRow = array();
-  for ($i = 0; $i < mysqli_num_rows($res); $i++) {
-    $commentTimeRow[] = mysqli_result($res,$i,0);
+  for ($i = 0; $i < mysql_num_rows($res); $i++) {
+    $commentTimeRow[] = mysql_result($res,$i,0);
   }
 
+  $res = mysql_query("SELECT userEmail FROM users WHERE userId=".$projectRow[1]);
+  $userEmail = mysql_fetch_array($res);
 
   $error = false;
 
@@ -52,19 +54,37 @@
 
     $time = $_POST['time'];
 
+    $postSource = "貼文發布";
+    $postText = "$userName[0] 已發佈一則貼文至 <a href=\"project_home.php?id=$projectRow[0]\">$projectRow[3]</a>";
+
+
     if (empty($text)) {
         $error = true;
         $errMSG = "請輸入文字";
     }
 
     if (!$error) {
+
+        $membersEmail = $projectRow[2];
+        $ownerEmail = $userEmail[0];
+        $involvedMembers = $membersEmail.",".$ownerEmail;
+
         $query = "INSERT INTO comment(UserId,ProjectId,ComText,ComTime)
                   VALUES('$userRow[0]','$projectRow[0]','$text','$time')";
-        $res = mysqli_query($db, $query);
+        $res = mysql_query($query);
+
+        $query = "INSERT INTO post(postSource,postText,postUserId,postProjectId,postInvolvedMembers)
+                  VALUES('$postSource','$postText','$userRow[0]','$projectRow[0]','$involvedMembers')";
+        $res = mysql_query($query);
+
 
         if ($res) {
           unset($text);
           unset($time);
+          unset($membersEmail);
+          unset($ownerEmail);
+          unset($involvedMembers);
+
         }
       }
      echo "<script>
@@ -88,7 +108,7 @@
     if (!$error) {
         $query = "INSERT INTO subcomment(ComId,SubComText,UserId)
                   VALUES('$ComId_subcomment','$subcomment','$userRow[0]')";
-        $res = mysqli_query($db, $query);
+        $res = mysql_query($query);
 
         if ($res) {
           unset($ComId_subcomment);
@@ -354,17 +374,18 @@
                                                 </div> -->
         </div>
     </div>
+    <div id="post" class="col-sm-6">
     <?php
     for($i = count($commentRow)-1; $i >= 0; $i--){
       $subcommentRow = array();
-      $res = mysqli_query($db, "SELECT SubComText FROM subcomment WHERE ComId=".$commentIdRow[$i]);
+      $res = mysql_query("SELECT SubComText FROM subcomment WHERE ComId=".$commentIdRow[$i]);
       if($res){
-          for ($z = 0; $z < mysqli_num_rows($res); $z++) {
-            $subcommentRow[] = mysqli_result($res,$z,0);
+          for ($z = 0; $z < mysql_num_rows($res); $z++) {
+            $subcommentRow[] = mysql_result($res,$z,0);
           }
        }
 
-       ?><div id="post" class="col-sm-6">
+       ?>
            <div class="main2">
                <div class="post-left">
                    <div class="dropdown">
@@ -385,6 +406,7 @@
                        <button type="button" class="btn btn-success btn-xs">置頂貼文</button>
                    </div>
                </div>
+
                <div class="post-right">
                  <?php
                   for ($x = count($subcommentRow)-1; $x >= 0; $x--) {
@@ -411,18 +433,6 @@
        <?php
        unset($subcommentRow);
     }
-
-    function mysqli_result($res,$row=0,$col=0){
-    $numrows = mysqli_num_rows($res);
-    if ($numrows && $row <= ($numrows-1) && $row >=0){
-        mysqli_data_seek($res,$row);
-        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
-        if (isset($resrow[$col])){
-            return $resrow[$col];
-        }
-    }
-    return false;
-}
      ?>
   </body>
 </html>

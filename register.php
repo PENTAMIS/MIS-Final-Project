@@ -50,8 +50,8 @@
          $emailError = "請輸入正確電子信箱格式.";
      } else {
          $query = "SELECT userEmail FROM users WHERE userEmail='$email'";
-         $result = mysqli_query($db, $query);
-         $count = mysqli_num_rows($db, $result);
+         $result = mysql_query($query);
+         $count = mysql_num_rows($result);
          if ($count!=0) {
              $error = true;
              $emailError = "您輸入的電子信箱已被使用";
@@ -72,7 +72,7 @@
      if (!$error) {
          $query = "INSERT INTO users(userName,userEmail,userPass,userDepartment,userStudentid,userCellphone,userIntroduction,userInterests)
                    VALUES('$name','$email','$password','$department','$studentid','$cellphone','$introduction','$interests')";
-         $res = mysqli_query($db, $query);
+         $res = mysql_query($query);
 
          if ($res) {
              $errTyp = "success";
@@ -112,8 +112,8 @@
     <input type="text" name="department" class="form-control" placeholder="請輸入系級" maxlength="50" value="" /></br>
     <input type="number" name="studentid" class="form-control" placeholder="請輸入學號" maxlength="50" value="" /></br>
     <input type="number" name="cellphone" class="form-control" placeholder="請輸入連絡電話" maxlength="10" value="" /></br>
-    <textarea row="5" col="60" name="introduction" form="register" placeholder="請輸入自我介紹..."/></textarea><br>
-    <textarea row="5" col="60" name="interests" form="register" placeholder="請輸入興趣..."/></textarea><br>
+    <textarea row="5" col="60" name="introduction" form="register"/>請輸入自我介紹...</textarea><br>
+    <textarea row="5" col="60" name="interests" form="register"/>請輸入興趣...</textarea><br>
     <button type="submit" name="btn-signup">註冊</button></br>
     <a href="index.php">點我回登入頁面</a>
     <?php

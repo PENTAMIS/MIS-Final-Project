@@ -39,9 +39,9 @@
   if (!$error) {
       $password = hash('sha256', $pass); // 密碼採用sha256加密
 
-      $res = mysqli_query($db, "SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
-      $row = mysqli_fetch_array($res);
-      $count = mysqli_num_rows($res); // 如果帳號密碼皆正確將必return 1
+      $res = mysql_query("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
+      $row = mysql_fetch_array($res);
+      $count = mysql_num_rows($res); // 如果帳號密碼皆正確將必return 1
 
    if ($count == 1 && $row['userPass']==$password) {
        $_SESSION['user'] = $row['userId'];
