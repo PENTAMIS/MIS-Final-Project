@@ -50,8 +50,8 @@
          $emailError = "請輸入正確電子信箱格式.";
      } else {
          $query = "SELECT userEmail FROM users WHERE userEmail='$email'";
-         $result = mysql_query($query);
-         $count = mysql_num_rows($result);
+         $result = mysqli_query($db, $query);
+         $count = mysqli_num_rows($db, $result);
          if ($count!=0) {
              $error = true;
              $emailError = "您輸入的電子信箱已被使用";
@@ -72,7 +72,7 @@
      if (!$error) {
          $query = "INSERT INTO users(userName,userEmail,userPass,userDepartment,userStudentid,userCellphone,userIntroduction,userInterests)
                    VALUES('$name','$email','$password','$department','$studentid','$cellphone','$introduction','$interests')";
-         $res = mysql_query($query);
+         $res = mysqli_query($db, $query);
 
          if ($res) {
              $errTyp = "success";

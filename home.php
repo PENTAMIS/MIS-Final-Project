@@ -10,39 +10,39 @@
  }
 
  //抓取登入之帳戶資料
- $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
- $userRow = mysql_fetch_array($res);
+ $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+ $userRow = mysqli_fetch_array($res);
 
  //抓取專案名稱資料
- $res = mysql_query("SELECT projectName FROM projects WHERE projectCreatorId=".$userRow[0]);
+ $res = mysqli_query($db, "SELECT projectName FROM projects WHERE projectCreatorId=".$userRow[0]);
  $projectNameRow = array();
- for ($i = 0; $i < mysql_num_rows($res); $i++) {
-   $projectNameRow[] = mysql_result($res,$i,0);
+ for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+   $projectNameRow[] = mysqli_result($res,$i,0);
  }
 
- $res = mysql_query("SELECT projectId FROM projects WHERE projectCreatorId=".$userRow[0]);
+ $res = mysqli_query($db, "SELECT projectId FROM projects WHERE projectCreatorId=".$userRow[0]);
  $projectIdRow = array();
- for ($i = 0; $i < mysql_num_rows($res); $i++) {
-   $projectIdRow[] = mysql_result($res,$i,0);
+ for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+   $projectIdRow[] = mysqli_result($res,$i,0);
  }
 
- $res = mysql_query("SELECT projectCreatorId FROM projects WHERE projectCreatorId=".$userRow[0]);
+ $res = mysqli_query($db, "SELECT projectCreatorId FROM projects WHERE projectCreatorId=".$userRow[0]);
  $projectCreatorIdRow = array();
- for ($i = 0; $i < mysql_num_rows($res); $i++) {
-   $projectCreatorIdRow[] = mysql_result($res,$i,0);
+ for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+   $projectCreatorIdRow[] = mysqli_result($res,$i,0);
  }
 
 
- $res = mysql_query("SELECT projectName FROM projects WHERE (projectMembersId LIKE '%$userRow[0]%')");
+ $res = mysqli_query($db, "SELECT projectName FROM projects WHERE (projectMembersId LIKE '%$userRow[0]%')");
  $projectNameRow_members = array();
- for ($i = 0; $i < mysql_num_rows($res); $i++) {
-   $projectNameRow_members[] = mysql_result($res,$i,0);
+ for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+   $projectNameRow_members[] = mysqli_result($res,$i,0);
  }
 
- $res = mysql_query("SELECT projectId FROM projects WHERE (projectMembersId LIKE '%$userRow[0]%')");
+ $res = mysqli_query($db, "SELECT projectId FROM projects WHERE (projectMembersId LIKE '%$userRow[0]%')");
  $projectIdRow_members = array();
- for($i = 0; $i < mysql_num_rows($res); $i++){
-   $projectIdRow_members[] = mysql_result($res,$i,0);
+ for($i = 0; $i < mysqli_num_rows($res); $i++){
+   $projectIdRow_members[] = mysqli_result($res,$i,0);
  }
 
 //切割member，存為陣列
@@ -82,6 +82,18 @@
          <?php
         }
       }
+
+    function mysqli_result($res,$row=0,$col=0){
+    $numrows = mysqli_num_rows($res);
+    if ($numrows && $row <= ($numrows-1) && $row >=0){
+        mysqli_data_seek($res,$row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col])){
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
     ?>
     <br>
     <a href="project_creating.php">創建專案</a><br>
