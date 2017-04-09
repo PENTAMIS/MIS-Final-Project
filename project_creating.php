@@ -73,19 +73,19 @@
      if (!$error) {
          $query = "INSERT INTO projects(projectCreatorId,projectMembersId,projectName,projectClassName,projectTeacher,projectCreatetime,projectDeadline)
                    VALUES('$project_creatorId','$project_member','$project_name','$project_class','$project_teacher','$project_creattime','$project_deadline')";
-         $res = mysql_query($query);
+         $res = mysqli_query($db, $query);
 
          $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
                          VALUES('$project_Id','$project_stage_start_1','$project_stage_end_1','$project_stage_name_1')";
-         $res_stage = mysql_query($query_stage);
+         $res_stage = mysqli_query($db, $query_stage);
 
          $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
                          VALUES('$project_Id','$project_stage_start_2','$project_stage_end_2','$project_stage_name_2')";
-         $res_stage = mysql_query($query_stage);
+         $res_stage = mysqli_query($db, $query_stage);
 
          $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
                          VALUES('$project_Id','$project_stage_start_3','$project_stage_end_3','$project_stage_name_3')";
-         $res_stage = mysql_query($query_stage);
+         $res_stage = mysqli_query($db, $query_stage);
 
          if ($res&&$res_stage ) {
              $errTyp = "success";
@@ -115,11 +115,11 @@
  }
 
  //抓取登入之帳戶資料
- $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
- $userRow = mysql_fetch_array($res);
+ $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+ $userRow = mysqli_fetch_array($res);
 
- $query_projects = mysql_query("SELECT MAX(projectId) FROM projects WHERE projectCreatorId=".$_SESSION['user']);
- $projectRow = mysql_fetch_array($query_projects);
+ $query_projects = mysqli_query($db, "SELECT MAX(projectId) FROM projects WHERE projectCreatorId=".$_SESSION['user']);
+ $projectRow = mysqli_fetch_array($query_projects);
 
 
 

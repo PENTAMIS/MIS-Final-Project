@@ -2,11 +2,11 @@
   include_once 'dbconnect.php';
   session_start();
 
-  $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
-  $userRow = mysql_fetch_array($res);
+  $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+  $userRow = mysqli_fetch_array($res);
 
-  $res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
-  $projectRow = mysql_fetch_array($res);
+  $res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
+  $projectRow = mysqli_fetch_array($res);
 
   echo $projectRow[3];
 ?>

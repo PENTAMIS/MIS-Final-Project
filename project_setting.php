@@ -3,8 +3,8 @@
  session_start();
  require_once 'dbconnect.php';
 
- $res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
- $projectRow = mysql_fetch_array($res);
+ $res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
+ $projectRow = mysqli_fetch_array($res);
 
 
  //如果非登入狀態將導回首頁
@@ -15,10 +15,10 @@
 
  $error = false;
 
- $res = mysql_query("SELECT projects_stageId FROM projects_stage WHERE projectId=".$_GET['id']);
+ $res = mysqli_query($db, "SELECT projects_stageId FROM projects_stage WHERE projectId=".$_GET['id']);
  $projects_stageId = array();
- for ($i = 0; $i < mysql_num_rows($res); $i++) {
-   $projects_stageId[] = mysql_result($res,$i,0);
+ for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+   $projects_stageId[] = mysqli_result($res,$i,0);
  }
 
  if (isset($_POST['btn-project_create'])) {
@@ -80,25 +80,25 @@
                   projectClassName = '$project_class',
                   projectTeacher = '$project_teacher',
                   projectDeadline = '$project_deadline' WHERE projectId =".$_GET['id'];
-         $res_projects = mysql_query($query);
+         $res_projects = mysqli_query($db, $query);
 
          $query = "UPDATE projects_stage SET
                   project_stageStart = '$project_stage_start_1',
                   project_stageEnd = '$project_stage_end_1',
                   project_stageName = '$project_stage_name_1' WHERE projects_stageId =".$projects_stageId[0];
-         $res_stage = mysql_query($query);
+         $res_stage = mysqli_query($db, $query);
 
          $query = "UPDATE projects_stage SET
                   project_stageStart = '$project_stage_start_2',
                   project_stageEnd = '$project_stage_end_2',
                   project_stageName = '$project_stage_name_2' WHERE projects_stageId =".$projects_stageId[1];
-         $res_stage = mysql_query($query);
+         $res_stage = mysqli_query($db, $query);
 
          $query = "UPDATE projects_stage SET
                   project_stageStart = '$project_stage_start_3',
                   project_stageEnd = '$project_stage_end_3',
                   project_stageName = '$project_stage_name_3' WHERE projects_stageId =".$projects_stageId[2];
-         $res_stage = mysql_query($query);
+         $res_stage = mysqli_query($db, $query);
 
 
          if ($res_projects&&$res_stage) {
@@ -129,30 +129,42 @@
  }
 
  //抓取登入之帳戶資料
- $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
- $userRow = mysql_fetch_array($res);
+ $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+ $userRow = mysqli_fetch_array($res);
 
- $query_projects = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
- $projectRow = mysql_fetch_array($query_projects);
+ $query_projects = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
+ $projectRow = mysqli_fetch_array($query_projects);
 
- $res = mysql_query("SELECT project_stageStart FROM projects_stage WHERE projectId=".$_GET['id']);
+ $res = mysqli_query($db, "SELECT project_stageStart FROM projects_stage WHERE projectId=".$_GET['id']);
  $project_stageStartRow = array();
- for ($i = 0; $i < mysql_num_rows($res); $i++) {
-   $project_stageStartRow[] = mysql_result($res,$i,0);
+ for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+   $project_stageStartRow[] = mysqli_result($res,$i,0);
  }
 
- $res = mysql_query("SELECT project_stageEnd FROM projects_stage WHERE projectId=".$_GET['id']);
+ $res = mysqli_query($db, "SELECT project_stageEnd FROM projects_stage WHERE projectId=".$_GET['id']);
  $project_stageEndRow = array();
- for ($i = 0; $i < mysql_num_rows($res); $i++) {
-   $project_stageEndRow[] = mysql_result($res,$i,0);
+ for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+   $project_stageEndRow[] = mysqli_result($res,$i,0);
  }
 
- $res = mysql_query("SELECT project_stageName FROM projects_stage WHERE projectId=".$_GET['id']);
+ $res = mysqli_query($db, "SELECT project_stageName FROM projects_stage WHERE projectId=".$_GET['id']);
  $project_stageNameRow = array();
- for ($i = 0; $i < mysql_num_rows($res); $i++) {
-   $project_stageNameRow[] = mysql_result($res,$i,0);
+ for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+   $project_stageNameRow[] = mysqli_result($res,$i,0);
  }
 
+
+ function mysqli_result($res,$row=0,$col=0){
+ $numrows = mysqli_num_rows($res);
+ if ($numrows && $row <= ($numrows-1) && $row >=0){
+     mysqli_data_seek($res,$row);
+     $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+     if (isset($resrow[$col])){
+         return $resrow[$col];
+     }
+ }
+ return false;
+}
 ?>
 
 <!DOCTYPE html>

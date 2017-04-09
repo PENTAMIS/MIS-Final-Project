@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'dbconnect.php';
+
 
 if(isset($_SESSION['user'])){
 	$userId = $_SESSION['user'];
@@ -82,6 +82,7 @@ function getCalender($year = '',$month = '')
 			<ul>
 			<?php
 				$dayCount = 1;
+
 				for($cb=1;$cb<=$boxDisplay;$cb++){
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
 						//Current date
@@ -90,8 +91,9 @@ function getCalender($year = '',$month = '')
 						global $projectId;
 						//Include db configuration file
 						//Get number of events based on the current date
-						$result = mysql_query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 AND projectId = '".$projectId."'");
-						$eventNum = mysql_num_rows($result);
+						include 'dbconnect.php';
+						$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 AND projectId = '".$projectId."' ");
+						$eventNum = $result->num_rows;
 						//Define date cell color
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
 							echo '<li date="'.$currentDate.'" class="grey date_cell" onmouseover="getEvents(\''.$currentDate.'\');" onclick="addEvent(\''.$currentDate.'\');">';
@@ -236,12 +238,13 @@ function getEvents($date = ''){
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	//Get events based on the current date
-	$result = mysql_query("SELECT title FROM events WHERE date = '".$date."' AND status = 1 AND projectId = '".$projectId."'");
+	require_once 'dbconnect.php';
+	$result = mysqli_query($db, "SELECT title FROM events WHERE date = '".$date."' AND status = 1 AND projectId = '".$projectId."'");
 
-	if(mysql_num_rows($result) > 0){
+	if(mysqli_num_rows($result) > 0){
 		$eventListHTML = '<p class="caseT">'.date("Y M d",strtotime($date)).'</p>';
 		$eventListHTML .= '<ul>';
-		while($row = mysql_fetch_assoc($result)){
+		while($row = mysqli_fetch_assoc($result)){
             $eventListHTML .= '<div class="case">'.$row['title'].'</div>';
         }
 		$eventListHTML .= '</ul>';
@@ -259,8 +262,9 @@ function addEvent($date,$title){
 	global $projectId;
 	global $userId;
 	//Insert the event data into database
+	require_once 'dbconnect.php';
 	$query = "INSERT INTO events(title,date,created,modified,userId,projectId) VALUES('$title','$date','$currentDate','$currentDate','$userId','$projectId')";
-	$res = mysql_query($query);
+	$res = mysqli_query($db, $query);
 	if($res){
 		echo 'ok';
 	}else{

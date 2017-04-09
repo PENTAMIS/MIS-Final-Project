@@ -1,7 +1,7 @@
 <?php
 include_once 'Dbconnect.php';
-$res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
-$projectRow = mysql_fetch_array($res);
+$res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
+$projectRow = mysqli_fetch_array($res);
 
 echo $projectRow[3];
 ?>
@@ -24,8 +24,8 @@ echo $projectRow[3];
       </tr>
       <?php
       $query="SELECT * FROM tbl_uploads WHERE projectId=".$_GET['id'];
-      $res=mysql_query($query);
-      while($row=mysql_fetch_array($res))
+      $res=mysqli_query($db, $query);
+      while($row=mysqli_fetch_array($res))
       {
         ?>
         <tr>
@@ -35,7 +35,7 @@ echo $projectRow[3];
           <td>
             <?php
               $query = "SELECT userName FROM users WHERE userId=".$row['userId'];
-              $userName = mysql_fetch_array(mysql_query($query));
+              $userName = mysqli_fetch_array(mysqli_query($db, $query));
               echo $userName[0];
             ?>
           </td>

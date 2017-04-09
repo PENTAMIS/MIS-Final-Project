@@ -8,8 +8,8 @@ if (!isset($_SESSION['user'])) {
   exit;
 }
 //抓取登入之帳戶資料
-$res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
-$userRow = mysql_fetch_array($res);
+$res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+$userRow = mysqli_fetch_array($res);
 $error = false;
 if (isset($_POST['btn-revise'])) {
   $name = trim($_POST['name']);
@@ -40,7 +40,7 @@ if (isset($_POST['btn-revise'])) {
     userCellphone = '$cellphone',
     userIntroduction = '$introduction',
     userInterests = '$interests' WHERE userId=".$_SESSION['user'];
-    $res = mysql_query($query);
+    $res = mysqli_query($db, $query);
     if ($res) {
       $errTyp = "success";
       $errMSG = "修改成功";

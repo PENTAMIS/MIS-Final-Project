@@ -48,7 +48,7 @@ if(isset($_FILES['files'])){
       }
       $query="INSERT INTO tbl_uploads(file,type,size,projectId,userId)
               VALUES('$file_name','$type','$new_size','$file_projectId','$file_userId')";
-      mysql_query($query);
+      mysqli_query($db, $query);
     } else
     {
 

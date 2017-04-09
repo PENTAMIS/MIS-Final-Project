@@ -3,8 +3,8 @@ include_once 'dbconnect.php';
 session_start();
 ob_start();
 
-$res = mysql_query("SELECT * FROM projects WHERE projectId=".$_GET['id']);
-$projectRow = mysql_fetch_array($res);
+$res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
+$projectRow = mysqli_fetch_array($res);
 
 echo $projectRow[3];
 
@@ -13,8 +13,8 @@ if (!isset($_SESSION['user'])) {
 		exit;
 }
 
-$res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
-$userRow = mysql_fetch_array($res);
+$res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+$userRow = mysqli_fetch_array($res);
 
 ?>
 <!DOCTYPE html>
@@ -43,8 +43,8 @@ $userRow = mysql_fetch_array($res);
       </tr>
       <?php
       $query="SELECT * FROM tbl_uploads WHERE projectId=".$_GET['id'];
-      $res=mysql_query($query);
-      while($row=mysql_fetch_array($res))
+      $res=mysqli_query($db, $query);
+      while($row=mysqli_fetch_array($res))
       {
         ?>
         <tr>
@@ -54,7 +54,7 @@ $userRow = mysql_fetch_array($res);
           <td>
             <?php
               $query = "SELECT userName FROM users WHERE userId=".$row['userId'];
-              $userName = mysql_fetch_array(mysql_query($query));
+              $userName = mysqli_fetch_array(mysqli_query($db, $query));
               echo $userName[0];
             ?>
           </td>

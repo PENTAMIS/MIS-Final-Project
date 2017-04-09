@@ -9,7 +9,7 @@ if(isset($_GET['del']) )
 		$del = unlink('uploads/'.$file);
 		if($del){
 		$sql = "DELETE FROM tbl_uploads WHERE id = '$id'";
-		$res = mysql_query($sql) or die("Failed".mysql_error());
+		$res = mysqli_query($db, $sql) or die("Failed".mysqli_error());
 		if($res){
             echo "<script>
             alert('Deleted');
