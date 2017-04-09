@@ -24,6 +24,7 @@ body{ font-family: sans-serif;}
 .date_cell:hover { background: #DDDDDD !important; }
 .date_popup_wrap {
 	position: absolute;
+		top:25px;
 	width: 185px;
 	height: auto;
 	z-index: 9999;
@@ -37,6 +38,7 @@ body{ font-family: sans-serif;}
 
 }
 .events_window {
+
 	overflow: hidden;
 	overflow-y: auto;
 	width: 200px;
@@ -106,7 +108,7 @@ p.caseT{
       height:100%;
       box-sizing: border-box;
       padding:0px;
-      margin:5px;        
+      margin:5px;
 }
 .buttom{
       display:block;
@@ -126,7 +128,7 @@ p.caseT{
   margin:0px;
   right:1px;
   width:200px;
-  height:50px;     
+  height:50px;
 }
 
 /*profilephoto*/
@@ -134,7 +136,7 @@ p.caseT{
   width:100px;
   height:100px;
   border-radius:100%;
-  
+
 }
 .circle1{
   /*background-color:#bfbfbf;*/
@@ -151,7 +153,7 @@ p.caseT{
   top:102px;
   width:100%;
   border-bottom: solid 0.5px #9292b9;
-  
+
 }
 /*childbar*/
 .buttom2{
@@ -166,7 +168,7 @@ p.caseT{
   letter-spacing:1px;
   font-weight:bold;
 }
-a{ 
+a{
   color:#f3f7f7;
   font-family:微軟正黑體;
   letter-spacing:1px;
@@ -180,5 +182,5 @@ a{
   height:50px;
   background-color:#404E89;
   margin:0px;
-  right: 1px;  
+  right: 1px;
 }
