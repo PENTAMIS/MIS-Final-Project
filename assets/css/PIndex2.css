@@ -1,0 +1,97 @@
+/* Basic*/
+body{		
+		font-family:微軟正黑體;
+		background-color: #f3f7f7;
+	}
+ul{
+  margin:0px;
+}
+
+/*Nav*/
+
+	.navbar-brand{
+		font-size: 30px;
+		font-weight: 100;
+
+	}
+
+/*Timeline*/
+
+	.timeline{
+		margin-top: 50px;
+		height: 90vh; 
+		/*width: 100%;*/
+		overflow-y: hidden;
+    	border:3px solid red;
+	}
+
+  .T1{
+    border:3px solid green;
+    /*position: relative;*/
+    left: 0px;
+    
+    height:100%;
+    
+    padding:5px;
+    
+  }
+
+  .city{
+    position: relative;
+    border:5px solid black;
+    width: 100%;
+    height:100%;
+    float:left;
+  }
+
+	#line{
+		height:10px;
+		width:100%;
+
+		position: relative;
+		top:250px;
+
+		border-radius:5px;
+        margin: 0px;
+		background-color: black;
+
+
+	}
+
+  .date{    
+ 
+  	border:2px solid orange;
+    /*position: relative;*/
+    min-width: 2px;
+    height: 100%;
+    float: left; 
+    margin-top:0px;
+  }
+
+	.assign{
+
+		height: 250px;	
+		width: 120px;
+		position: relative;
+		top:52px;
+		margin: 20px;
+		padding: 10px;
+		float: left;
+		display: none;
+       font-size:50px;
+       border:1px solid black;
+	}
+
+	.assign h1{
+		font-weight:300;
+	}
+
+	.assign h5{
+		padding:0 10px;
+	}
+	.assign p{
+	    padding:0 10px;
+	    font-size: 10px;
+	    color: gray;
+	}
+
