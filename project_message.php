@@ -19,30 +19,32 @@
   $res = mysqli_query($db, "SELECT userName FROM users WHERE userId=".$_SESSION['user']);
   $userName = mysqli_fetch_array($res);
 
-  $res = mysqli_query($db, "SELECT Comtext FROM comment WHERE ProjectId=".$_GET['id']);
+  $res = $db->query("SELECT Comtext FROM comment WHERE ProjectId=".$_GET['id']);
   $commentRow = array();
   for ($i = 0; $i < mysqli_num_rows($res); $i++) {
     $commentRow[] = mysqli_result($res,$i,0);
   }
 
-  $res = mysqli_query($db, "SELECT ComId FROM comment WHERE ProjectId=".$_GET['id']);
+  $res = $db->query("SELECT ComId FROM comment WHERE ProjectId=".$_GET['id']);
   $commentRow_Id = array();
   for ($i = 0; $i < mysqli_num_rows($res); $i++) {
     $commentRow_Id[] = mysqli_result($res,$i,0);
   }
 
-  $res = mysqli_query($db, "SELECT ComId FROM comment WHERE ProjectId=".$_GET['id']);
+  $res = $db->query("SELECT ComId FROM comment WHERE ProjectId=".$_GET['id']);
   $commentIdRow = array();
   for ($i = 0; $i < mysqli_num_rows($res); $i++) {
     $commentIdRow[] = mysqli_result($res,$i,0);
   }
 
-  $res = mysqli_query($db, "SELECT ComTime FROM comment WHERE ProjectId=".$_GET['id']);
+  $res = $db->query("SELECT ComTime FROM comment WHERE ProjectId=".$_GET['id']);
   $commentTimeRow = array();
   for ($i = 0; $i < mysqli_num_rows($res); $i++) {
     $commentTimeRow[] = mysqli_result($res,$i,0);
   }
 
+  $res = mysqli_query($db, "SELECT userEmail FROM users WHERE userId=".$projectRow[1]);
+  $userEmail = mysqli_fetch_array($res);
 
   $error = false;
 
@@ -52,19 +54,37 @@
 
     $time = $_POST['time'];
 
+    $postSource = "貼文發布";
+    $postText = "$userName[0] 已發佈一則貼文至 <a href=\"project_home.php?id=$projectRow[0]\">$projectRow[3]</a>";
+
+
     if (empty($text)) {
         $error = true;
         $errMSG = "請輸入文字";
     }
 
     if (!$error) {
+
+        $membersEmail = $projectRow[2];
+        $ownerEmail = $userEmail[0];
+        $involvedMembers = $membersEmail.",".$ownerEmail;
+
         $query = "INSERT INTO comment(UserId,ProjectId,ComText,ComTime)
                   VALUES('$userRow[0]','$projectRow[0]','$text','$time')";
         $res = mysqli_query($db, $query);
 
+        $query = "INSERT INTO post(postSource,postText,postUserId,postProjectId,postInvolvedMembers)
+                  VALUES('$postSource','$postText','$userRow[0]','$projectRow[0]','$involvedMembers')";
+        $res = mysqli_query($db, $query);
+
+
         if ($res) {
           unset($text);
           unset($time);
+          unset($membersEmail);
+          unset($ownerEmail);
+          unset($involvedMembers);
+
         }
       }
      echo "<script>
@@ -98,9 +118,19 @@
      echo "<script>
      window.location.href='project_message.php?id=$projectId';
      </script>";
-
   }
 
+  function mysqli_result($res,$row=0,$col=0){
+  $numrows = mysqli_num_rows($res);
+  if ($numrows && $row <= ($numrows-1) && $row >=0){
+      mysqli_data_seek($res,$row);
+      $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+      if (isset($resrow[$col])){
+          return $resrow[$col];
+      }
+  }
+  return false;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -261,99 +291,9 @@
 
             <div id="post1">
             </div>
-            <!-- <div class="main2">
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">編輯貼文</a></li>
-                                    <li><a href="#">隱藏貼文</a></li>
-                                    <li><a href="#">刪除貼文</a></li>
-                                </ul>
-                            </div>
-                            <h5><img id="guest" src="https://unwire.hk/wp-content/uploads/2014/10/facebook-user.jpg" class="img-circle"  alt="Avatar"><a href="#member002"> 鄭俊彥</a>
-                            <h6><span class="glyphicon glyphicon-time"></span>2017年2月3日</h6>
-                            <br>
-                            <p>大家好 我是筆記人 </p>
-                            <br>
-                            <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#d002">查看留言</button>
-                            <button type="button" class="btn btn-warning btn-xs">收藏貼文</button>
-                            <button type="button" class="btn btn-success btn-xs">至頂貼文</button>
-                            <div id="d002" class="collapse">
-                            </div>
-                            <form class="form-find">
-                                <br>
-                                <input type="text" class="form-findtext" placeholder="請輸入留言......">
-                                <button type="button" class="start">發送</button>
-                            </form>
-
-                        </div>
-                    </div>
-
-
-                                    <div class="main2">
-                                        <div class="dropdown">
-                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                                <span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#">編輯貼文</a></li>
-                                                    <li><a href="#">隱藏貼文</a></li>
-                                                    <li><a href="#">刪除貼文</a></li>
-                                                </ul>
-                                            </div>
-                                            <h5><img id="guest" src="https://unwire.hk/wp-content/uploads/2014/10/facebook-user.jpg" class="img-circle"  alt="Avatar"><a href="#member003"> 鄭韶葳</a>
-                                                <h6><span class="glyphicon glyphicon-time"></span>2017年2月3日</h6>
-                                                <br>
-                                                <p>我是阿姨 </p>
-                                                <br>
-                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#d003">查看留言</button>
-                                                <button type="button" class="btn btn-warning btn-xs">收藏貼文</button>
-                                                <button type="button" class="btn btn-success btn-xs">至頂貼文</button>
-                                                <div id="d003" class="collapse">
-                                                </div>
-                                                <form class="form-find">
-                                                    <br>
-                                                    <input type="text" class="form-findtext" placeholder="請輸入留言......">
-                                                    <button type="button" class="start">發送</button>
-                                                </form>
-
-                                            </div>
-                                            <div class="main2">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                                        <span class="caret"></span></button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#">編輯貼文</a></li>
-                                                            <li><a href="#">隱藏貼文</a></li>
-                                                            <li><a href="#">刪除貼文</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <h5><img id="guest" src="https://unwire.hk/wp-content/uploads/2014/10/facebook-user.jpg" class="img-circle"  alt="Avatar"><a href="#member004"> Sean</a>
-                                                        <h6><span class="glyphicon glyphicon-time"></span>2017年2月3日</h6>
-                                                        <br>
-                                                        <p>我要吃火鍋 </p>
-                                                        <br>
-                                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#d003">查看留言</button>
-                                                        <button type="button" class="btn btn-warning btn-xs">收藏貼文</button>
-                                                        <button type="button" class="btn btn-success btn-xs">至頂貼文</button>
-                                                        <div id="d003" class="collapse">
-                                                        </div>
-                                                        <form class="form-find">
-                                                            <br>
-                                                            <input type="text" class="form-findtext" placeholder="請輸入留言......">
-                                                            <button type="button" class="start">發送</button>
-                                                        </form>
-
-                                                    </div>
-
-
-
-
-
-                                                </div> -->
         </div>
     </div>
+    <div id="post" class="col-sm-6">
     <?php
     for($i = count($commentRow)-1; $i >= 0; $i--){
       $subcommentRow = array();
@@ -364,7 +304,7 @@
           }
        }
 
-       ?><div id="post" class="col-sm-6">
+       ?>
            <div class="main2">
                <div class="post-left">
                    <div class="dropdown">
@@ -385,6 +325,7 @@
                        <button type="button" class="btn btn-success btn-xs">置頂貼文</button>
                    </div>
                </div>
+
                <div class="post-right">
                  <?php
                   for ($x = count($subcommentRow)-1; $x >= 0; $x--) {
@@ -411,18 +352,6 @@
        <?php
        unset($subcommentRow);
     }
-
-    function mysqli_result($res,$row=0,$col=0){
-    $numrows = mysqli_num_rows($res);
-    if ($numrows && $row <= ($numrows-1) && $row >=0){
-        mysqli_data_seek($res,$row);
-        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
-        if (isset($resrow[$col])){
-            return $resrow[$col];
-        }
-    }
-    return false;
-}
      ?>
   </body>
 </html>

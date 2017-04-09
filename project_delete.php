@@ -5,9 +5,9 @@ if(isset($_GET['id']))
 	{
 		$id = $_GET['id'];
 		$sql = "DELETE FROM projects_stage WHERE projectId = '$id'";
-		$res = mysql_query($sql) or die("Failed".mysql_error());
+		$res = mysqli_query($db, $sql) or die("Failed".mysqli_error());
     $sql = "DELETE FROM projects WHERE projectId = '$id'";
-    $res = mysql_query($sql) or die("Failed".mysql_error());
+    $res = mysqli_query($db, $sql) or die("Failed".mysqli_error());
 		if($res){
             echo "<script>
             alert('刪除成功！');
