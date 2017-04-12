@@ -4,6 +4,10 @@
 		font-family:"Microsoft JhengHei";
 	}
 
+	
+
+
+	
 
 
 
@@ -25,13 +29,16 @@
 		/*border:solid 3px black;*/
 		position: relative;
 		/*height: 100%;*/
-		width:900px;
-		margin:0px 20px;
-		padding: 20px 0px 30px 0px;
+		width:950px;
+
+		margin:20px 20px;
+		/*padding: 0px 0px 30px 0px;*/
+
 		float: left;
-		top: 100px;
-		border-left: solid 8px #ffb336;
-		border-radius:4px;
+		top: 80px;
+		border-left: solid 8px #41b1f4;
+		border-radius:10px;
+		box-shadow:0px 2px 20px #5b5f66;
 	}
 
 	.StageName{
@@ -61,12 +68,12 @@
 	.Assign{
 		display: block;
 		float: left;
-		margin-left: 30px;		
+		margin-left: 10px;		
 	}
 
 	.PAssign{
-		border-top: 2px 		#A9A9A9 solid;
-		border-bottom: 2px 		#A9A9A9 solid;
+		/*border-top: 2px  rgba(51,51,51,0.1) solid;*/
+		border-bottom: 2px 	rgba(51,51,51,0.1) solid;
 		border-left: 0px;
 		border-right: 0px;
 		text-align: center;
@@ -74,43 +81,76 @@
 
 	}
 
+
 	.PS-3 td{
-		width: 140px;
+		width: 100px;
 		height: 50px;
-		
-
-	}
-	.PS-4 td{
-		width: 140px;
-		
-
 	}
 
+	
+	#PS3-5 {
+		width: 60px;
+		height: 50px;
+	}
+
+	#PS3-6 {
+		/*width: 100px;*/
+		height: 50px;
+	}
+
+	#PS3-7 {
+		width: 85px;
+		height: 50px;
+	}
+	
 	#input1 {
-		width: 120px;
+		width: 80px;
 
 	}
 
 	#input2{
-		width: 120px;
+		width: 100px;
 	}
+
+	#input3{
+		width: 80px;
+		margin: 5px;
+		text-align:
+	}
+
+	.up{
+		width: 175px;
+		position: relative;
+		float:left;
+		
+	}
+
+	/*.adddoc{
+		position: relative;
+		float:left;		
+		width: 25px;
+	}*/
 
 	.plus{
 		margin-bottom: 50px; 
-		border: 2px dashed #4E7D91;
+		border: 2px solid rgb(51,51,51);
 		background-color: transparent;
-		width: 450px;
+		width: 400px;
 		height: 50px;
 		line-height: 40px;
 		margin: 20px;
 		font-size: 24px;
 		font-weight: 900;
-		color: #4E7D91;
+		color:rgb(51,51,51);
 		float: left;
 	}
-	.plus2{
+	.plus:hover{
+		border: 2px solid #41b1f4;
+		color:#41b1f4;
+	}
+	/*.plus2{
 		margin-bottom: 50px; 
-		border: 2px dashed #4E7D91;
+		border: 2px solid rgb(51,51,51);
 		background-color: transparent;
 		width: 450px;
 		height: 50px;
@@ -118,36 +158,68 @@
 		margin: 20px;
 		font-size: 24px;
 		font-weight: 900;
-		color: #4E7D91;
+		color:rgb(51,51,51);
 		float: left;
 	}
+	.plus2:hover{
+		border: 2px solid #41b1f4;
+		color:#41b1f4;
+	}*/
 
 	.save{
-		border: 2px dashed orange;
+		border: 2px solid rgb(51,51,51);
 		background-color: transparent;
-		width: 150px;
+		width: 100px;
 		height: 50px;
 		line-height: 40px;
 		margin: 20px;
 		font-size: 24px;
 		font-weight: 900;
-		color: orange;
+		color: rgb(51,51,51);
 		float: left;
+		float: bottom;
+	}
+	.save:hover{
+		border: 2px solid #41b1f4;
+		color:#41b1f4;
+	}
+	.edit{
+		border: 2px solid rgb(51,51,51);
+		background-color: transparent;
+		width: 100px;
+		height: 50px;
+		line-height: 40px;
+		margin: 20px;
+		font-size: 24px;
+		font-weight: 900;
+		color: rgb(51,51,51);
+		float: left;
+		float: bottom;
+	}
+	.edit:hover{
+		border: 2px solid #41b1f4;
+		color:#41b1f4;
 	}
 
+	
+
 	.stage_plus{
-		border: 2px dashed #4E7D91;
+		border: 2px solid rgb(51,51,51);
 		background-color: transparent;
 		position:relative;
-		top:90px;
-		width: 900px;
+		top:30px;
+		width: 800px;
 		height: 150px;
 		/*line-height: 40px;*/
 		/*margin: 0 20px;*/
 		font-size: 24px;
 		font-weight: 900;
-		color: #4E7D91;
-		margin: 100px 50px;
+		color: rgb(51,51,51);
+		margin: 50px 50px;
+	}
+	.stage_plus:hover{
+		border: 2px solid #41b1f4;
+		color:#41b1f4;
 	}
 	
 	.line1{
@@ -161,102 +233,5 @@
 	}
 
 
-
-/*mainbar*/
-	.bar{
-	  width:300px;height:100%;
-	  background-color:#222949;
-	  position:fixed;
-	  top:0px;
-	  right:1px;
-	  padding:0px;
-	  margin:0px;
-	  z-index:3;
-	}
-	.nav_area{
-	      position:fixed;
-	      top:150px;
-	      right:1px;
-	      width:280px;
-	      height:100%;
-	      box-sizing: border-box;
-	      padding:0px;
-	      margin:5px;        
-	}
-	.buttom{
-	      display:block;
-	      padding:1px;
-	      /*padding-left:5px;
-	      padding-right:5px;
-	      padding-top:0.5px;*/
-	      /*background-color:#63639c;*/
-	      border-left: solid 3px #ffb336;
-	      color:#f3f7f7;
-	      font-family:微軟正黑體;
-	      letter-spacing:1px;
-	      font-weight:bold;
-	      margin:5px;
-	}
-	.panel-body{
-	  margin:0px;
-	  right:1px;
-	  width:200px;
-	  height:50px;     
-	}
-
-	/*profilephoto*/
-	.circle{
-	  width:100px;
-	  height:100px;
-	  border-radius:100%;
-	  
-	}
-	.circle1{
-	  /*background-color:#bfbfbf;*/
-	  border: solid 3px black;
-	  right:200px;
-	  top:20px;
-	  width:80px;
-	  height:80px;
-	  position:fixed;
-	}
-
-	.line3{
-	  position:fixed;
-	  top:102px;
-	  width:100%;
-	  border-bottom: solid 0.5px #9292b9;
-	  
-	}
-
-/*childbar*/
-	.buttom2{
-	  display:inline-block;
-	  padding-top:13px;
-	  padding-left:10px;
-	  padding-right:10px;
-	  padding-bottom:5px;
-	  border-bottom: solid 3px #ffb336;
-	  color:#f3f7f7;
-	  font-family:微軟正黑體;
-	  letter-spacing:1px;
-	  font-weight:bold;
-	}
-	a{ 
-	  color:#f3f7f7;
-	  font-family:微軟正黑體;
-	  letter-spacing:1px;
-	  font-weight:bold;
-
-	}
-	.nav_area2{
-		z-index: 2;
-	  position:fixed;
-	  width:100%;
-	  height:50px;
-	  background-color:#404E89;
-	  margin:0px;
-	  right: 1px;  
-	}
 
 

@@ -2,6 +2,7 @@
 session_start();
 
 
+
 if(isset($_SESSION['user'])){
 	$userId = $_SESSION['user'];
 }

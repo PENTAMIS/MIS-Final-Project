@@ -1,19 +1,10 @@
+<!DOCTYPE HTML>
 <?php
-  session_start();
-  require_once 'Dbconnect.php';
-  require_once 'bar.php';
-  $res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
-  $projectRow = mysqli_fetch_array($res);
-
-  $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
-  $userRow = mysqli_fetch_array($res);
-
-
+    include("test.php");
 ?>
-
-<!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Project Index</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,10 +46,15 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="assets/css/component.css" />
     <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
-  </head>
-  <body>
-    <div id="stage">
+</head>
 
+<body>
+    
+
+    
+    
+    <div id="stage">
+        
         <!-- interval setting -->
         <div class="Stage">
             <div class="StageName">
@@ -68,10 +64,10 @@
                     <nobr>
                         <span>[期間]</span>
                         <br>
-                        <input id="query2StartDate" type="date" name="query2StartDate" maxDate="query2EndDate" value="" />
+                        <input id="query2StartDate" name="query2StartDate" maxDate="query2EndDate" value="" />
                         <br> ~
                         <br>
-                        <input id="query2EndDate" type="date" name="query2EndDate" minDate="query2StartDate" value="" />
+                        <input id="query2EndDate" name="query2EndDate" minDate="query2StartDate" value="" />
                     </nobr>
                 </div>
             </div>
@@ -87,8 +83,8 @@
                             <td id="PS3-5">提醒</td>
                             <td>刪除檔案</td>
                             <td id="PS3-6">上傳檔案</td>
-
-
+                            
+                            
                         </tr>
                         <tr class="PS-3">
                             <td class="PS3-1">開會討論</td>
@@ -100,7 +96,7 @@
                                 <input type="checkbox" name="" value="">
                             </td>
                             <td id="PS3-7"><input type="checkbox" name="" value="">會計學報告</td>
-
+                            
                             <!-- 檔案上傳 -->
                             <td id="PS3-6">
                             <input type="file" name="file-5[]" id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple />
@@ -113,10 +109,10 @@
                             <input class="adddoc" type=submit value="+">
                             </td>
  -->
-
-
+                            
+                        
                         </tr>
-
+                        
                         <tr class="PS-3">
                             <td class="PS3-1">
                                 <input id="input1" type="text" name="任務名稱">
@@ -131,12 +127,12 @@
                             </td>
                             <td id="PS3-7"></td>
 					       <td id="PS3-5"><input type="checkbox" name="" value=""></td>
-
-                           <td id="PS3-6"></td>
+                           	
+                           <td id="PS3-6"></td>	
 		          		</tr>
-
-
-
+                        
+                            
+                        										
 			        </tbody>
 	               	</table>
 		          <input type=submit value="+ 新增任務 " class="plus ">
@@ -147,7 +143,7 @@
 	       </div>
            <div style="height: 0px;clear: both;"></div>
         </div>
-
+	       
     </div>
 
 <!-- <hr class="line1 "></hr> -->
@@ -166,28 +162,28 @@
 	</div>
 	<div class="Assign ">
 		<table class="PAssign ">
-			<tbody id="test2 ">
+			<tbody id="test2 ">	
 				<tr class="PS-3 " style="font-weight: 900;font-size: 18px; ">
 					<td class="PS3-1 ">任務名稱</td>
 					<td class="PS3-2 ">參與人員</td>
 					<td class="PS3-3 ">時間</td>
 					<td class="PS3-4 ">標籤</td>
-					<td class="PS3-5 ">提醒</td>
+					<td class="PS3-5 ">提醒</td>							
 				</tr>
 				<tr class="PS-3 ">
 					<td class="PS3-1 ">開會討論</td>
 					<td class="PS3-2 ">許旆旟</td>
 					<td class="PS3-3 ">2016/09/20</td>
 					<td class="PS3-4 "><a>#????</a></td>
-					<td class="PS3-5 "><input type="checkbox " name=" " value=" "></td>
+					<td class="PS3-5 "><input type="checkbox " name=" " value=" "></td>							
 				</tr>
 				<tr class="PS-3 ">
 					<td class="PS3-1 ">開會討論</td>
 					<td class="PS3-2 ">許旆旟</td>
 					<td class="PS3-3 ">2016/09/20</td>
 					<td class="PS3-4 "><a>#????</a></td>
-					<td class="PS3-5 "><input type="checkbox " name=" " value=" "></td>
-				</tr>
+					<td class="PS3-5 "><input type="checkbox " name=" " value=" "></td>							
+				</tr>					
 				<tr class="PS-3 ">
 					<td class="PS3-1 "><input id="input1 " type="text " name="任務名稱 "></td>
 					<td class="PS3-2 "><input id="input1 " type="text " name="參與人員 "></td>
@@ -249,6 +245,6 @@
         $("#stage").append('<div class="Stage"> <div class="StageName"> <h2>階段目標</h2> <br> <div class="StageTime"> <nobr> <span>[期間]</span> <br> <input id="query2StartDate" name="query2StartDate" maxDate="query2EndDate" value="" /> <br> ~ <br> <input id="query2EndDate" name="query2EndDate" minDate="query2StartDate" value="" /> </nobr> </div> </div> <div class="Assign"> <table class="PAssign"> <tbody id="test"> <tr class="PS-3" style="font-weight: 900;font-size: 18px;"> <td class="PS3-1">任務名稱</td> <td class="PS3-2">參與人員</td> <td class="PS3-3">時間</td> <td class="PS3-4">內容</td> <td id="PS3-7">狀態</td> <td id="PS3-5">提醒</td><td>刪除檔案</td> <td id="PS3-6">上傳檔案</td> </tr> <tr class="PS-3"> <td class="PS3-1">開會討論</td> <td class="PS3-2">黃晨浩、吳紹瑜、許旆旟、鄭韶葳、鄭俊彥</td> <td class="PS3-3">2016/09/20</td> <td class="PS3-4">內容</td> <td id="PS3-7">未完成</td> <td id="PS3-5"> <input type="checkbox" name="" value=""> </td><td><input type="checkbox" name="" value="">會計學報告</td><td id="PS3-6"><input class="up" type="file" value="" name="FILE"> <input class="adddoc" type=submit value="+"> </td> </tr> <tr class="PS-3"> <td class="PS3-1"> <input id="input1" type="text" name="任務名稱"> </td> <td class="PS3-2"> <input id="input1" type="text" name="參與人員"> </td> <td class="PS3-3"> <input id="input2" type="date" id="bookdate" placeholder="2014-09-18"> </td> <td class="PS3-4"><textarea id="input3" class="form-control" rows="1" placeholder=""></textarea> </td> <td id="PS3-7"></td> <td id="PS3-5"><input type="checkbox" name="" value=""></td> <td></td><td id="PS3-6"></td> </tr> </tbody> </table> <input type=submit value="+ 新增任務 " class="plus "> <input type=submit value="儲存 " class="save "> </div> <div style="height: 0px;clear: both;"></div> </div>');
     });
     </script>
-    <a href="project_home.php?id=<?php echo $_GET['id']; ?>">專案首頁</a>
-  </body>
+</body>
+
 </html>

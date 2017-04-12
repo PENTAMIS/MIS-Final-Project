@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 require_once 'dbconnect.php';
+ require_once 'bar.php';
 //如果非登入狀態將導回首頁
 if (!isset($_SESSION['user'])) {
   header("Location: index.php");
@@ -82,63 +83,6 @@ if (isset($_POST['btn-revise'])) {
      <link rel="stylesheet" href="SystemSetup.css">
 </head>
 <body>
-
-    <!-- 主導覽列 -->
-    <div class="bar">
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-        </div>
-        <div class="circle circle1"></div>
-        <div class="nav_area">
-            <div class=class="panel-group" id="accordion">
-                <div class="buttom">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-        我的專案</a>
-      </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <ul>
-                                <li>進行中</li>
-                                <li>已完成</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="buttom">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-        行事曆</a>
-      </h4>
-                    </div>
-                </div>
-                <div class="buttom">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-        個人設定</a>
-      </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="line3"></hr>
-    </div>
-    <div class="nav_area2">
-        <a class="brand" href="#">Logo</a>
-        <h3>系統設定</h3>
-        <form class="navbar-form form">
-            <div class="form-group">
-                <input type="text" class="form-control" size="25" placeholder="輸入專案名稱或任務名稱......">
-            </div>
-            <button type="submit" class="btn btn-default">搜尋</button>
-        </form>
-    </div>
     <div class="list">
         <li class="buttom2"><a href="javascript:ShowContent(1, 3, 'setup')">會員資料</a></li>
         <li class="buttom2"><a href="javascript:ShowContent(2, 3, 'setup')">安全性</a></li>
@@ -173,7 +117,7 @@ if (isset($_POST['btn-revise'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>系級*</td>
+                                        <td>系級</td>
                                         <td>
                                             <h5 id="department1"><?php echo $userRow[4]; ?></h5>
                                             <div id="department2" style="display:none" class="form-find">
@@ -182,7 +126,7 @@ if (isset($_POST['btn-revise'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>學號*</td>
+                                        <td>學號</td>
                                         <td>
                                             <h5 id="number1"><?php echo $userRow[5]; ?></h5>
                                             <div id="number2" style="display:none" class="form-find">
@@ -201,7 +145,7 @@ if (isset($_POST['btn-revise'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>自我介紹*</td>
+                                        <td>自我介紹</td>
                                         <td>
                                             <h5 id="introduction1"><?php echo $userRow[7]; ?></h5>
                                             <div id="introduction2" style="display:none" class="form-find">
@@ -210,7 +154,7 @@ if (isset($_POST['btn-revise'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>興趣*</td>
+                                        <td>興趣</td>
                                         <td>
                                             <h5 id="interests1"><?php echo $userRow[8]; ?></h5>
                                             <div id="interests2" style="display:none" class="form-find">
@@ -436,6 +380,5 @@ if (isset($_POST['btn-revise'])) {
                 </div> -->
         </div>
     </div>
-<a href="home.php">回首頁</a>
 </body>
 </html>

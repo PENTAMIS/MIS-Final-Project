@@ -2,6 +2,7 @@
  ob_start();
  session_start();
  require_once 'dbconnect.php';
+ include("bar.php");
  $res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
  $projectRow = mysqli_fetch_array($res);
  //如果非登入狀態將導回首頁
@@ -121,17 +122,6 @@
    $project_stageNameRow[] = mysqli_result($res,$i,0);
  }
 
- function mysqli_result($res,$row=0,$col=0){
- $numrows = mysqli_num_rows($res);
- if ($numrows && $row <= ($numrows-1) && $row >=0){
-     mysqli_data_seek($res,$row);
-     $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
-     if (isset($resrow[$col])){
-         return $resrow[$col];
-     }
- }
- return false;
-}
 ?>
 
 <!DOCTYPE html>
@@ -176,61 +166,6 @@
     });
     </script>
   </head>
-  <body>
-    <div class="container-fluid">
-			<ul class="nav_area2">
-			  <li class="buttom2"><a href="home.php">首頁</a></li>
-			  <li class="buttom2">任務區</li>
-			  <li class="buttom2">專案行事曆</a></li>
-			  <li class="buttom2"><a href="project_setting.php?id=<?php echo $_GET['id']; ?>">專案設定</li>
-			  <li class="buttom2">留言板</li>
-			</ul>
-  	</div>
-  	<!-- mainbar -->
-  	<div class="bar">
-      <div class="circle circle1"></div>
-        <div class="nav_area">
-          <div class=class="panel-group" id="accordion">
-            <div class="buttom">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                    我的專案
-                  </a>
-                </h4>
-              </div>
-              <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <ul>
-                    <li>進行中</li>
-                    <li>已完成</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="buttom">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                    行事曆
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div class="buttom">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-                    個人設定
-                  </a>
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-		   </div>
-	    </div>
       <div id="tab0" class="content">
 		    <h2>專案設定</h2>
 		    <table id="PSetting">

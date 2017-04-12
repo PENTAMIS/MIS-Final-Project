@@ -1,3 +1,16 @@
+<?php
+ ob_start();
+ session_start();
+ require_once 'dbconnect.php';
+ require_once 'bar.php';
+
+ //如果非登入狀態將導回首頁
+ if (!isset($_SESSION['user'])) {
+     header("Location: index.php");
+     exit;
+ }
+?>
+
 <!DOCTYPE html>
 <html>
   <head>

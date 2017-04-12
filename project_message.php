@@ -1,7 +1,8 @@
 <?php
-  require_once 'Dbconnect.php';
   ob_start();
   session_start();
+  require_once 'Dbconnect.php';
+  include("bar.php");
 
   $projectId = $_GET['id'];
 
@@ -100,11 +101,6 @@
 
     $time_subcomment = $_POST['time_subcomment'];
 
-    if (empty($subcomment)) {
-        $error = true;
-        $errMSG = "請輸入文字";
-    }
-
     if (!$error) {
         $query = "INSERT INTO subcomment(ComId,SubComText,UserId)
                   VALUES('$ComId_subcomment','$subcomment','$userRow[0]')";
@@ -120,17 +116,7 @@
      </script>";
   }
 
-  function mysqli_result($res,$row=0,$col=0){
-  $numrows = mysqli_num_rows($res);
-  if ($numrows && $row <= ($numrows-1) && $row >=0){
-      mysqli_data_seek($res,$row);
-      $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
-      if (isset($resrow[$col])){
-          return $resrow[$col];
-      }
-  }
-  return false;
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -150,70 +136,6 @@
     <script type="text/javascript" src="assets/js/PPost.js"></script>
   </head>
   <body>
-    <div class="container-fluid">
-        <ul class="nav_area2">
-            <li class="buttom2"><a href="PIndex.html">首頁</a></li>
-            <li class="buttom2">任務區</li>
-            <li class="buttom2"><a href="PCalen.html">專案行事曆</a></li>
-            <li class="buttom2">專案設定</li>
-            <li class="buttom2">留言板</li>
-        </ul>
-    </div>
-    <div class="container-fluid">
-        <ul class="nav_area2">
-            <li class="buttom2"><a href="project_home.php?id=<?php echo $_GET['id']; ?>">專案首頁</a></li>
-            <li class="buttom2">任務區</li>
-            <li class="buttom2"><a href="PCalen.html">專案行事曆</a></li>
-            <li class="buttom2">專案設定</li>
-            <li class="buttom2">留言板</li>
-        </ul>
-    </div>
-    <!-- mainbar -->
-    <div class="bar">
-        <div class="circle circle1"></div>
-        <div class="nav_area">
-            <div class=class="panel-group" id="accordion">
-                <div class="buttom">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                我的專案</a>
-                            </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <ul>
-                                <li>進行中</li>
-                                <li>已完成</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="buttom">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                    行事曆</a>
-                                </h4>
-                    </div>
-                </div>
-                <div class="buttom">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-                                        個人設定</a>
-                                    </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="line3"></hr>
-    </div>
-    </div>
-    </div>
-    <br>
-    <br>
-    <br>
     <!-- 新增留言 -->
     <div class="mainpost">
         <h4>留言板</h4>
@@ -228,7 +150,7 @@
                 <form method="post" action="project_message.php?id=<?php echo $_GET['id']; ?>" autocomplete="off" id="revise">
                     <div class="form-group">
                         <br>
-                        <textarea class="form-control" row="3" name="text" placeholder=<?php echo $errMSG;?>></textarea>
+                        <textarea class="form-control" row="3" name="text"></textarea>
                     </div>
                     <input type="hidden" name="time" value="<?php echo date('Y-m-d H:i:s', time()); ?>">
                     <input type="file" id="photo1" value="" name="FILE" onchange="this.form.FILEShow.value=this.value">

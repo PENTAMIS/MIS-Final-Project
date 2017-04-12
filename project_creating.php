@@ -3,7 +3,7 @@
  ob_start();
  session_start();
  require_once 'dbconnect.php';
-
+ include("bar.php");
  //如果非登入狀態將導回首頁
  if (!isset($_SESSION['user'])) {
      header("Location: index.php");
@@ -31,26 +31,26 @@
 
      $project_Id = $_POST['project_Id'];
 
-     $project_stage_name_1 = $_POST['project_stage_name_1'];
-     $project_stage_name_1 = strip_tags($_POST['project_stage_name_1']);
-     $project_stage_name_1 = htmlspecialchars($project_stage_name_1);
-
-     $project_stage_start_1 = $_POST['project_stage_start_1'];
-     $project_stage_end_1 = $_POST['project_stage_end_1'];
-
-     $project_stage_name_2 = $_POST['project_stage_name_2'];
-     $project_stage_name_2 = strip_tags($_POST['project_stage_name_2']);
-     $project_stage_name_2 = htmlspecialchars($project_stage_name_2);
-
-     $project_stage_start_2 = $_POST['project_stage_start_2'];
-     $project_stage_end_2 = $_POST['project_stage_end_2'];
-
-     $project_stage_name_3 = $_POST['project_stage_name_3'];
-     $project_stage_name_3 = strip_tags($_POST['project_stage_name_3']);
-     $project_stage_name_3 = htmlspecialchars($project_stage_name_3);
-
-     $project_stage_start_3 = $_POST['project_stage_start_3'];
-     $project_stage_end_3 = $_POST['project_stage_end_3'];
+    //  $project_stage_name_1 = $_POST['project_stage_name_1'];
+    //  $project_stage_name_1 = strip_tags($_POST['project_stage_name_1']);
+    //  $project_stage_name_1 = htmlspecialchars($project_stage_name_1);
+     //
+    //  $project_stage_start_1 = $_POST['project_stage_start_1'];
+    //  $project_stage_end_1 = $_POST['project_stage_end_1'];
+     //
+    //  $project_stage_name_2 = $_POST['project_stage_name_2'];
+    //  $project_stage_name_2 = strip_tags($_POST['project_stage_name_2']);
+    //  $project_stage_name_2 = htmlspecialchars($project_stage_name_2);
+     //
+    //  $project_stage_start_2 = $_POST['project_stage_start_2'];
+    //  $project_stage_end_2 = $_POST['project_stage_end_2'];
+     //
+    //  $project_stage_name_3 = $_POST['project_stage_name_3'];
+    //  $project_stage_name_3 = strip_tags($_POST['project_stage_name_3']);
+    //  $project_stage_name_3 = htmlspecialchars($project_stage_name_3);
+     //
+    //  $project_stage_start_3 = $_POST['project_stage_start_3'];
+    //  $project_stage_end_3 = $_POST['project_stage_end_3'];
 
      $project_member = $_POST['project_member'];
      $project_member = trim($project_member);
@@ -75,19 +75,19 @@
                    VALUES('$project_creatorId','$project_member','$project_name','$project_class','$project_teacher','$project_creattime','$project_deadline')";
          $res = mysqli_query($db, $query);
 
-         $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
-                         VALUES('$project_Id','$project_stage_start_1','$project_stage_end_1','$project_stage_name_1')";
-         $res_stage = mysqli_query($db, $query_stage);
+        //  $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
+        //                  VALUES('$project_Id','$project_stage_start_1','$project_stage_end_1','$project_stage_name_1')";
+        //  $res_stage = mysqli_query($db, $query_stage);
+         //
+        //  $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
+        //                  VALUES('$project_Id','$project_stage_start_2','$project_stage_end_2','$project_stage_name_2')";
+        //  $res_stage = mysqli_query($db, $query_stage);
+         //
+        //  $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
+        //                  VALUES('$project_Id','$project_stage_start_3','$project_stage_end_3','$project_stage_name_3')";
+        //  $res_stage = mysqli_query($db, $query_stage);
 
-         $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
-                         VALUES('$project_Id','$project_stage_start_2','$project_stage_end_2','$project_stage_name_2')";
-         $res_stage = mysqli_query($db, $query_stage);
-
-         $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
-                         VALUES('$project_Id','$project_stage_start_3','$project_stage_end_3','$project_stage_name_3')";
-         $res_stage = mysqli_query($db, $query_stage);
-
-         if ($res&&$res_stage ) {
+         if ($res) {
              $errTyp = "success";
              $errMSG = "創建成功";
              unset($project_creatorId);
@@ -112,6 +112,9 @@
              $errMSG = "創建失敗";
          }
      }
+     echo "<script>
+     window.location.href='project_mission_creating.php';
+     </script>";
  }
 
  //抓取登入之帳戶資料
@@ -168,60 +171,6 @@
     </script>
   </head>
   <body>
-    <div class="container-fluid">
-        <ul class="nav_area2">
-            <li class="buttom2"><a href="home.php">首頁</a></li>
-            <li class="buttom2">任務區</li>
-            <li class="buttom2"><a href="PCalen.html">專案行事曆</a></li>
-            <li class="buttom2">專案設定</li>
-            <li class="buttom2">留言板</li>
-        </ul>
-    </div>
-    <!-- mainbar -->
-  	<div class="bar">
-      <div class="circle circle1"></div>
-        <div class="nav_area">
-          <div class=class="panel-group" id="accordion">
-            <div class="buttom">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                    我的專案
-                  </a>
-                </h4>
-              </div>
-              <div id="collapse2" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <ul>
-                    <li>進行中</li>
-                    <li>已完成</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="buttom">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                    行事曆
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div class="buttom">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-                    個人設定
-                  </a>
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-		   </div>
-	    </div>
       <div id="tab0" class="content">
 		    <h2>創建專案</h2>
 		    <table id="PSetting">
@@ -316,7 +265,6 @@
         });
     });
   </script>
-    <a href="home.php">回首頁</a>
   </body>
 </html>
 
