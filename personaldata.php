@@ -89,10 +89,7 @@ if (isset($_POST['btn-revise'])) {
         <li class="buttom2"><a href="javascript:ShowContent(3, 3, 'setup')">偏好設定</a></li>
     </div>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
+   
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-10">
@@ -101,87 +98,88 @@ if (isset($_POST['btn-revise'])) {
                         <br>
                         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" id="revise">
                         <div class="container-fluid">
-                            <h4>會員資料</h4>
-                            <button id="memberbutton1" type="button" class="btn btn-default btn-xs">修改</button>
+                            <h3>會員資料</h3>
+                            
                             <br>
                             <br>
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td>姓名</td>
-                                        <td>
+                                        <td class="t1"><h5>姓名</h5></td>
+                                        <td class="t2">
                                             <h5 id="name1"><?php echo $userRow[1]; ?></h5>
-                                            <div id="name2" style="display:none" class="form-find">
-                                                <input type="text" name="name" class="form-findtext" value="<?php echo $userRow[1]; ?>">
+                                            <div id="name2" style="display:none">
+                                                <h5><input type="text" name="name" class="form-findtext" value="<?php echo $userRow[1]; ?>"></h5>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>系級</td>
-                                        <td>
+                                        <td class="t1"><h5>系級</h5></td>
+                                        <td class="t2">
                                             <h5 id="department1"><?php echo $userRow[4]; ?></h5>
-                                            <div id="department2" style="display:none" class="form-find">
-                                                <input type="text" name="department" class="form-findtext" value="<?php echo $userRow[4]; ?>">
+                                            <div id="department2" style="display:none">
+                                                <h5><input type="text" name="department" class="form-findtext" value="<?php echo $userRow[4]; ?>"></h5>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>學號</td>
-                                        <td>
+                                        <td class="t1"><h5>學號</h5></td>
+                                        <td class="t2">
                                             <h5 id="number1"><?php echo $userRow[5]; ?></h5>
-                                            <div id="number2" style="display:none" class="form-find">
-                                                <input type="number" name="studentid" class="form-findtext" value="<?php echo $userRow[5]; ?>">
+                                            <div id="number2" style="display:none">
+                                                <h5><input type="number" name="studentid" class="form-findtext" value="<?php echo $userRow[5]; ?>"></h5>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>聯絡手機</td>
-                                        <td>
+                                        <td class="t1"><h5>聯絡手機</h5></td>
+                                        <td class="t2">
                                             <h5 id="phone1"><?php echo $userRow[6]; ?></h5>
                                             <div id="phone2" class="form-find" style="display: none">
-                                                <h5>修改手機號碼:</h5>
-                                                <input type="nember" name="cellphone" class="form-findtext" value="<?php echo $userRow[6]; ?>">
+                                                
+                                                <h5><input type="nember" name="cellphone" class="form-findtext" value="<?php echo $userRow[6]; ?>"></h5>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>自我介紹</td>
-                                        <td>
+                                        <td class="t1"><h5>自我介紹</h5></td>
+                                        <td class="t2">
                                             <h5 id="introduction1"><?php echo $userRow[7]; ?></h5>
                                             <div id="introduction2" style="display:none" class="form-find">
-                                                <textarea row="5" col="60" name="introduction" class="form-findtext"><?php echo $userRow[7]; ?></textarea>
+                                                <h5><textarea row="5" col="60" name="introduction" class="form-findtext"><?php echo $userRow[7]; ?></textarea></h5>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>興趣</td>
-                                        <td>
+                                        <td class="t1"><h5>興趣</h5></td>
+                                        <td class="t2">
                                             <h5 id="interests1"><?php echo $userRow[8]; ?></h5>
                                             <div id="interests2" style="display:none" class="form-find">
-                                                <textarea row="5" col="60" name="interests" class="form-findtext" ><?php echo $userRow[8]; ?></textarea>
+                                                <h5><textarea row="5" col="60" name="interests" class="form-findtext" ><?php echo $userRow[8]; ?></textarea></h5>
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="memberbutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
-                            <button id="memberbutton3" type="submit" name="btn-revise" style="display:none" class="btn btn-primary btn-xs">確認</button>
+                            <button id="memberbutton1" type="button" class="set">修改</button>
+                            <button id="memberbutton2" style="display:none" type="button" class="set">取消</button>
+                            <button id="memberbutton3" type="submit" name="btn-revise" style="display:none" class="set">確認</button>
                         </div>
                       </form>
                     </div>
                     <div class="mainpart" id="setup2" style="display: none">
                         <br>
                         <div class="container-fluid">
-                            <h4>安全性設定</h4>
-                            <button id="safebutton1" type="button" class="btn btn-default btn-xs">修改</button>
+                            <h3>安全性設定</h3>
+                            
                             <br>
                             <br>
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td>登入警告</td>
-                                        <td>
-                                            <h5 id="alert1">警告郵件:啟用 警告簡訊:啟用</h5>
+                                        <td class="t1"><h5>登入警告</h5></td>
+                                        <td class="t2">
+                                            <h5 id="alert1">警告郵件:啟用 <br><br>警告簡訊:啟用</h5>
                                             <form id="alert2" class="form-find" style="display: none">
                                                 <div class="checkbox checkbox-slider--b">
                                                     <label>
@@ -198,9 +196,9 @@ if (isset($_POST['btn-revise'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>登入驗證</td>
-                                        <td>
-                                            <h5 id="verify1">簡訊驗證:啟用 代碼產生器:啟用</h5>
+                                        <td class="t1"><h5>登入驗證</h5></td>
+                                        <td class="t2">
+                                            <h5 id="verify1">簡訊驗證:啟用 <br><br>代碼產生器:啟用</h5>
                                             <form id="verify2" class="form-find" style="display: none">
                                                 <div class="checkbox checkbox-slider--b">
                                                     <label>
@@ -217,13 +215,13 @@ if (isset($_POST['btn-revise'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>登入位置</td>
-                                        <td></td>
+                                        <td class="t1"><h5>登入位置</h5></td>
+                                        <td class="t2"></td>
                                     </tr>
                                     <tr>
-                                        <td>帳號救援</td>
-                                        <td>
-                                            <h5 id="forget1">寄郵件到電子信箱:啟用 寄簡訊到手機:啟用</h5>
+                                        <td class="t1"><h5>帳號救援</h5></td>
+                                        <td class="t2">
+                                            <h5 id="forget1">寄郵件到電子信箱:啟用 <br><br>寄簡訊到手機:啟用</h5>
                                             <form id="forget2" class="form-find" style="display: none">
                                                 <div class="checkbox checkbox-slider--b">
                                                     <label>
@@ -241,25 +239,26 @@ if (isset($_POST['btn-revise'])) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="safebutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
-                            <button id="safebutton3" style="display:none" type="button" class="btn btn-primary btn-xs">確認</button>
+                            <button id="safebutton1" type="button" class="set">修改</button>
+                            <button id="safebutton2" style="display:none" type="button" class="set">取消</button>
+                            <button id="safebutton3" style="display:none" type="button" class="set">確認</button>
                         </div>
                     </div>
                     <div class="mainpart" id="setup3" style="display: none">
                         <br>
                         <div class="container-fluid">
-                            <h4>帳戶偏好設定</h4>
-                            <button id="preferbutton1" type="button" class="btn btn-default btn-xs">修改</button>
+                            <h3>帳戶偏好設定</h3>
+                            
                             <br>
                             <br>
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td>語言</td>
-                                        <td>
+                                        <td class="t1"><h5>語言</h5></td>
+                                        <td class="t2">
                                             <h5 id="language1">繁體中文</h5>
                                             <form id="language2" class="form-find" style="display: none">
-                                                <h5>選擇語言:</h5>
+                                                
                                                 <div class="form-group">
                                                     <select class="form-control">
                                                         <option>繁體中文</option>
@@ -271,9 +270,9 @@ if (isset($_POST['btn-revise'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>音效</td>
-                                        <td>
-                                            <h5 id="sound1">通知音效:啟用 提醒音效:啟用</h5>
+                                        <td class="t1"><h5>音效</h5></td>
+                                        <td class="t2">
+                                            <h5 id="sound1">通知音效:啟用 <br><br>提醒音效:啟用</h5>
                                             <form id="sound2" class="form-find" style="display: none">
                                                 <div class="checkbox checkbox-slider--b">
                                                     <label>
@@ -290,11 +289,11 @@ if (isset($_POST['btn-revise'])) {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>通知</td>
-                                        <td>
-                                            <h5 id="notice1">郵件發送:啟用 簡訊發送:啟用</h5>
+                                        <td class="t1"><h5>通知</h5></td>
+                                        <td class="t2">
+                                            <h5 id="notice1">郵件發送:啟用 <br><br>簡訊發送:啟用</h5>
                                             <form id="notice2" class="form-find" style="display: none">
-                                                <form>
+                                                
                                                     <div class="checkbox checkbox-slider--b">
                                                         <label>
                                                             <input type="checkbox"><span>重要通知發送郵件到電子信箱</span>
@@ -340,19 +339,20 @@ if (isset($_POST['btn-revise'])) {
                                                         <label>
                                                             <input type="checkbox" value="">貼文回應</label>
                                                     </div>
-                                                </form>
-                                                <hr>
+                                                
+                                                
                                             </form>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>貼文</td>
-                                        <td></td>
+                                        <td class="t1"><h5>貼文</h5></td>
+                                        <td class="t2"></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="preferbutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
-                            <button id="preferbutton3" style="display:none" type="button" class="btn btn-primary btn-xs">確認</button>
+                            <button id="preferbutton1" type="button" class="set">修改</button>
+                            <button id="preferbutton2" style="display:none" type="button" class="set">取消</button>
+                            <button id="preferbutton3" style="display:none" type="button" class="set">確認</button>
                         </div>
                     </div>
                 </div>
