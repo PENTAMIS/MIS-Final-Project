@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/css/PAssign.css">
     <script type="text/javascript" src="assets/js/PAssign.js"></script>
+    <script src="assets/js/custom-file-input.js"></script>
     <script type="text/javascript">
     $(function() {
         // 預設顯示第一個 Tab
@@ -97,18 +98,16 @@
                             </td>
                             <td id="PS3-7"><input type="checkbox" name="" value="">會計學報告</td>
                             
-                            <!-- 檔案上傳 -->
+                            
                             <td id="PS3-6">
                             <input type="file" name="file-5[]" id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple />
                             <label for="file-5"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span>Choose a file&hellip;</span>
                             </label>
                             </td>
-                            <script src="assets/js/custom-file-input.js"></script>
+                            
 
-                            <!-- <td id="PS3-6"><input class="up" type="file" value="" name="FILE">
-                            <input class="adddoc" type=submit value="+">
-                            </td>
- -->
+                            
+
                             
                         
                         </tr>
@@ -242,7 +241,7 @@
     // });
 
     $(".stage_plus").click(function() {
-        $("#stage").append('<div class="Stage"> <div class="StageName"> <h2>階段目標</h2> <br> <div class="StageTime"> <nobr> <span>[期間]</span> <br> <input id="query2StartDate" name="query2StartDate" maxDate="query2EndDate" value="" /> <br> ~ <br> <input id="query2EndDate" name="query2EndDate" minDate="query2StartDate" value="" /> </nobr> </div> </div> <div class="Assign"> <table class="PAssign"> <tbody id="test"> <tr class="PS-3" style="font-weight: 900;font-size: 18px;"> <td class="PS3-1">任務名稱</td> <td class="PS3-2">參與人員</td> <td class="PS3-3">時間</td> <td class="PS3-4">內容</td> <td id="PS3-7">狀態</td> <td id="PS3-5">提醒</td><td>刪除檔案</td> <td id="PS3-6">上傳檔案</td> </tr> <tr class="PS-3"> <td class="PS3-1">開會討論</td> <td class="PS3-2">黃晨浩、吳紹瑜、許旆旟、鄭韶葳、鄭俊彥</td> <td class="PS3-3">2016/09/20</td> <td class="PS3-4">內容</td> <td id="PS3-7">未完成</td> <td id="PS3-5"> <input type="checkbox" name="" value=""> </td><td><input type="checkbox" name="" value="">會計學報告</td><td id="PS3-6"><input class="up" type="file" value="" name="FILE"> <input class="adddoc" type=submit value="+"> </td> </tr> <tr class="PS-3"> <td class="PS3-1"> <input id="input1" type="text" name="任務名稱"> </td> <td class="PS3-2"> <input id="input1" type="text" name="參與人員"> </td> <td class="PS3-3"> <input id="input2" type="date" id="bookdate" placeholder="2014-09-18"> </td> <td class="PS3-4"><textarea id="input3" class="form-control" rows="1" placeholder=""></textarea> </td> <td id="PS3-7"></td> <td id="PS3-5"><input type="checkbox" name="" value=""></td> <td></td><td id="PS3-6"></td> </tr> </tbody> </table> <input type=submit value="+ 新增任務 " class="plus "> <input type=submit value="儲存 " class="save "> </div> <div style="height: 0px;clear: both;"></div> </div>');
+        $("#stage").append('<div class="Stage"> <div class="StageName"> <h2>階段目標</h2> <br> <div class="StageTime"> <nobr> <span>[期間]</span> <br> <input id="query2StartDate" name="query2StartDate" maxDate="query2EndDate" value="" /> <br> ~ <br> <input id="query2EndDate" name="query2EndDate" minDate="query2StartDate" value="" /> </nobr> </div> </div> <div class="Assign"> <table class="PAssign"> <tbody id="test"> <tr class="PS-3" style="font-weight: 900;font-size: 18px;"> <td class="PS3-1">任務名稱</td> <td class="PS3-2">參與人員</td> <td class="PS3-3">時間</td> <td class="PS3-4">內容</td> <td id="PS3-7">狀態</td> <td id="PS3-5">提醒</td> <td>刪除檔案</td> <td id="PS3-6">上傳檔案</td> </tr> <tr class="PS-3"> <td class="PS3-1">開會討論</td> <td class="PS3-2">黃晨浩<br>吳紹瑜<br>許旆旟<br>鄭韶葳<br>鄭俊彥</td> <td class="PS3-3">2016/09/20</td> <td class="PS3-4">內容</td> <td id="PS3-7">未完成</td> <td id="PS3-5"> <input type="checkbox" name="" value=""> </td> <td id="PS3-7"><input type="checkbox" name="" value="">會計學報告</td> <td id="PS3-6"> <input type="file" name="file-5[]" id="file-5" class="inputfile inputfile-4" data-multiple-caption="{count} files selected" multiple /> <label for="file-5"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span>Choose a file&hellip;</span> </label> </td> </tr> <tr class="PS-3"> <td class="PS3-1"> <input id="input1" type="text" name="任務名稱"> </td> <td class="PS3-2"> <input id="input1" type="text" name="參與人員"> </td> <td class="PS3-3"> <input id="input2" type="date" id="bookdate" placeholder="2014-09-18"> </td> <td class="PS3-4"><textarea id="input3" class="form-control" rows="1" placeholder=""></textarea> </td> <td id="PS3-7"></td> <td id="PS3-5"><input type="checkbox" name="" value=""></td> <td id="PS3-6"></td> </tr> </tbody> </table> <input type=submit value="+ 新增任務 " class="plus "> <input type=submit value="儲存 " class="save "> <input type=submit value="編輯 " class="edit "> </div> <div style="height: 0px;clear: both;"></div> </div>');
     });
     </script>
 </body>
