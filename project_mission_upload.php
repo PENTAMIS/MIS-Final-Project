@@ -31,7 +31,11 @@ for ($i = 0; $i <= $_POST['x'] ; $i++) {
 
         $missionContent = $_POST["missionContent$i"];
 
-        $missionFile = $_POST["missionFile$i"];
+        if(isset($_POST["missionFile$i"])){
+          $missionFile = $_POST["missionFile$i"];
+        }else{
+          $missionFile = 0;
+        }
 
         $projects_stageId = 1;
 

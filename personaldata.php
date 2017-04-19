@@ -89,7 +89,10 @@ if (isset($_POST['btn-revise'])) {
         <li class="buttom2"><a href="javascript:ShowContent(3, 3, 'setup')">偏好設定</a></li>
     </div>
     <br>
-   
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="container-fluid">
         <div class="row content">
             <div class="col-sm-10">
@@ -98,8 +101,8 @@ if (isset($_POST['btn-revise'])) {
                         <br>
                         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" id="revise">
                         <div class="container-fluid">
-                            <h3>會員資料</h3>
-                            
+                            <h4>會員資料</h4>
+                            <button id="memberbutton1" type="button" class="btn btn-default btn-xs">修改</button>
                             <br>
                             <br>
                             <table class="table">
@@ -161,17 +164,16 @@ if (isset($_POST['btn-revise'])) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="memberbutton1" type="button" class="set">修改</button>
-                            <button id="memberbutton2" style="display:none" type="button" class="set">取消</button>
-                            <button id="memberbutton3" type="submit" name="btn-revise" style="display:none" class="set">確認</button>
+                            <button id="memberbutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
+                            <button id="memberbutton3" type="submit" name="btn-revise" style="display:none" class="btn btn-primary btn-xs">確認</button>
                         </div>
                       </form>
                     </div>
                     <div class="mainpart" id="setup2" style="display: none">
                         <br>
                         <div class="container-fluid">
-                            <h3>安全性設定</h3>
-                            
+                            <h4>安全性設定</h4>
+                            <button id="safebutton1" type="button" class="btn btn-default btn-xs">修改</button>
                             <br>
                             <br>
                             <table class="table">
@@ -239,16 +241,15 @@ if (isset($_POST['btn-revise'])) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="safebutton1" type="button" class="set">修改</button>
-                            <button id="safebutton2" style="display:none" type="button" class="set">取消</button>
-                            <button id="safebutton3" style="display:none" type="button" class="set">確認</button>
+                            <button id="safebutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
+                            <button id="safebutton3" style="display:none" type="button" class="btn btn-primary btn-xs">確認</button>
                         </div>
                     </div>
                     <div class="mainpart" id="setup3" style="display: none">
                         <br>
                         <div class="container-fluid">
-                            <h3>帳戶偏好設定</h3>
-                            
+                            <h4>帳戶偏好設定</h4>
+                            <button id="preferbutton1" type="button" class="btn btn-default btn-xs">修改</button>
                             <br>
                             <br>
                             <table class="table">
@@ -350,9 +351,8 @@ if (isset($_POST['btn-revise'])) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <button id="preferbutton1" type="button" class="set">修改</button>
-                            <button id="preferbutton2" style="display:none" type="button" class="set">取消</button>
-                            <button id="preferbutton3" style="display:none" type="button" class="set">確認</button>
+                            <button id="preferbutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
+                            <button id="preferbutton3" style="display:none" type="button" class="btn btn-primary btn-xs">確認</button>
                         </div>
                     </div>
                 </div>
