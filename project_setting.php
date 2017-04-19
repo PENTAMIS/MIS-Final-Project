@@ -26,22 +26,7 @@
      $project_teacher = strip_tags($_POST['project_teacher']);
      $project_teacher = htmlspecialchars($project_teacher);
      $project_deadline = $_POST['project_deadline'];
-     $project_Id = $_POST['project_Id'];
-     $project_stage_name_1 = $_POST['project_stage_name_1'];
-     $project_stage_name_1 = strip_tags($_POST['project_stage_name_1']);
-     $project_stage_name_1 = htmlspecialchars($project_stage_name_1);
-     $project_stage_start_1 = $_POST['project_stage_start_1'];
-     $project_stage_end_1 = $_POST['project_stage_end_1'];
-     $project_stage_name_2 = $_POST['project_stage_name_2'];
-     $project_stage_name_2 = strip_tags($_POST['project_stage_name_2']);
-     $project_stage_name_2 = htmlspecialchars($project_stage_name_2);
-     $project_stage_start_2 = $_POST['project_stage_start_2'];
-     $project_stage_end_2 = $_POST['project_stage_end_2'];
-     $project_stage_name_3 = $_POST['project_stage_name_3'];
-     $project_stage_name_3 = strip_tags($_POST['project_stage_name_3']);
-     $project_stage_name_3 = htmlspecialchars($project_stage_name_3);
-     $project_stage_start_3 = $_POST['project_stage_start_3'];
-     $project_stage_end_3 = $_POST['project_stage_end_3'];
+     $project_Id = $_GET['id'];
      if (empty($project_name)) {
          $error = true;
          $project_nameError = "請輸入專案名稱";
@@ -61,20 +46,6 @@
                   projectTeacher = '$project_teacher',
                   projectDeadline = '$project_deadline' WHERE projectId =".$_GET['id'];
          $res_projects = mysqli_query($db, $query);
-         $query = "UPDATE projects_stage SET
-                  project_stageStart = '$project_stage_start_1',
-                  project_stageEnd = '$project_stage_end_1',
-                  project_stageName = '$project_stage_name_1' WHERE projects_stageId =".$projects_stageId[0];
-         $res_stage = mysqli_query($db, $query);
-         $query = "UPDATE projects_stage SET
-                  project_stageStart = '$project_stage_start_2',
-                  project_stageEnd = '$project_stage_end_2',
-                  project_stageName = '$project_stage_name_2' WHERE projects_stageId =".$projects_stageId[1];
-         $res_stage = mysqli_query($db, $query);
-         $query = "UPDATE projects_stage SET
-                  project_stageStart = '$project_stage_start_3',
-                  project_stageEnd = '$project_stage_end_3',
-                  project_stageName = '$project_stage_name_3' WHERE projects_stageId =".$projects_stageId[2];
          $res_stage = mysqli_query($db, $query);
          if ($res_projects&&$res_stage) {
              $errTyp = "success";
@@ -86,15 +57,6 @@
              unset($project_creattime);
              unset($project_deadline);
              unset($project_Id);
-             unset($project_stage_name_1);
-             unset($project_stage_name_2);
-             unset($project_stage_name_3);
-             unset($project_stage_start_1);
-             unset($project_stage_end_1);
-             unset($project_stage_start_2);
-             unset($project_stage_end_2);
-             unset($project_stage_start_3);
-             unset($project_stage_end_3);
          } else {
              $errTyp = "danger";
              $errMSG = "更新失敗";
@@ -169,7 +131,6 @@
       <div id="tab0" class="content">
 		    <h2>專案設定</h2>
 		    <table id="PSetting">
-        <button id="setbutton1" type="button" class="btn btn-default btn-xs">修改</button>
 			  <tbody>
         <form method="post" action="project_setting.php?id=<?php echo $_GET['id']; ?>" action="form-handler" autocomplete="off" id="project_setting">
 				<tr class="PS-1">
@@ -208,8 +169,9 @@
 				</tr>
 			</tbody>
 		</table>
-    <button id="setbutton2" style="display:none" type="button" class="btn btn-danger btn-xs">取消</button>
-    <button id="setbutton3" style="display:none" type="submit" name="btn-project_create" class="btn btn-primary btn-xs">確認</button>
+    <button id="setbutton1" type="button" class="set">修改</button>
+    <button id="setbutton2" class="set" style="display:none" type="button">取消</button>
+    <button id="setbutton3" class="set" name="btn-project_create" style="display:none" type="submit">確認</button>
 	</div>
   <?php /*
   大區段部分code，尚未套入。
@@ -232,36 +194,43 @@
   }
   ?> -->
 </form>
-  <script type="text/javascript">
-    $(".timeline").on("mouseenter mouseleave", function (event) { //挷定滑鼠進入及離開事件
-      if (event.type == "mouseenter") {
-        $(this).css({"overflow-x": "scroll"}); //滑鼠進入
-      } else {
-        $(this).scrollTop(0).css({"overflow-x": "hidden"}); //滑鼠離開
-      }
-    });
-  </script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-        $('input[name$="Date"]').datepicker({
-            dateFormat: 'yy/mm/dd',
-            beforeShow: function() {
-                if ($(this).attr('maxDate')) {
-                    var dateItem = $('#' + $(this).attr('maxDate'));
-                    if (dateItem.val() !== "") {
-                        $(this).datepicker('option', 'maxDate', dateItem.val());
-                    }
-                }
-                if ($(this).attr('minDate')) {
-                    var dateItem = $('#' + $(this).attr('minDate'));
-                    if (dateItem.val() !== "") {
-                        $(this).datepicker('option', 'minDate', dateItem.val());
-                    }
+
+<script type="text/javascript">
+$(".timeline").on("mouseenter mouseleave", function(event) { //挷定滑鼠進入及離開事件
+    if (event.type == "mouseenter") {
+        $(this).css({
+            "overflow-x": "scroll"
+        }); //滑鼠進入
+    } else {
+        $(this).scrollTop(0).css({
+            "overflow-x": "hidden"
+        }); //滑鼠離開
+    }
+});
+</script>
+<!--期間-->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('input[name$="Date"]').datepicker({
+        dateFormat: 'yy/mm/dd',
+        beforeShow: function() {
+            if ($(this).attr('maxDate')) {
+                var dateItem = $('#' + $(this).attr('maxDate'));
+                if (dateItem.val() !== "") {
+                    $(this).datepicker('option', 'maxDate', dateItem.val());
                 }
             }
-        });
+
+            if ($(this).attr('minDate')) {
+                var dateItem = $('#' + $(this).attr('minDate'));
+                if (dateItem.val() !== "") {
+                    $(this).datepicker('option', 'minDate', dateItem.val());
+                }
+            }
+        }
     });
-  </script>
+});
+</script>
   </body>
 </html>
 
