@@ -3,21 +3,51 @@
   require_once 'Dbconnect.php';
   require_once 'bar.php';
 
+  $x = 0;
+
   $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
   $userRow = mysqli_fetch_array($res);
 
-if (isset($_POST['stage_create'])) {
+  $res = mysqli_query($db, "SELECT MAX(projectId) FROM projects");
+  $projectId = mysqli_fetch_array($res);
+
+if (isset($_POST['btn-project_mission_create'])) {
 
    $project_stage_name_1 = $_POST['project_stage_name_1'];
    $project_stage_name_1 = strip_tags($_POST['project_stage_name_1']);
    $project_stage_name_1 = htmlspecialchars($project_stage_name_1);
 
    $project_stage_start_1 = $_POST['project_stage_start_1'];
-   $project_stage_start_1 = $_POST['project_stage_end_1'];
 
+   $project_stage_end_1 = $_POST['project_stage_end_1'];
 
+   $query_stage = "INSERT INTO projects_stage(projectId,project_stageStart,project_stageEnd,project_stageName)
+                        VALUES('$projectId[0]','$project_stage_start_1','$project_stage_end_1','$project_stage_name_1')";
+   $res_stage = mysqli_query($db, $query_stage);
 
+         $missionName = $_POST["missionName$i"];
+        //  $missionName = strip_tags($_POST["missionName$i"]);
+        //  $missionName = htmlspecialchars(${"missionName".$i});
 
+         $missionMembers = $_POST["missionMembers$i"];
+
+         $missionDate = $_POST["missionDate$i"];
+
+         $missionContent = $_POST["missionContent$i"];
+
+         $missionFile = $_POST["missionFile$i"];
+
+         $projects_stageId = 1;
+
+         $query_mission = "INSERT INTO projects_stage_missions(projects_stageId,missionName,missionMembers,missionDate,missionContent,file_upload)
+                                VALUES('$projects_stageId','$missionName','$missionMembers','$missionDate','$missionContent','$missionFile')";
+         $res_mission = mysqli_query($db, $query_mission);
+
+         unset($missionName);
+         unset($missionMembers);
+         unset($missionDate);
+         unset($missionContent);
+         unset($missionFile);
 }
 
 ?>
@@ -67,11 +97,11 @@ if (isset($_POST['stage_create'])) {
     <link rel="stylesheet" type="text/css" href="assets/css/component.css" />
     <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
   </head>
-  <body>
+  <body onload="loadValues();">
     <div id="stage">
 
         <!-- interval setting -->
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" action="form-handler" autocomplete="off" id="stage_create">
+      <form method="post" action="project_mission_upload.php" action="form-handler" autocomplete="off" id="stage_create">
         <div class="Stage">
             <div class="StageName">
                 <h2>階段目標</h2>
@@ -132,29 +162,30 @@ if (isset($_POST['stage_create'])) {
 
                         <tr class="PS-3">
                             <td class="PS3-1">
-                                <input id="input1" type="text" name="missionName">
+                                <input id="input1" type="text" name=<?php echo "missionName$x"; ?>>
                             </td>
                             <td class="PS3-2">
-                                <input id="input1" type="text" name="missionMembers">
+                                <input id="input1" type="text" value="<?php echo $x; ?>" name=<?php echo "missionMembers$x"; ?>>
                             </td>
                             <td class="PS3-3">
-                                <input id="input2" type="date" name="missionDate" id="bookdate" placeholder="2014-09-18">
+                                <input id="input2" type="date" name=<?php echo "missionDate$x"; ?> id="bookdate" placeholder="2014-09-18">
                             </td>
-                            <td class="PS3-4"><textarea id="input3" name="missionContent" class="form-control" rows="1" placeholder=""></textarea>
+                            <td class="PS3-4"><textarea id="input3" name=<?php echo "missionContent$x"; ?> class="form-control" rows="1" placeholder=""></textarea>
                             </td>
                             <td id="PS3-7"></td>
 					       <td id="PS3-5"><input type="checkbox" name="" value=""></td>
 
                            <td id="PS3-6"></td>
-                           <td id="PS3-7"><input type="checkbox" name="" value=""</td>
+                           <td id="PS3-7"><input type="checkbox" name=<?php echo "missionFile$x"; ?> value="1"></td>
+                           <input type="text" style="display:none" name="x" id="x" />
 		          		</tr>
 
 
 
 			        </tbody>
 	               	</table>
-		          <input type=button value="+ 新增任務 " class="plus ">
-		          <input type=submit value="儲存 " class="save ">
+		          <input type=button value="+ 新增任務 " onClick="x_increase()" class="plus ">
+		          <input type=submit name="btn-project_mission_create" value="儲存 " class="save ">
                   <input type=button value="編輯 " class="edit ">
                 </form>
 
@@ -192,13 +223,28 @@ if (isset($_POST['stage_create'])) {
     </script>
     <!--新增-->
     <script type="text/javascript">
+
+    var x = 0;
+    function getx(){
+      return x;
+    }
+    function x_increase() {
+      window.x = window.x + 1;
+      document.getElementById("x").value = window.x;
+    }
+    function loadValues(){
+      document.getElementById("x").value = window.x;
+      //alert(document.getElementById("hiddenVal").value);
+    }
     $(document).on("click", ".adddoc", function() {
         $(this).parent().append('<input class="up" type="file" value="" name="FILE">');
     });
 
     $(document).on("click", ".plus", function() {
-        $(this).parent().find("#test").append('<tr class="PS-3"> <td class="PS3-1"> <input id="input1" type="text" name="任務名稱"> </td> <td class="PS3-2"> <input id="input1" type="text" name="參與人員"> </td> <td class="PS3-3"> <input id="input2" type="date" id="bookdate" placeholder="2014-09-18"> </td>  <td class="PS3-4"><textarea id="input3" class="form-control" rows="1" placeholder=""></textarea></td><td id="PS3-7"></td><td id="PS3-5"><input type="checkbox" name="" value=""></td><td></td><td id="PS3-6"><input type="checkbox" name="" value=""></td> </tr>');
-    });
+            $(this).parent().find("#test").append('<tr class="PS-3"> <td class="PS3-1"> <input id="input1" type="text" value="' + window.x + '" name="missionName' + window.x + '"> </td> <td class="PS3-2"> <input id="input1" type="text" name="missionMembers' + window.x + '"> </td> <td class="PS3-3"> <input id="input2" type="date" id="bookdate" name="missionDate' + window.x + '" placeholder="2014-09-18"> </td>  <td class="PS3-4"><textarea id="input3" class="form-control" rows="1" name="missionContent'+ window.x + '" placeholder=""></textarea></td><td id="PS3-7"></td><td id="PS3-5"><input type="checkbox" name="missionFile' + window.x +  '" value=""></td><td></td><td id="PS3-6"></td> </tr>');
+        });
+
+      document.getElementByID("x").value = window.x;
 
     // $(".plus").click(function() {
     //     $("#test").append('<tr class="PS-3"> <td class="PS3-1"><input id="input1" type="text" name="任務名稱"></td> <td class="PS3-2"><input id="input1" type="text" name="參與人員"></td> <td class="PS3-3"><input id="input2" type="date" id="bookdate" placeholder="2014-09-18"></td> <td class="PS3-4">#<input id="input3" type="text" name="標籤" style="height:20px; width:50px;""></td> <td class="PS3-5"><input type="checkbox" name="" value=""></td> </tr>');
