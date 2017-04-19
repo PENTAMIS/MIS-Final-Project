@@ -95,11 +95,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>註冊</title>
+    <title>Project Index</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/hover-min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <!--選取日期-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="PSignup.css">
+    <script type="text/javascript" src="PSignup.js"></script>
 </head>
 <body>
   <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" action="form-handler" onsubmit="return checkForm(this)" autocomplete="off" id="register">
-    <h2>註冊</h2>
+    <!-- <h2>註冊</h2>
     重要資料填寫<br>
     <input type="email" name="email" class="form-control" placeholder="請輸入電子郵件" maxlength="40" value="" /></br>
     <?php if (isset($emailError)){echo $emailError.'<br>';} ?>
@@ -115,7 +127,7 @@
     <textarea row="5" col="60" name="introduction" form="register" placeholder="請輸入自我介紹..."/></textarea><br>
     <textarea row="5" col="60" name="interests" form="register" placeholder="請輸入興趣..."/></textarea><br>
     <button type="submit" name="btn-signup">註冊</button></br>
-    <a href="index.php">點我回登入頁面</a>
+    <a href="index.php">點我回登入頁面</a> -->
     <?php
     if (isset($errMSG)) {
          ?>
@@ -124,7 +136,84 @@
          <?php
     }
     ?>
-  </form>
+  
+  <div id="tab0" class="content">
+        <div class="sign">
+        <h2>註冊</h2>
+        </div>
+        
+
+            <table id="PSetting">
+                <tbody>
+                    <tr class="PS-1">
+                        <td class="PS1-1">大頭貼</td>
+                        <td class="PS1-2">
+                            <img id="show1">
+                            <input type="file" id="photo1" name="FILE" />
+                            <button type="button" class="btn btn-info btn-s" value="View" onclick="$(this).prev().click();">新增大頭貼</button>
+                        </td>
+                    </tr>
+                    <tr class="PS-1">
+                        <td class="PS1-1">電子郵件</td>
+                        <td class="PS1-2">
+                            <input type="email" name="email" placeholder="請輸入電子信箱......" maxlength="40" value=<?php if (isset($emailError)){echo $emailError.'<br>';} ?>>
+                            <input type="button" value="驗證" name="submit">
+                        </td>
+                    </tr>
+                    <tr class="PS-1">
+                        <td class="PS1-1">密碼</td>
+                        <td class="PS1-2">
+                            <input type="password" name="pass" placeholder="請輸入密碼......" maxlength="15" value=<?php if (isset($passError)){echo $passError.'<br>';} //如無錯誤，以上error均不會顯示?>>
+                            <br>
+                            <br>
+                            <input type="password" name="密碼" placeholder="再次輸入密碼......">
+                        </td>
+                    </tr>
+                    <tr class="PS-1">
+                        <td class="PS1-1">使用者名稱</td>
+                        <td class="PS1-2">
+                            <input type="text" name="name" placeholder="請輸入使用者名稱......" maxlength="50" value=<?php if (isset($nameError)){echo $nameError.'<br>';} ?> >
+                        </td>
+                    </tr>
+                    <tr class="PS-1">
+                        <td class="PS1-1">系級</td>
+                        <td class="PS1-2">
+                            <input type="text" name="department" class="form-control" placeholder="請輸入系級" maxlength="50" value="" >
+                            <br>
+                            <br>
+                            <select class="form-control">
+                                <option>一年級</option>
+                                <option>二年級</option>
+                                <option>三年級</option>
+                                <option>四年級</option>
+                                <option>五年級</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="PS-1">
+                        <td class="PS1-1">學號</td>
+                        <td class="PS1-2">
+                            <input type="number" name="studentid" class="form-control" placeholder="請輸入學號" maxlength="50" value="">
+                        </td>
+                    </tr>
+                    <tr class="PS-1">
+                        <td class="PS1-1">連絡電話</td>
+                        <td class="PS1-2">
+                            <input type="number" name="cellphone" class="form-control" placeholder="請輸入連絡電話" maxlength="10" value="">
+                        </td>
+                    </tr>
+                    <tr class="PS-1">
+                        <td class="PS1-1">自我介紹</td>
+                        <td class="PS1-2">
+                            <textarea row="5" col="60" name="introduction" form="register" placeholder="請輸入自我介紹..."/></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" value="+ 創建帳號 " class="plus" name="btn-signup">
+        
+    </div>
+    </form>
 </body>
 </html>
 <?php ob_end_flush(); ?>
