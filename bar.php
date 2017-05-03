@@ -102,7 +102,7 @@ return false;
               if (isset($_GET['id'])) {?>
 
                 <li class="button2"><a href="project_mission.php?id=<?php echo $_GET['id']; ?>">任務區</a></li>
-                <li class="button2"><a href="project_calender.php?id=<?php echo $_GET['id']; ?>">專案行事曆</a></li>
+                <li class="button2"><a href="project_calendar.php?id=<?php echo $_GET['id']; ?>">專案行事曆</a></li>
                 <li class="button2"><a href="project_message.php?id=<?php echo $_GET['id']; ?>">留言板</a></li>
             <?php
             }
@@ -158,7 +158,7 @@ return false;
                             </div>
                             <div class="button">
 
-                                <a href="#collapse6">個人行事曆</a>
+                                <a href="personal_calendar.php">個人行事曆</a>
 
                             </div>
                             <div class="button">

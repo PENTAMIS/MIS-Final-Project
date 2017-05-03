@@ -2,8 +2,8 @@
   session_start();
   require_once 'dbconnect.php';
 
-  $res = mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
-  $userRow = mysql_fetch_array($res);
+  $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
+  $userRow = mysqli_fetch_array($res);
   $projectId = $_GET['id'];
 
   if (empty($userRow[9])) {
@@ -14,10 +14,10 @@
 
   $query = "UPDATE users SET
            user_projectId_invited = '$userRow[9]' WHERE userId =".$_SESSION['user'];
-  $res = mysql_query($query);
+  $res = mysqli_query($db, $query);
 
-  $res_2 = mysql_query("SELECT projectMembersId FROM projects WHERE projectId=".$_GET['id']);
-  $projectMembersRow = mysql_fetch_array($res_2);
+  $res_2 = mysqli_query($db, "SELECT projectMembersId FROM projects WHERE projectId=".$_GET['id']);
+  $projectMembersRow = mysqli_fetch_array($res_2);
 
   echo $projectMembersRow[0];
   $project_membersRow = explode(",",$projectMembersRow[0]);
@@ -29,7 +29,8 @@
 
   $query = "UPDATE projects SET
            projectMembersId = '$project_members' WHERE projectId =".$projectId;
-  $res_2 = mysql_query($query);
+  $res_2 = mysqli_query($db, $query);
+
 
   if($res&&$res_2){
     echo "<script>
