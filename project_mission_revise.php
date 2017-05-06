@@ -2,11 +2,21 @@
 session_start();
 require_once 'Dbconnect.php';
 
+
 $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
 $userRow = mysqli_fetch_array($res);
 
-$res = mysqli_query($db, "SELECT MAX(projectId) FROM projects");
-$projectId = mysqli_fetch_array($res);
+$res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
+$projectRow = mysqli_fetch_array($res);
+
+$postSource = "修改任務區";
+
+$postText = "$userRow[1]在<a href=\"project_home.php?id=$projectRow[0]\">$projectRow[3]</a>修改了任務區";
+
+$sql_post = "INSERT INTO post(postSource,postText,postUserId,postProjectId,postInvolvedMembers)
+          VALUES('$postSource','$postText','$userRow[0]','$projectRow[0]','$projectRow[2]')";
+
+mysqli_query($db, $sql_post);
 
 
 
@@ -164,8 +174,10 @@ for ($p = 0; $p < $_POST['y'] ; $p++) {
         }
   }
 
+$ppp = $_GET['id'];
+
 echo "<script>
 alert('成功');
-window.location.href='project_mission.php?id=$projectId[0]';
+window.location.href='project_mission.php?id=$ppp';
 </script>";
  ?>

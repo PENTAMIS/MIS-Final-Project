@@ -10,7 +10,7 @@
   $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);
   $userRow = mysqli_fetch_array($res);
 
-  $res = mysqli_query($db, "SELECT MAX(projectId) FROM projects");
+  $res = mysqli_query($db, "SELECT projectId FROM projects WHERE projectId=".$_GET['id']);
   $projectId = mysqli_fetch_array($res);
 
   $res = mysqli_query($db, "SELECT min(projects_stageId) FROM projects_stage WHERE projectId =".$projectId[0]);
@@ -102,7 +102,7 @@
     <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
   </head>
   <body onload="loadValues();">
-    <form method="post" action="project_mission_revise.php" action="form-handler" autocomplete="off" id="stage_create">
+    <form method="post" action="project_mission_revise.php?id=<?php echo $projectId[0]; ?>" action="form-handler" autocomplete="off" id="stage_create">
     <div id="stage">
       <?php for ($i = 0; $i < $Countprojects_stageId[0]; $i++) {   ?>
 
