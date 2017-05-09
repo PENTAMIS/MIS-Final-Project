@@ -69,52 +69,35 @@ return false;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type='text/javascript' src='https://code.jquery.com/jquery-1.9.1.min.js'></script>
     <link rel="stylesheet" href="bar.css">
-    <!-- <script type='text/javascript'>
-    $(function() {
-        var w = $("#mwt_slider_content").width();
-        $('#mwt_slider_content').css('height', ($(window).height() - 20) + 'px'); //將區塊自動撐滿畫面高度
-
-        $("#mwt_fb_tab").mouseover(function() { //滑鼠滑入時
-            if ($("#mwt_mwt_slider_scroll").css('right') == '-' + w + 'px') {
-                $("#mwt_mwt_slider_scroll").animate({
-                    right: '0px'
-                }, 600, 'swing');
-            }
-        });
-
-
-        $("#mwt_slider_content").mouseleave(function() {　 //滑鼠離開後
-            $("#mwt_mwt_slider_scroll").animate({
-                right: '-' + w + 'px'
-            }, 600, 'swing');
-        });
-    });
-    </script> -->
+   
 </head>
 
 <body>
     <!-- childbar -->
     <div>
         <ul class="nav_area2">
-            <img src="images/logoblue-04.png" width="150" right="15">
-            <li class="button2"><a href="home.php">首頁</a></li>
+        <a href="home.php" class="logo" ><img src="images/logo-04.png" width="150" ></a>
+            
             <?php
               if (isset($_GET['id'])) {?>
 
                 <li class="button2"><a href="project_mission.php?id=<?php echo $_GET['id']; ?>">任務區</a></li>
-                <li class="button2"><a href="project_calendar.php?id=<?php echo $_GET['id']; ?>">專案行事曆</a></li>
+                <li class="button2"><a href="project_calender.php?id=<?php echo $_GET['id']; ?>">專案行事曆</a></li>
                 <li class="button2"><a href="project_message.php?id=<?php echo $_GET['id']; ?>">留言板</a></li>
             <?php
             }
             if(isset($_GET['id'])){
               if ($userRow[0] == $projectRow[1]){
-                echo "<li class='button2'><a href=project_setting.php?id={$_GET['id']}>專案設定</a></li>";
-                echo "<li class='button2'><a href=project_delete.php?id={$_GET['id']}>刪除專案</a></li>";
+                ?>
+                <li class="button2"><a href="project_setting.php?id=<?php echo $_GET['id']; ?>">專案設定</a></li>
+                <li class="button2"><a href="project_delete.php?id=<?php echo $_GET['id']; ?>">刪除專案</a></li>
+                <?php
               }
             }
             ?>
         </ul>
     </div>
+    
 
     <!-- mainbar -->
     <div id="mwt_mwt_slider_scroll">
@@ -158,7 +141,7 @@ return false;
                             </div>
                             <div class="button">
 
-                                <a href="personal_calendar.php">個人行事曆</a>
+                                <a href="#collapse6">個人行事曆</a>
 
                             </div>
                             <div class="button">

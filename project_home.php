@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'Dbconnect.php';
-require_once 'bar.php';
+require_once 'bar_P.php';
 
 
   $res = mysqli_query($db, "SELECT * FROM users WHERE userId=".$_SESSION['user']);

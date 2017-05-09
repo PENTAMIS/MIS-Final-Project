@@ -2,7 +2,7 @@
  ob_start();
  session_start();
  require_once 'dbconnect.php';
- include("bar.php");
+ include("bar_P.php");
  $res = mysqli_query($db, "SELECT * FROM projects WHERE projectId=".$_GET['id']);
  $projectRow = mysqli_fetch_array($res);
  //如果非登入狀態將導回首頁

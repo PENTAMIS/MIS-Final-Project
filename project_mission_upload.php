@@ -41,11 +41,7 @@ for ($p = 0; $p <= $_POST['y'] ; $p++) {
 
             $missionContent = $_POST["missionContent$p$i"];
 
-            if(isset($_POST["missionFile$p$i"])){
-              $missionFile = $_POST["missionFile$p$i"];
-            }else{
-              $missionFile = 0;
-            }
+            $missionFile = 1;
 
             $stageId = $projects_stageId[0];
 

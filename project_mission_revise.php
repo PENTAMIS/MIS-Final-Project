@@ -56,10 +56,67 @@ for ($p = 0; $p < $_POST['y'] ; $p++) {
 
               $project_stage_missionId = $_POST["project_stage_missionId$p$i"];
 
+
               if(isset($_POST["missionFile$p$i"])){
                 $missionFile = $_POST["missionFile$p$i"];
               }else{
-                $missionFile = 0;
+                $missionFile = 1;
+              }
+
+              if(isset($_FILES["files$p$i"])){
+                $errors= array();
+                foreach($_FILES["files$p$i"]['tmp_name'] as $key => $tmp_name )
+                {
+                  if ($_FILES["files$p$i"]['size'][$key]!==0) {
+                    $file_name = $_FILES["files$p$i"]['name'][$key];
+                    $file_size = $_FILES["files$p$i"]['size'][$key];
+                    $file_tmp = $_FILES["files$p$i"]['tmp_name'][$key];
+                    $file_type = $_FILES["files$p$i"]['type'][$key];
+                    $file_projectId = $projectRow[0];
+                    $file_userId = $userRow[0];
+                    $sepext = explode('.', strtolower($_FILES["files$p$i"]['name'][$key]));
+                    $type = end($sepext);       // gets extension
+
+                    if($file_size > 2097152)
+                    {
+                      $errors[]='檔案大小必須小於 2 MB';
+                    }
+
+                    // new file size in KB
+                    $new_size = $file_size/1024;
+
+                    $desired_dir="uploads";
+                    if(empty($errors)==true)
+                    {
+                      if(is_dir($desired_dir)==false)
+                      {
+                        // Create directory if it does not exist
+                        mkdir("$desired_dir", 0700);
+                      }
+                      // if the uploaded file does not exist
+                      if(file_exists("$desired_dir/".$file_name)==false)
+                      {
+                        // move file to folder
+                        move_uploaded_file($file_tmp,"$desired_dir/".$file_name);
+                      } else
+                      {
+                        // rename the file if another one exist
+                        $count = 0;
+                        list($name, $ext) = explode('.', $file_name);
+                        while(file_exists("$desired_dir/".$file_name))
+                        {
+                          $count++;
+                          $file_name = $name. $count . '.' . $ext;
+                        }
+                        move_uploaded_file($file_tmp,"$desired_dir/".$file_name);
+                      }
+                      $query="INSERT INTO tbl_uploads(file,type,size,projectId,userId,missionId)
+                              VALUES('$file_name','$type','$new_size','$file_projectId','$file_userId','$project_stage_missionId')";
+                      mysqli_query($db, $query);
+                    }
+                    # code...
+                  }
+                }
               }
 
 
@@ -176,8 +233,8 @@ for ($p = 0; $p < $_POST['y'] ; $p++) {
 
 $ppp = $_GET['id'];
 
-echo "<script>
-alert('成功');
-window.location.href='project_mission.php?id=$ppp';
-</script>";
+// echo "<script>
+// alert('成功');
+// window.location.href='project_mission.php?id=$ppp';
+// </script>";
  ?>

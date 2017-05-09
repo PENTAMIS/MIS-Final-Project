@@ -2,7 +2,7 @@
  ob_start();
  session_start();
  require_once 'dbconnect.php';
- require_once 'bar.php';
+ require_once 'bar_PS.php';
 
  //如果非登入狀態將導回首頁
  if (!isset($_SESSION['user'])) {

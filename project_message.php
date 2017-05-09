@@ -2,7 +2,7 @@
   ob_start();
   session_start();
   require_once 'Dbconnect.php';
-  include("bar.php");
+  include("bar_p.php");
 
   $projectId = $_GET['id'];
 
@@ -75,7 +75,7 @@
         $res = mysqli_query($db, $query);
 
         $query = "INSERT INTO post(postSource,postText,postUserId,postProjectId,postInvolvedMembers)
-                  VALUES('$postSource','$postText','$userRow[0]','$projectRow[0]','$involvedMembers')";
+                  VALUES('$postSource','$postText','$userRow[0]','$projectRow[0]','$projectRow[2]')";
         $res = mysqli_query($db, $query);
 
 
