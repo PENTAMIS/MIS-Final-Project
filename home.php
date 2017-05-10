@@ -189,7 +189,7 @@ return false;
                 <a href="">檔案總管</a>
               </div>
               <div class="button">
-                <a href="">分享市集</a>
+                <a href="/cart/search_file.php">分享市集</a>
               </div>
             </div>
 

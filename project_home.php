@@ -112,7 +112,7 @@ require_once 'bar_P.php';
   </head>
   <body>
     <div class="timeline">
-			<img src="http://i.imgur.com/yGw58pM.png" id="background" >
+			<img src="images/Timelinebg.png" id="background" >
 
 		<div class="T1">
 
@@ -120,27 +120,7 @@ require_once 'bar_P.php';
 			<div id="line" src="images/hhhhh-06.png" ></div>
 			<!-- <hr height="20" color="black" top="180px" > -->
         <?php for ($i = 0; $i < $days; $i++) {?>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id="">
+          <div class="date" id='<?php echo $i;?>'>
   					<div class="assign" id="as4">
               <?php
                 if(isset($missionName[$i])){
@@ -166,18 +146,6 @@ require_once 'bar_P.php';
               </h5>
   					</div>
   				</div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
-          <div class="date" id=""></div>
 
           <?php } ?>
 

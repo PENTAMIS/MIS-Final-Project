@@ -92,7 +92,7 @@ return false;
 
                 <li class="button2"><a href="project_mission.php?id=<?php echo $_GET['id']; ?>">任務區</a></li>
                 <li class="button2"><a href="project_calendar.php?id=<?php echo $_GET['id']; ?>">專案行事曆</a></li>
-                <li class="button2"><a href="project_message.php?id=<?php echo $_GET['id']; ?>">留言板</a></li>
+                <li class="button2"><a href="project_message.php?id=<?php echo $_GET['id']; ?>">討論區</a></li>
             <?php
             }
             if(isset($_GET['id'])){
@@ -182,7 +182,7 @@ return false;
                 <a href="">檔案總管</a>
               </div>
               <div class="button">
-                <a href="">分享市集</a>
+                <a href="/cart/search_file.php">分享市集</a>
               </div>
             </div>
 

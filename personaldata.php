@@ -143,7 +143,7 @@ if (isset($_POST['btn-revise'])) {
     <script type='text/javascript' src='https://code.jquery.com/jquery-1.9.1.min.js'></script>
     <link rel="stylesheet" href="bar_per.css">
 
- 
+
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
@@ -153,10 +153,6 @@ if (isset($_POST['btn-revise'])) {
         <div style="position:absolute;left:10px;height:50px;top:0px;">
         <a href="home.php"><img src="images/logobo-04.png" class="logoimg" width="150"></a>
 
-                <li class="button2"><a href="">會員資料</a></li>
-                <li class="button2"><a href="">安全性</a></li>
-                <li class="button2"><a href="">偏好設定</a></li>
-
           </div>
                 <button class="c-hamburger c-hamburger--htra" onclick="openNav()">
                         <span >&#9776;</span>
@@ -164,7 +160,7 @@ if (isset($_POST['btn-revise'])) {
         </ul>
 
 
-        
+
     </div>
 
     <div class="w3-overlay"  id="myOverlay" style="cursor:pointer;display:none;" ></div>
@@ -173,22 +169,22 @@ if (isset($_POST['btn-revise'])) {
 
         <div id="mwt_slider_content" >
             <div >
-              
-              
+
+
               <div class="user">
                   <div style="top:20px;width:180px;position:relative;height:82px;left:10px;">
-                        <div class="circle"></div> 
+                        <div class="circle"></div>
                         <div style="margin-left:10px;height:80px;float:left;position:relative;">
                               <div class="userName">鄭俊彥</div>
-                              <div class="userCoin">$00000</div> 
+                              <div class="userCoin">$00000</div>
                         </div>
                         <a href="personaldata.php"><img class="edit" src="images/editicon.png" ></a>
                   </div>
                   <a href="logout.php?logout"><img class="logout" src="images/logout.png" ></a>
-                    
-                        
+
+
               </div>
-              
+
               <hr class="line3"></hr>
             </div>
             <div  class="nav_area" id="accordion">
@@ -197,7 +193,7 @@ if (isset($_POST['btn-revise'])) {
               </div>
               <div class="button">
                 <a data-toggle="collapse" href="#collapse2">我的專案</a>
-                                    
+
                                 <div id="collapse2" class="panel-collapse collapse">
                                     <!-- <div class="panel-body"> -->
                                         <ul>
@@ -238,8 +234,8 @@ if (isset($_POST['btn-revise'])) {
                 <a href="">分享市集</a>
               </div>
             </div>
-              
-            
+
+
         </div>
       </div>
         <!-- animation click main bar -->
@@ -294,7 +290,7 @@ if (isset($_POST['btn-revise'])) {
                         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off" id="revise">
                         <div class="container-fluid">
                             <h3>會員資料</h3>
-                            
+
                             <br>
                             <br>
                             <table class="table">
@@ -331,7 +327,7 @@ if (isset($_POST['btn-revise'])) {
                                         <td class="t2">
                                             <h5 id="phone1"><?php echo $userRow[6]; ?></h5>
                                             <div id="phone2" class="form-find" style="display: none">
-                                                
+
                                                 <h5><input type="nember" name="cellphone" class="form-findtext" value="<?php echo $userRow[6]; ?>"></h5>
                                             </div>
                                         </td>
@@ -366,7 +362,7 @@ if (isset($_POST['btn-revise'])) {
                         <br>
                         <div class="container-fluid">
                             <h3>安全性設定</h3>
-                            
+
                             <br>
                             <br>
                             <table class="table">
@@ -443,7 +439,7 @@ if (isset($_POST['btn-revise'])) {
                         <br>
                         <div class="container-fluid">
                             <h3>帳戶偏好設定</h3>
-                            
+
                             <br>
                             <br>
                             <table class="table">
@@ -453,7 +449,7 @@ if (isset($_POST['btn-revise'])) {
                                         <td class="t2">
                                             <h5 id="language1">繁體中文</h5>
                                             <form id="language2" class="form-find" style="display: none">
-                                                
+
                                                 <div class="form-group">
                                                     <select class="form-control">
                                                         <option>繁體中文</option>
@@ -488,7 +484,7 @@ if (isset($_POST['btn-revise'])) {
                                         <td class="t2">
                                             <h5 id="notice1">郵件發送:啟用 <br><br>簡訊發送:啟用</h5>
                                             <form id="notice2" class="form-find" style="display: none">
-                                                
+
                                                     <div class="checkbox checkbox-slider--b">
                                                         <label>
                                                             <input type="checkbox"><span>重要通知發送郵件到電子信箱</span>
@@ -534,8 +530,8 @@ if (isset($_POST['btn-revise'])) {
                                                         <label>
                                                             <input type="checkbox" value="">貼文回應</label>
                                                     </div>
-                                                
-                                                
+
+
                                             </form>
                                         </td>
                                     </tr>
@@ -552,7 +548,7 @@ if (isset($_POST['btn-revise'])) {
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </body>

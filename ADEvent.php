@@ -26,7 +26,7 @@
 			$postText = "$userRow[1]在<a href=\"project_home.php?id=$projectRow[0]\">$projectRow[3]</a>新增了一項事件";
 		  $post_sql ="INSERT INTO post(postSource,postText,postUserId,postProjectId,postInvolvedMembers)
 						      VALUES('$postSource','$postText','$userRow[0]','$projectRow[0]','$projectRow[2]')";
-			mysqli_query($db,$post_sql);						
+			mysqli_query($db,$post_sql);
 		}else{
 			$sql ="INSERT INTO events(title,date,created,userId)
 						VALUES('$title','$date','$today','$userRow[0]')";
@@ -39,7 +39,7 @@
 			window.location.href='project_calendar.php?id=$projectRow[0]';
 			</script>";
 		}else{
-			"<script>
+			echo "<script>
 			window.location.href='personal_calendar.php';
 			</script>";
 	}
@@ -53,7 +53,7 @@
 			window.location.href='project_calendar.php?id=$projectRow[0]';
 			</script>";
 		}else{
-			"<script>
+			echo "<script>
 			window.location.href='personal_calendar.php';
 			</script>";
 	}
