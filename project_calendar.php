@@ -2,7 +2,7 @@
 <?php
 session_start();
 require_once 'Dbconnect.php';
-require_once 'bar_p.php';
+require_once 'bar_P.php';
 
  ?>
 <html>

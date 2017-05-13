@@ -129,7 +129,7 @@ return false;
                         <div class="circle"></div>
                         <div style="margin-left:10px;height:80px;float:left;position:relative;">
                               <div class="userName">鄭俊彥</div>
-                              <div class="userCoin">$00000</div>
+                              <div class="userCoin">$9999</div>
                         </div>
                         <a href="personaldata.php"><img class="edit" src="images/editicon.png" ></a>
 
@@ -247,36 +247,36 @@ return false;
     <div id="a-1" class="box"><img src="images/cc-06.png"></div>
     <div id="a-2" class="box"><img src="images/cc-07.png"></div>
     <div id="b-2" class="box"><img src="images/cc-08.png"></div>
-    <div id="o-2" class="boxo d2"><p class="po">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="o-2" class="boxo d2"><p class="po">許方方購買了你的會計學報告文件</p></div>
     <div id="a-3" class="box"></div>
 
 
-    <div id="o-3" class="boxo d3"><p class="po">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="o-3" class="boxo d3"><p class="po">鄭韶威購買了你的經濟學報告文件</p></div>
     <div id="a-4" class="box"></div>
-    <div id="b-4" class="boxb d1"><p class="pb">鄭俊彥在會計學報告新增了一個檔案</p></div>
-    <div id="o-4" class="boxo d2"><p class="po">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="b-4" class="boxb d1"><p class="pb">黃晨浩在會計學報告新增了一項任務</p></div>
+    <div id="o-4" class="boxo d2"><p class="po">鄭韶威購買了你的歷史思維報告文件</p></div>
     <div id="a-5" class="box"></div>
-    <div id="b-5" class="boxb d3"><p class="pb">鄭俊彥在會計學報告新增了一個檔案</p></div>
-    <div id="o-5" class="boxo d4"><p class="po">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="b-5" class="boxb d3"><p class="pb">黃晨浩在微積分期末報告新增了一項個檔案</p></div>
+    <div id="o-5" class="boxo d4"><p class="po">許方方在會計學報告發布了一篇貼文</p></div>
 
 
 
-    <div id="b-6" class="boxb d1"><p class="pb">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="b-6" class="boxb d1"><p class="pb">詹忠雄購買了你的歷史思維報告文件</p></div>
     <div id="a-7" class="box"></div>
-    <div id="o-6" class="boxo d4"><p class="po">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="o-6" class="boxo d4"><p class="po">彭須凱購買了你的歷史思維報告文件</p></div>
     <div id="a-8" class="box"></div>
-    <div id="o-7" class="boxo d3"><p class="po">鄭俊彥在會計學報告新增了一個檔案</p></div>
-    <div id="b-7" class="boxb d2"><p class="pb">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="o-7" class="boxo d3"><p class="po">許方方在微積分期末報告新增了一項個檔案</p></div>
+    <div id="b-7" class="boxb d2"><p class="pb">李昂在會計學報告新增了一個檔案</p></div>
     <div id="a-9" class="box"></div>
 
 
-    <div id="o-8" class="boxo d1"><p class="po">鄭俊彥在會計學報告新增了一個檔案</p></div>
-    <div id="b-8" class="boxb d4"><p class="pb">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="o-8" class="boxo d1"><p class="po">林顯京在微積分期末報告新增了一項個檔案</p></div>
+    <div id="b-8" class="boxb d4"><p class="pb">彭須凱購買了你的藥物知識報告文件</p></div>
     <div id="a-10" class="box"></div>
-    <div id="o-9" class="boxb d2"><p class="pb">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="o-9" class="boxb d2"><p class="pb">吳紹琊購買了你的從最小的角度看世界報告文件</p></div>
     <div id="a-11" class="box"></div>
     <div id="a-12" class="box"></div>
-    <div id="b-9" class="boxb d3"><p class="pb">鄭俊彥在會計學報告新增了一個檔案</p></div>
+    <div id="b-9" class="boxb d3"><p class="pb">詹忠雄購買了你的魚與大自然報告文件</p></div>
 
 </div>
 <!-- <script>

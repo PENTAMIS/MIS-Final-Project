@@ -36,7 +36,10 @@
 		/*border:2px black solid;*/
 		
 	}
-	
+	.logoimg{
+		top:8px;
+		position:relative;
+	}
 	.tablepic{
 		height:80px;
 		/*border:1px solid;*/
@@ -103,7 +106,22 @@
 
 	
 	
-	
+	.creatbtn{
+		font-size:18px;
+		width:90px;
+		height:40px;
+		border-radius: 10px;
+		background-color:transparent;
+		border:1px solid #333;
+		margin:10px;
+		position: relative;
+		left:500px;
+	}
+	.creatbtn:hover{
+		background-color:#41b1f4;
+		color:white;
+	}
+  	
   	.set{
   		font-size:18px;
 		width:90px;

@@ -124,7 +124,7 @@ return false;
                         <div class="circle"></div>
                         <div style="margin-left:10px;height:80px;float:left;position:relative;">
                               <div class="userName">鄭俊彥</div>
-                              <div class="userCoin">$00000</div>
+                              <div class="userCoin">$9999</div>
                         </div>
                         <a href="personaldata.php"><img class="edit" src="images/editicon.png" ></a>
                   </div>

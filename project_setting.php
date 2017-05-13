@@ -129,71 +129,59 @@
     </script>
   </head>
       <div id="tab0" class="content">
-		    <h2>專案設定</h2>
+		    <div class="head">
+        <h2 class="title">專案設定</h2>
+            <img src="images/tablepic.png" class="tablepic">
+            </div>
 		    <table id="PSetting">
-			  <tbody>
-        <form method="post" action="project_setting.php?id=<?php echo $_GET['id']; ?>" action="form-handler" autocomplete="off" id="project_setting">
-				<tr class="PS-1">
-					<td class="PS1-1">專案名稱</td>
-					<td class="PS1-2">
-            <h5 id="setname1"><?php echo $projectRow[3]; ?></h5>
-            <input id="setname2" style="display:none" type="text" name="project_name" placeholder="請輸入專案名稱" maxlength="40" value="<?php echo $projectRow[3]; ?>" /></td>
-          <?php if (isset($project_nameError)){echo $project_nameError.'<br>';} ?>
-				</tr>
-				<tr class="PS-1">
-					<td class="PS1-1">課程名稱（或活動名稱）</td>
-					<td class="PS1-2">
-            <h5 id="setclass1"><?php echo $projectRow[4]; ?></h5>
-            <input id="setclass2" style="display:none" type="text" name="project_class" placeholder="請輸入課程(活動)名稱" maxlength="40" value="<?php echo $projectRow[4]; ?>" /></td>
-            <?php if (isset($project_classError)){echo $project_classError.'<br>';} ?>
-				</tr>
-				<tr class="PS-1">
-					<td class="PS1-1">授課老師</td>
-					<td class="PS1-2">
-            <h5 id="setteacher1"><?php echo $projectRow[5]; ?></h5>
-            <input id="setteacher2" style="display:none" type="text" name="project_teacher" placeholder="請輸入指導老師" maxlength="40" value="<?php echo $projectRow[5]; ?>" /></td>
-          <?php if (isset($project_teacherError)){echo $project_teacherError.'<br>';} ?>
-				</tr>
-				<tr class="PS-1">
-					<td class="PS1-1">參與人員(尚未寫修改功能)</td>
-          <td class="PS1-2">
-              <h5 id="setmember1">鄭俊彥</h5>
-              <input id="setmember2" style="display:none" type="text" name="參與人員">
-          </td>
-				</tr>
-				<tr class="PS-1">
-					<td class="PS1-1">到期期限</td>
-					<td class="PS1-2">
-            <h5 id="settime1"><?php echo $projectRow[7]; ?></h5>
-            <input id="settime2" style="display:none" type="date" name="project_deadline" maxlength="40" value="<?php echo $projectRow[7]; ?>" /></td>
-				</tr>
-			</tbody>
-		</table>
-    <button id="setbutton1" type="button" class="set">修改</button>
-    <button id="setbutton2" class="set" style="display:none" type="button">取消</button>
-    <button id="setbutton3" class="set" name="btn-project_create" style="display:none" type="submit">確認</button>
-	</div>
-  <?php /*
-  大區段部分code，尚未套入。
-  大區段一：
-  <input type="text" name="project_stage_name_1" placeholder="請輸入區段名稱" maxlength="40" value="<?php echo $project_stageNameRow[0]; ?>" />
-  <input type="date" name="project_stage_start_1" maxlength="40" value="<?php echo $project_stageStartRow[0]; ?>" />
-  <input type="date" name="project_stage_end_1" maxlength="40" value="<?php echo $project_stageEndRow[0]; ?>" /><br>
-  大區段二：
-  <input type="text" name="project_stage_name_2" placeholder="請輸入區段名稱" maxlength="40" value="<?php echo $project_stageNameRow[1]; ?>" />
-  <input type="date" name="project_stage_start_2" maxlength="40" value="<?php echo $project_stageStartRow[1]; ?>" />
-  <input type="date" name="project_stage_end_2" maxlength="40" value="<?php echo $project_stageEndRow[1]; ?>" /><br>
-  大區段三：
-  <input type="text" name="project_stage_name_3" placeholder="請輸入區段名稱" maxlength="40" value="<?php echo $project_stageNameRow[2]; ?>" />
-  <input type="date" name="project_stage_start_3" maxlength="40" value="<?php echo $project_stageStartRow[2]; ?>" />
-  <input type="date" name="project_stage_end_3" maxlength="40" value="<?php echo $project_stageEndRow[2]; ?>" /><br>
-  */?>
-  <!-- <?php
-  if (isset($errMSG)) {
-       echo ($errTyp=="success") ? "success" : $errTyp;
-  }
-  ?> -->
-</form>
+          			  <tbody>
+                        <form method="post" action="project_setting.php?id=<?php echo $_GET['id']; ?>" action="form-handler" autocomplete="off" id="project_setting">
+                				<tr class="PS-1">
+                					<td class="PS1-1">專案名稱</td>
+                					<td class="PS1-2">
+                            <h5 id="setname1"><?php echo $projectRow[3]; ?></h5>
+                            <input id="setname2" style="display:none" type="text" name="project_name" placeholder="請輸入專案名稱" maxlength="40" value="<?php echo $projectRow[3]; ?>" /></td>
+                          <?php if (isset($project_nameError)){echo $project_nameError.'<br>';} ?>
+                				</tr>
+                				<tr class="PS-1">
+                					<td class="PS1-1">課程名稱（或活動名稱）</td>
+                					<td class="PS1-2">
+                            <h5 id="setclass1"><?php echo $projectRow[4]; ?></h5>
+                            <input id="setclass2" style="display:none" type="text" name="project_class" placeholder="請輸入課程(活動)名稱" maxlength="40" value="<?php echo $projectRow[4]; ?>" /></td>
+                            <?php if (isset($project_classError)){echo $project_classError.'<br>';} ?>
+                				</tr>
+                				<tr class="PS-1">
+                					<td class="PS1-1">授課老師</td>
+                					<td class="PS1-2">
+                            <h5 id="setteacher1"><?php echo $projectRow[5]; ?></h5>
+                            <input id="setteacher2" style="display:none" type="text" name="project_teacher" placeholder="請輸入指導老師" maxlength="40" value="<?php echo $projectRow[5]; ?>" /></td>
+                          <?php if (isset($project_teacherError)){echo $project_teacherError.'<br>';} ?>
+                				</tr>
+                				<tr class="PS-1">
+                					<td class="PS1-1">參與人員</td>
+                          <td class="PS1-2">
+                              <h5 id="setmember1">root2@yahoo.com,root3@yahoo.com</h5>
+                              <input id="setmember2" style="display:none" type="text" name="參與人員">
+                          </td>
+                				</tr>
+                				<tr class="PS-1">
+                					<td class="PS1-1">到期期限</td>
+                					<td class="PS1-2">
+                            <h5 id="settime1"><?php echo $projectRow[7]; ?></h5>
+                            <input id="settime2" style="display:none" type="date" name="project_deadline" maxlength="40" value="<?php echo $projectRow[7]; ?>" /></td>
+                				</tr>
+                			</tbody>
+                		</table>
+                    <button id="setbutton1" type="button" class="set">修改</button>
+                    <button id="setbutton2" class="set" style="display:none" type="button">取消</button>
+                    <button id="setbutton3" class="set" name="btn-project_create" style="display:none" type="submit">確認</button>
+                	</div>
+
+                </form>
+          </tbody>
+</table>
+</div>
+
 
 <script type="text/javascript">
 $(".timeline").on("mouseenter mouseleave", function(event) { //挷定滑鼠進入及離開事件

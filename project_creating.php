@@ -131,7 +131,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project Index</title>
+    <title>Project Creating</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/hover-min.css">
@@ -142,7 +142,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.2.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="PSet.css">
+    <link rel="stylesheet" href="PCreate.css">
     <script type="text/javascript" src="PSet.js"></script>
     <script type="text/javascript">
     $(function() {
@@ -171,70 +171,69 @@
     </script>
   </head>
   <body>
+
       <div id="tab0" class="content">
-		    <h2>創建專案</h2>
+            <div class="head">
+		    <h2 class="title">創建專案</h2>
+            <img src="images/tablepic.png" class="tablepic">
+            </div>
 		    <table id="PSetting">
-			  <tbody>
-  <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" action="form-handler" autocomplete="off" id="project_create">
-    <input type="hidden" name="project_creatorId" value="<?php echo $userRow[0]; ?>">
-    <input type="hidden" name="project_Id" value="<?php echo $projectRow[0]+1; ?>">
+			         <tbody>
+                          <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" action="form-handler" autocomplete="off" id="project_create">
+                            <input type="hidden" name="project_creatorId" value="<?php echo $userRow[0]; ?>">
+                            <input type="hidden" name="project_Id" value="<?php echo $projectRow[0]+1; ?>">
 
-    <tr class="PS-1">
-      <td class="PS1-1">專案名稱</td>
-      <td class="PS1-2">
-    <input type="text" name="project_name" placeholder="請輸入專案名稱" maxlength="40" value="" /></br>
-    <?php if (isset($project_nameError)){echo $project_nameError.'<br>';} ?>
-    </tr>
+                                    <tr class="PS-1">
+                                        <td class="PS1-1">專案名稱</td>
+                                        <td class="PS1-2">
+                                        <input type="text" name="project_name" placeholder="請輸入專案名稱" maxlength="40" value="" />
+                                        <?php if (isset($project_nameError)){echo $project_nameError.'<br>';} ?>
+                                    </tr>
 
-    <tr class="PS-1">
-      <td class="PS1-1">課程名稱（或活動名稱）</td>
-      <td class="PS1-2">
-    <input type="text" name="project_class" placeholder="請輸入課程(活動)名稱" maxlength="40" value="" /><br>
-    <?php if (isset($project_classError)){echo $project_classError.'<br>';} ?>
-    </tr>
+                                    <tr class="PS-1">
+                                        <td class="PS1-1">課程名稱（或活動名稱）</td>
+                                        <td class="PS1-2">
+                                        <input type="text" name="project_class" placeholder="請輸入課程(活動)名稱" maxlength="40" value="" />
+                                        <?php if (isset($project_classError)){echo $project_classError.'<br>';} ?>
+                                    </tr>
 
-    <tr class="PS-1">
-      <td class="PS1-1">參與人員</td>
-      <td class="PS1-2">
-    <input type="text" name="project_member" placeholder="請輸入組員信箱" value="" /><br>
-    </tr>
+                                    <tr class="PS-1">
+                                        <td class="PS1-1">參與人員</td>
+                                        <td class="PS1-2">
+                                        <input type="text" name="project_member" placeholder="請輸入組員信箱" value="" />
+                                    </tr>
 
-    <tr class="PS-1">
-      <td class="PS1-1">授課老師</td>
-      <td class="PS1-2">
-    <input type="text" name="project_teacher" placeholder="請輸入指導老師" maxlength="40" value="" /><br>
-    <?php if (isset($project_teacherError)){echo $project_teacherError.'<br>';} ?>
-    </tr>
+                                    <tr class="PS-1">
+                                        <td class="PS1-1">授課老師</td>
+                                        <td class="PS1-2">
+                                        <input type="text" name="project_teacher" placeholder="請輸入指導老師" maxlength="40" value="" />
+                                        <?php if (isset($project_teacherError)){echo $project_teacherError.'<br>';} ?>
+                                    </tr>
 
-    <input type="hidden" name="project_creattime" value="<?php echo date('Y/m/d', time())?>">
+                                    <input type="hidden" name="project_creattime" value="<?php echo date('Y/m/d', time())?>">
 
-    <tr class="PS-1">
-      <td class="PS1-1">到期期限</td>
-      <td class="PS1-2">
-    <input type="date" name="project_deadline" maxlength="40" value="" /><br><br>
-    </tr>
-    <!-- 大區段一：
-    <input type="text" name="project_stage_name_1" placeholder="請輸入區段名稱" maxlength="40" value="" />
-    <input type="date" name="project_stage_start_1" maxlength="40" value="" />
-    <input type="date" name="project_stage_end_1" maxlength="40" value="" /><br>
-    大區段二：
-    <input type="text" name="project_stage_name_2" placeholder="請輸入區段名稱" maxlength="40" value="" />
-    <input type="date" name="project_stage_start_2" maxlength="40" value="" />
-    <input type="date" name="project_stage_end_2" maxlength="40" value="" /><br>
-    大區段三：
-    <input type="text" name="project_stage_name_3" placeholder="請輸入區段名稱" maxlength="40" value="" />
-    <input type="date" name="project_stage_start_3" maxlength="40" value="" />
-    <input type="date" name="project_stage_end_3" maxlength="40" value="" /><br> -->
-    <button type="submit" name="btn-project_create">創立</button></br>
-    <?php
-    if (isset($errMSG)) {
-         ?>
-         <div class="alert alert-<?php echo ($errTyp=="success") ? "success" : $errTyp; ?>">
-         <?php echo $errMSG; ?>
-         <?php
-    }
-    ?>
-  </form>
+                                    <tr class="PS-1">
+                                        <td class="PS1-1">到期期限</td>
+                                        <td class="PS1-2">
+                                        <input type="date" name="project_deadline" maxlength="40" value="" />
+                                    </tr>
+
+
+                                <?php
+                                if (isset($errMSG)) {
+                                     ?>
+                                     <div class="alert alert-<?php echo ($errTyp=="success") ? "success" : $errTyp; ?>">
+                                     <?php echo $errMSG; ?>
+                                     <?php
+                                }
+                                ?>
+
+                       </tbody>
+
+                    </table>
+                    <button class="creatbtn" type="submit" name="btn-project_create">創立</button>
+                    </form>
+        </div>
   <script type="text/javascript">
     $(".timeline").on("mouseenter mouseleave", function (event) { //挷定滑鼠進入及離開事件
       if (event.type == "mouseenter") {
